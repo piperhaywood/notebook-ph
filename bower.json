@@ -3,5 +3,9 @@
   "private": true,
   "devDependencies": {
     "jquery": "~2.1.4"
+  },
+  "dependencies": {
+    "jquery.fitvids": "^1.1.0",
+    "prism": "^1.4.1"
   }
 }

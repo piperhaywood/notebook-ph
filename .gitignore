@@ -20,5 +20,4 @@ wp-content/*
 wp-content/themes/*
 !wp-content/themes/notebook-ph/
 
-wp-content/themes/notebook-ph/js/build/
-wp-content/themes/notebook-ph/css/**/*.css
+wp-content/themes/notebook-ph/fonts.css

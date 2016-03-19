@@ -36,6 +36,17 @@ gulp.task('sass', function() {
     .pipe(gulp.dest(themeDir));
 });
 
+gulp.task('fonts', function() {
+  return gulp.src('fonts/**/*.scss')
+    .pipe(sourcemaps.init())
+    .pipe(sass())
+    .pipe(sourcemaps.write())
+    .pipe(autoprefixer())
+    .pipe(concat('fonts.css'))
+    .pipe(cssmin())
+    .pipe(gulp.dest(themeDir));
+});
+
 gulp.task('js', function() {
   return gulp.src([
     'bower_components/jquery/dist/jquery.js',
@@ -48,5 +59,5 @@ gulp.task('js', function() {
     .pipe(gulp.dest(themeDir));
 });
 
-gulp.task('build', ['sass', 'js']);
+gulp.task('build', ['sass', 'js', 'fonts']);
 

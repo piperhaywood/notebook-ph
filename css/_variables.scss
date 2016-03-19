@@ -1,3 +1,54 @@
-.test {
-  color: black;
+$black: #222;
+$grey: #999;
+
+$text: $black;
+$link: $text;
+
+$line-height: 1.35;
+$line-height-em: ($line-height)*(1em);
+$lh: $line-height-em;
+$font-sans: "HermesRegularCondensed", Helvetica, Arial, sans-serif;
+$font-serif: "Source Serif Pro", Georgia, Times, serif;
+$font-code: "Source Code Pro", "Andale Mono", "Ubuntu Mono", monospace;
+
+$column-gutter: 20px;
+$total-columns: 12;
+
+$small-screen: 600px;
+$medium-screen: 1025px;
+$large-screen: 1400px;
+
+$screen: "only screen";
+$small: "#{$screen} and (min-width: #{$small-screen})";
+$medium: "#{$screen} and (min-width:#{$medium-screen})";
+$large: "#{$screen} and (min-width:#{$large-screen})";
+
+$duration: 0.2s;
+
+@mixin line-height {
+  line-height: $line-height;
+}
+
+$row-width: 62.5rem;
+
+$font-size-small: 0.8125rem;
+$font-size-large: 1.5em;
+
+// Clearfix
+@mixin clearfix {
+  *zoom:1;
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin font-small {
+  font-size: $font-size-small;
+  font-family: $font-sans;
+  line-height: 1.3;
 }

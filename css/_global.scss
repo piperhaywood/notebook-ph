@@ -1,0 +1,76 @@
+* {
+  box-sizing:border-box;
+}
+
+html, body {
+  position: relative;
+  height: 100%;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: $font-sans;
+  color: $text;
+  font-weight: 400;
+  line-height: 1;
+  font-size: 100%;
+  @media #{$small} {
+    font-size: 126%;
+  }
+  &.drawer-open {
+    overflow: hidden;
+  }
+}
+
+p, ul, ol, li, h1, h2, h3 {
+  @include line-height;
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+}
+
+p, ul, ol, blockquote {
+  margin-bottom: $lh;
+}
+
+h1, h2 {
+  margin: 0 0 $line-height-em/2 0;
+}
+
+* + h2 {
+  margin-top: $lh;
+}
+
+a {
+  color: $link;
+  text-decoration: none;
+  &:hover {
+    color: $link;
+    text-decoration: underline;
+  }
+  p & {
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.content {
+  max-width: $row-width;
+  margin: 0 auto;
+}
+
+.site-wrapper {
+  padding-bottom: $lh*4;
+  .drawer-open & {
+    height: 100%;
+  }
+}
+
+figure {
+  margin: 0 0 $lh 0;
+}

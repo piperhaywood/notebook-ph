@@ -4,20 +4,20 @@ node_modules
 *.map
 
 /*
-!.gitignore
-!gulpfile.js
-!bower.json
-!package.json
-!README.md
-!favicon.ico
-!js/
-!css/
-!wp-content/
+!/.gitignore
+!/gulpfile.js
+!/bower.json
+!/package.json
+!/README.md
+!/favicon.ico
+!/js/
+!/css/
+!/wp-content/
 
-wp-content/*
-!wp-content/themes/
+/wp-content/*
+!/wp-content/themes/
 
-wp-content/themes/*
-!wp-content/themes/notebook-ph/
+/wp-content/themes/*
+!/wp-content/themes/notebook-ph/
 
-wp-content/themes/notebook-ph/fonts.css
+/wp-content/themes/notebook-ph/fonts.css

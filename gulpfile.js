@@ -29,8 +29,7 @@ gulp.task('sass', function() {
     .pipe(sass())
     .pipe(sourcemaps.write())
     .pipe(autoprefixer())
-    .pipe(concat('styles.css'))
-    .on('end', function() { gutil.log(themeDir); })
+    .pipe(concat('style.css'))
     .pipe(cssmin())
     .pipe(header(banner, { pkg: pkg }))
     .pipe(gulp.dest(themeDir));
@@ -50,6 +49,8 @@ gulp.task('fonts', function() {
 gulp.task('js', function() {
   return gulp.src([
     'bower_components/jquery/dist/jquery.js',
+    'bower_components/jquery.fitvids/jquery.fitvids.js',
+    'bower_components/prism/prism.js',
     'js/scripts.js',
   ])
     .pipe(sourcemaps.init())
@@ -59,5 +60,23 @@ gulp.task('js', function() {
     .pipe(gulp.dest(themeDir));
 });
 
-gulp.task('build', ['sass', 'js', 'fonts']);
+gulp.task('customizer', function() {
+  return gulp.src([
+    'js/customizer.js',
+  ])
+    .pipe(sourcemaps.init())
+    .pipe(concat('customizer.js'))
+    .pipe(uglify())
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(themeDir));
+});
+
+gulp.task('build', ['sass', 'js', 'fonts', 'customizer']);
+
+gulp.task('watch', ['build'], function() {
+  gulp.watch('css/**/*.scss', ['sass']);
+  gulp.watch('js/scripts.js', ['js']);
+  gulp.watch('fonts/**/*.scss', ['fonts']);
+  gulp.watch('js/customizer.js', ['customizer']);
+});
 

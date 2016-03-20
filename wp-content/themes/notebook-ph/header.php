@@ -21,7 +21,7 @@
   </head>
 
   <body <?php body_class(); ?>>
-    <?php //nph_tag_css(); ?>
+
     <div class="site-wrapper">
       <header class="header-wrapper animate">
         <button type="button" data-text-swap="<?php _e( 'Close', 'notebook-ph' ); ?>" class="nav-button"><?php _e( 'Menu', 'notebook-ph' ); ?></button>

@@ -32,9 +32,11 @@
 <?php if( !empty( $tags ) ) : ?>
   <ul class="post-tags">
     <?php foreach( $tags as $tag ) : ?>
-      <li class="tag_<?php echo $tag->slug; ?>">
-        <a href="<?php echo get_tag_link( $tag->term_id ); ?>"><?php echo $tag->name; ?></a>
-      </li>
+      <?php if ( $tag->count > 1 ) : ?>
+        <li class="tag_<?php echo $tag->slug; ?>">
+          <a href="<?php echo get_tag_link( $tag->term_id ); ?>"><?php echo $tag->name; ?></a>
+        </li>
+      <?php endif; ?>
     <?php endforeach; ?>
   </ul>
 <?php endif; ?>

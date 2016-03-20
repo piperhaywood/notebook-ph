@@ -218,7 +218,12 @@ function nph_postmeta( $echo = true ) {
 function nph_subtitle( $echo = true, $prefix = '', $suffix = '' ) {
   $return = '';
   if( is_tag() ) {
-    $return = '#' . single_tag_title( '', false );
+    $term = get_term_by( 'id', get_query_var('tag_id'), 'post_tag' );
+    $return .= '<ul class="post-tags">';
+    $return .= '<li class="tag_' . $term->slug . '">';
+    $return .= '<a href="' . get_tag_link( $term ) . '">' . $term->name . '</a>';
+    $return .= '</li>';
+    $return .= '</ul>';
   } elseif( is_category() ) {
     $return = single_cat_title('', false);
   } elseif( is_search() ) {

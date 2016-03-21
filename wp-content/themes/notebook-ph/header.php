@@ -22,34 +22,30 @@
 
   <body <?php body_class(); ?>>
 
-    <div class="site-wrapper">
-      <header class="header-wrapper animate">
-        <button type="button" data-text-swap="<?php _e( 'Close', 'notebook-ph' ); ?>" class="nav-button"><?php _e( 'Menu', 'notebook-ph' ); ?></button>
-        <div class="site-logo-wrapper">
-          <h1 class="site-logo"><a href="<?php echo get_site_url(); ?>"><?php bloginfo( 'name' ); ?></a></h1>
+    <div class="wrapper">
+      <header class="header header--flex">
+        <div class="header--flex__1">
+          <div class="header__title">
+            <h1><a href="<?php echo get_site_url(); ?>"><?php bloginfo( 'name' ); ?></a></h1>
+          </div>
         </div>
-        <div class="drawer">
-          <div class="drawer-inner">
-            <h1 class="site-logo-on-small" aria-hidden="true"><a href="<?php echo get_site_url(); ?>"><?php bloginfo( 'name' ); ?></a></h1>
-            <?php nph_menu(); ?>
-            <p class="credit">Notebook <?php _e( 'theme by', 'notebook-ph' ); ?> <a href="http://piperhaywood.com">Piper Haywood</a></p>
+        <div class="header--flex__3">
+          <?php nph_menu(); ?>
+        </div>
+
+        <div class="header--flex__2">
+          <div class="header__meta">
+            <?php $return = nph_archive_str(); ?>
+            <?php $desc = nph_archivedesc( false ); ?>
+            <?php if( $desc ) : ?>
+              <?php $return .= strip_tags( $desc, '<a><i><b><strong><em>' ); ?>
+            <?php endif; ?>
+
+            <div>
+              <p><?php echo $return; ?></p>
+            </div>
+            
+            <?php //$desc = false; ?>
           </div>
         </div>
       </header>
-
-      <?php $subtitle = nph_subtitle(false, '', ''); ?>
-      <?php if( $subtitle ) : ?>
-        <div class="archive-wrapper">
-          <div class="archive-info">
-            <div class="archive-title">
-              <h2><?php echo $subtitle; ?></h2>
-            </div>
-            <?php $desc = nph_archivedesc( false ); ?>
-            <?php if( $desc ) : ?>
-              <div class="archive-description">
-                <?php echo $desc; ?>
-              </div>
-            <?php endif; ?>
-          </div>
-        </div>
-      <?php endif; ?>

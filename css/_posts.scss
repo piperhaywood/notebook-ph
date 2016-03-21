@@ -36,10 +36,7 @@
       font-size: $font-size-small;
       font-family: $font-sans;
     }
-    img {
-      max-width: 100%;
-      margin-bottom: $lh;
-    }
+    
     .wp-caption, figure {
       img {
         margin-bottom: $lh/2;
@@ -52,15 +49,10 @@
       }
     }
     blockquote {
-      // border-left: 2px solid rgba(0,0,0,0.2);
       border-left: 2px solid $black;
       margin: 0;
       margin-bottom: $lh;
       padding-left: $lh;
-      // color: $grey;
-      a {
-        // color: $grey;
-      }
     }
   }
   .meta {
@@ -69,9 +61,6 @@
     // color: $grey;
     @media #{$small} {
       @include grid-column(8, $offset:2);
-    }
-    a {
-      // color: $grey;
     }
   }
   .tags {
@@ -187,7 +176,6 @@ ul.post-tags {
       display: inline-block;
       text-decoration: none !important;
       padding: $lh/4 $lh/2 $lh/2.75 $lh/2;
-      border: 1.5px solid $grey;
       border: 1.5px solid $black;
       border-radius: $lh;
       background: $black;

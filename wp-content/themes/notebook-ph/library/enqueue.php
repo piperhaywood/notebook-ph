@@ -62,8 +62,8 @@ function nph_tag_css() {
     foreach( $tags as $tag ) {
       $opacity = ( ( ( $tag->count - $min_in ) / ( $max_in - $min_in ) ) * ( $max_out - $min_out ) ) + $min_out;
       $color = 'rgba(0,0,0,' . $opacity . ')';
-      $css .= 'ul.post-tags li.tag_' . $tag->slug . ' a{background:' . $color . ';border:1.5px solid white;}';
-      $css .= 'ul.post-tags li.tag_' . $tag->slug . ' a:hover{color:' . $color . ';background:white;border:1.5px solid ' . $color . ';}';
+      $css .= '.post__tag--' . $tag->slug . ' .post__tag__btn{background:' . $color . ';border:1.5px solid white;}';
+      $css .= '.post__tag--' . $tag->slug . ' .post__tag__btn:hover{color:' . $color . ';background:white;border:1.5px solid ' . $color . ';}';
     }
   }
   echo '<style>' . $css . '</style>';

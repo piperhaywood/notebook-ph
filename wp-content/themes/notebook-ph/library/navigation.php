@@ -10,7 +10,7 @@ if ( ! function_exists( 'nph_menu' ) ) {
       'container'       => false,
       'container_class' => '',
       'menu'            => '',
-      'menu_class'      => 'site-menu',
+      'menu_class'      => 'header__nav',
       'theme_location'  => 'nph-menu',
       'before'          => '',
       'after'           => '',

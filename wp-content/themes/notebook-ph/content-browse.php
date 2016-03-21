@@ -30,11 +30,11 @@
 
 <?php $tags = get_tags(); ?>
 <?php if( !empty( $tags ) ) : ?>
-  <ul class="post-tags">
+  <ul class="post__tags">
     <?php foreach( $tags as $tag ) : ?>
       <?php if ( $tag->count > 1 ) : ?>
-        <li class="tag_<?php echo $tag->slug; ?>">
-          <a href="<?php echo get_tag_link( $tag->term_id ); ?>"><?php echo $tag->name; ?></a>
+        <li class="post__tag post__tag--<?php echo $tag->slug; ?>">
+          <a class="post__tag__btn" href="<?php echo get_tag_link( $tag->term_id ); ?>"><?php echo $tag->name; ?></a>
         </li>
       <?php endif; ?>
     <?php endforeach; ?>

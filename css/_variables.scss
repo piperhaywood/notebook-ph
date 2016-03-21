@@ -1,24 +1,23 @@
 $black: #222;
 $grey: #999;
 
-$text: $black;
-$link: $text;
-
 $line-height: 1.35;
 $line-height-em: ($line-height)*(1em);
 $lh: $line-height-em;
 $font-sans: "HermesRegularCondensed", Helvetica, Arial, sans-serif;
-$font-serif: "Source Serif Pro", Georgia, Times, serif;
-$font-code: "Source Code Pro", "Andale Mono", "Ubuntu Mono", monospace;
+$font-serif: "HermesRegularCondensed", Helvetica, Arial, sans-serif;
+$font-code: "HermesRegularCondensed", "Andale Mono", "Ubuntu Mono", monospace;
 
 $column-gutter: 20px;
 $total-columns: 12;
 
-$small-screen: 600px;
-$medium-screen: 1025px;
+$wee-screen: 480px;
+$small-screen: 720px;
+$medium-screen: 910px;
 $large-screen: 1400px;
 
 $screen: "only screen";
+$wee: "#{$screen} and (min-width: #{$wee-screen})";
 $small: "#{$screen} and (min-width: #{$small-screen})";
 $medium: "#{$screen} and (min-width:#{$medium-screen})";
 $large: "#{$screen} and (min-width:#{$large-screen})";
@@ -29,9 +28,9 @@ $duration: 0.2s;
   line-height: $line-height;
 }
 
-$row-width: 62.5rem;
+$row-width: 40rem;
 
-$font-size-small: 0.8125rem;
+$font-size-small: 0.75rem;
 $font-size-large: 1.5em;
 
 // Clearfix

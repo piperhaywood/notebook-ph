@@ -122,8 +122,6 @@ function nph_title( $echo = true ) {
     $title = '<a href="' . get_the_permalink() . '">' . $title . '</a>';
   }
 
-  $title = '<h1 class="title">' . $title . '</h1>';
-
   if( $echo === true ) {
     echo $title;
   } else {
@@ -219,9 +217,9 @@ function nph_subtitle( $echo = true, $prefix = '', $suffix = '' ) {
   $return = '';
   if( is_tag() ) {
     $term = get_term_by( 'id', get_query_var('tag_id'), 'post_tag' );
-    $return .= '<ul class="post-tags">';
-    $return .= '<li class="tag_' . $term->slug . '">';
-    $return .= '<a href="' . get_tag_link( $term ) . '">' . $term->name . '</a>';
+    $return .= '<ul class="post__tags">';
+    $return .= '<li class="post__tag post__tag--' . $term->slug . '">';
+    $return .= '<a class="post__tag__btn" href="' . get_tag_link( $term ) . '">' . $term->name . '</a>';
     $return .= '</li>';
     $return .= '</ul>';
   } elseif( is_category() ) {
@@ -274,4 +272,66 @@ function nph_get_theme_version() {
   }
   $version = $theme->get( 'Version' );
   return $version;
+}
+
+function nph_archive_str() {
+  if ( is_singular() ) {
+    return get_the_title();
+  }
+  global $wp_query;
+
+  $return = '';
+
+  $ppp = get_option( 'posts_per_page' );
+  $total = $wp_query->found_posts;
+  $paged = get_query_var( 'paged' );
+  $plural = true;
+  if ( $ppp >= $total && $paged == 0 ) {
+    $return .= $total . ' ';
+    $plural = $total > 1 ? true : false;
+  } else {
+    $min = 1;
+    $max = $ppp;
+    if ( $paged > 0 ) {
+      $min = $ppp * $paged + $min;
+      $max = $min + $ppp - 1;
+      if ( $max > $total ) {
+        $max = $total;
+      }
+    }
+    if ( $total != $max ) {
+      $return .= $min . '&ndash;' . $max;
+    } else {
+      $return .= 'last';
+    }
+    $return .= ' of ' . $total . ' ';
+  }
+
+  if ( is_search() ) {
+    $return .= 'search ';
+    $return .= $plural ? 'results' : 'result';
+    $return .= ' for query &ldquo;' . get_query_var('s') . '&rdquo;';
+  } else {
+    if( is_tax( 'post_format' ) ) {
+      $return .= $plural ? strtolower( nph_format_plural( false ) ) : get_post_format();
+    } else {
+      $return .= $plural ? 'posts' : 'post';
+      if( is_tag() ) {
+        $term = get_term_by( 'id', get_query_var('tag_id'), 'post_tag' );
+        $return .= ' tagged &ldquo;' . $term->name . '&rdquo;';
+      } elseif( is_category() ) {
+        $return .= ' in category &ldquo;' . single_cat_title('', false) . '&rdquo;';
+      } elseif( is_search() ) {
+        $return .= ' for query &ldquo;' . get_query_var('s') . '&rdquo;';
+      } elseif( is_author() ) {
+        $return .= ' by ' . get_the_author_meta( 'display_name', get_query_var( 'author' ) );
+      } elseif( is_month() ) {
+        $return .= ' published in ' . get_the_date( 'F Y' );
+      } elseif( is_year() ) {
+        $return .= ' published in ' . get_the_date( 'Y' );
+      }
+    }
+  }
+  $return = !empty( $return ) ? 'Showing ' . $return . '. ' : '';
+  return $return;
 }

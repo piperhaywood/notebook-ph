@@ -13,15 +13,12 @@ html {
 
 body {
   font-family: $font-sans;
-  color: $text;
-  font-weight: 400;
+  color: $black;
+  font-weight: normal;
   line-height: 1;
   font-size: 100%;
-  @media #{$small} {
-    font-size: 126%;
-  }
-  &.drawer-open {
-    overflow: hidden;
+  @media #{$wee} {
+    font-size: 110%;
   }
 }
 
@@ -30,10 +27,15 @@ p, ul, ol, li, h1, h2, h3 {
   margin: 0;
   padding: 0;
   font-size: 100%;
+  font-weight: normal;
 }
 
 p, ul, ol, blockquote {
   margin-bottom: $lh;
+}
+
+ul, ol {
+  margin-left: $lh;
 }
 
 h1, h2 {
@@ -45,11 +47,11 @@ h1, h2 {
 }
 
 a {
-  color: $link;
-  text-decoration: none;
+  color: $black;
+  text-decoration: underline;
   &:hover {
-    color: $link;
-    text-decoration: underline;
+    color: $black;
+    text-decoration: none;
   }
   p & {
     text-decoration: underline;
@@ -59,18 +61,47 @@ a {
   }
 }
 
-.content {
-  max-width: $row-width;
-  margin: 0 auto;
+figure {
+  margin: 0 0 $lh 0;
 }
 
-.site-wrapper {
-  padding-bottom: $lh*4;
-  .drawer-open & {
-    height: 100%;
+code {
+  font-family: $font-code;
+  color: blue;
+  &[class*=language-] {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-figure {
-  margin: 0 0 $lh 0;
+small {
+  @include font-small;
+}
+
+blockquote {
+  border-left: 1.5px solid $black;
+  margin: 0;
+  margin-bottom: $lh;
+  padding-left: $lh;
+  footer {
+    @include font-small;
+  }
+  cite {
+    @include font-small;
+  }
+}
+
+strong {
+  font-weight: normal;
+}
+
+hr {
+  border: 1.5px solid $black;
+  margin-bottom: $lh;
+}
+
+@media #{$small} {
+  ul, ol {
+    margin-left: 0;
+  }
 }

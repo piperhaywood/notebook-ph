@@ -36,16 +36,17 @@ form {
     background-repeat:no-repeat;
     background-size: 16px 16px;
     background-position: right 10px top 5px;
-    @media #{$small} {
-      background-position: right 10px top 8px;
-    }
     width: 100%;
-    -webkit-appearance: none;
     -webkit-border-radius: 0px;
     border: none;
     border-bottom: 2px solid black;
     padding: $lh/4;
-
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    @media #{$small} {
+      background-position: right 10px top 8px;
+    }
     &:focus, &:active {
       outline: none;
     }

@@ -8,16 +8,15 @@
 
 <?php get_header(); ?>
 
-<div class="article-wrapper permalink">
+<main class="content">
   <?php while( have_posts() ) : the_post(); ?>
-    <article class="post type-<?php echo get_post_type(); ?>">
-      <h1 class="title"><?php the_title(); ?></h1>
-      <div class="content">
+    <article <?php post_class( 'post' ); ?>>
+      <div class="post__content">
         <?php the_content(); ?>
         <?php get_template_part( 'content', 'browse' ); ?>
       </div>
     </article>
   <?php endwhile; ?>
-</div>
+</main>
 
 <?php get_footer(); ?>

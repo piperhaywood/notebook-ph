@@ -335,3 +335,20 @@ function nph_archive_str() {
   $return = !empty( $return ) ? 'Showing ' . $return . '. ' : '';
   return $return;
 }
+
+function nph_get_copyright() {
+  $copy = '';
+  $args = array(
+    'order' => 'ASC',
+    'posts_per_page' => 1,
+    'post_type' => 'any',
+    'post_status' => 'publish,private,draft'
+  );
+  $posts_array = get_posts( $args );
+  if ( !empty( $posts_array ) ) {
+    $copy .= get_the_date( 'Y', $posts_array[0]->ID ) . '&ndash;';
+  }
+  $copy .= date( 'Y' );
+  $copy = '&copy; ' . $copy;
+  return $copy;
+}

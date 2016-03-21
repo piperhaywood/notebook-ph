@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" <?php language_attributes(); ?> >
+<html <?php language_attributes(); ?> >
   <head>
     <meta charset="<?php bloginfo('charset'); ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -41,11 +41,8 @@
               <?php $return .= strip_tags( $desc, '<a><i><b><strong><em>' ); ?>
             <?php endif; ?>
 
-            <div>
-              <p><?php echo $return; ?></p>
-            </div>
-            
-            <?php //$desc = false; ?>
+            <p><?php echo $return; ?></p>
+
           </div>
         </div>
       </header>

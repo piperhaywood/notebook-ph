@@ -74,15 +74,12 @@
 }
 
 .footer {
-  padding-bottom: $lh*2;
   &__copyright {
     white-space: nowrap;
-    width: 100%;
-    max-width: $row-width;
-    margin: 0 auto;
-    padding: 0 $lh/2;
   }
-  &__text {
+  &__copyright,
+  &__text,
+  &__rss {
     width: 100%;
     max-width: $row-width;
     margin: 0 auto;
@@ -121,6 +118,14 @@
     }
   }
   @media #{$medium} {
+    &__nav {
+      ul {
+        margin: 0 0 $lh/2 0;
+      }
+    }
+    &__rss {
+      text-align: right;
+    }
     &--flex {
       &__1 {
         order: 1;

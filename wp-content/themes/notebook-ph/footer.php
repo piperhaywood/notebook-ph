@@ -13,8 +13,8 @@
     </div>
   </div>
   <div class="footer--flex__3">
-    <div class="footer__nav">
-      <p>&nbsp;</p>
+    <div class="footer__rss">
+      <p><a href="<?php bloginfo('rss2_url'); ?>">RSS</a></p>
     </div>
   </div>
 </footer>

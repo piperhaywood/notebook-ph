@@ -1,13 +1,13 @@
 .header {
-  a {
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
-  }
   &__title {
     @include grid-column;
     white-space: nowrap;
+    a {
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
   &__meta {
     width: 100%;
@@ -18,6 +18,12 @@
   &__nav {
     @include grid-column;
     float: right;
+    a {
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
     ul {
       list-style-type: none;
       margin: 0 0 $lh/2 0;

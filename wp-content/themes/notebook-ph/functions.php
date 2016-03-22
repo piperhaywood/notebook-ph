@@ -278,6 +278,9 @@ function nph_archive_str() {
   if ( is_singular() ) {
     return get_the_title();
   }
+  if ( is_404() ) {
+    return 'Page not found <code>404 error</code>';
+  }
   global $wp_query;
 
   $return = '';

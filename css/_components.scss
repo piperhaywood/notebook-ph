@@ -60,9 +60,6 @@
   }
   @media #{$medium} {
     &--flex {
-      position: fixed;
-      top: 0;
-      z-index: 1;
       &__1 {
         order: 1;
         flex: 0 1 $lh*7;
@@ -151,10 +148,7 @@
 
 .content {
   @include grid-row;
-  padding-top: $lh*4;
-  @media #{$medium} {
-    padding-top: $lh*6;
-  }
+  padding-top: $lh*3.5;
 }
 
 .pagination {

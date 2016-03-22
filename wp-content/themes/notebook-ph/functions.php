@@ -308,6 +308,9 @@ function nph_archive_str() {
   }
 
   if ( is_search() ) {
+    if ( $total <= 0 ) {
+      return 'No search results for query &ldquo;' . get_query_var('s') . '&rdquo;';
+    }
     $return .= 'search ';
     $return .= $plural ? 'results' : 'result';
     $return .= ' for query &ldquo;' . get_query_var('s') . '&rdquo;';

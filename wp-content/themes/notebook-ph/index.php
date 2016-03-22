@@ -59,9 +59,9 @@
   <?php else : ?>
 
     <article class="post type-<?php echo get_post_type(); ?>">
-      <div class="content">
-        <p>No content has been found for this query. </p>
-        <?php get_search_form(); ?>
+      <div class="post__content">
+        <p>Try searching again, or browse content below. </p>
+        <?php get_template_part( 'content', 'browse' ); ?>
       </div>
     </article>
 

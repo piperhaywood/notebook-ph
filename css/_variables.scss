@@ -6,7 +6,7 @@ $line-height-em: ($line-height)*(1em);
 $lh: $line-height-em;
 $font-sans: "HermesRegularCondensed", Helvetica, Arial, sans-serif;
 $font-serif: "HermesRegularCondensed", Helvetica, Arial, sans-serif;
-$font-code: "HermesRegularCondensed", "Andale Mono", "Ubuntu Mono", monospace;
+$font-code: Courier, monospace;
 
 $column-gutter: 20px;
 $total-columns: 12;

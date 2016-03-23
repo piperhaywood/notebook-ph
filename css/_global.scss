@@ -68,6 +68,9 @@ figure {
 code {
   font-family: $font-code;
   color: blue;
+  a {
+    color: blue;
+  }
   &[class*=language-] {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

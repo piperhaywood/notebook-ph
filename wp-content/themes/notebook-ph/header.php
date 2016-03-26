@@ -26,7 +26,8 @@
       <header class="header header--flex">
         <div class="header--flex__1">
           <div class="header__title">
-            <h1><a href="<?php echo get_site_url(); ?>"><?php bloginfo( 'name' ); ?></a></h1>
+            <?php $name = get_option( 'nph_display_name', get_bloginfo( 'name' ) ); ?>
+            <h1><a href="<?php echo get_site_url(); ?>"><?php echo $name; ?></a></h1>
           </div>
         </div>
         <div class="header--flex__3">

@@ -34,6 +34,25 @@ function nph_customize_register( $wp_customize ) {
   );
 
   $wp_customize->add_setting(
+    'nph_display_name',
+    array(
+      'default'   =>  get_bloginfo( 'name' ),
+      'type'      =>  'option',
+      'transport' =>  'refresh',
+      'sanitize_callback' => 'sanitize_text_field'
+    )
+  );
+  
+  $wp_customize->add_control(
+    'nph_display_name',
+    array(
+      'section'   => 'nph_display_options',
+      'label'     => __( 'Display name', 'notebook-ph' ),
+      'type'      => 'text'
+    )
+  );
+
+  $wp_customize->add_setting(
     'nph_display_credit',
     array(
       'default'    =>  'true',

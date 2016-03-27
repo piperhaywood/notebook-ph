@@ -108,3 +108,13 @@ hr {
     margin-left: 0;
   }
 }
+
+sup, sub {
+  a {
+    color: blue !important;
+    text-decoration: none !important;
+    &:hover {
+      text-decoration: none !important;
+    }
+  }
+}

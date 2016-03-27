@@ -15,7 +15,7 @@
         <?php endif; ?>
         
         <div class="post__content">
-          <?php the_content(); ?>
+          <?php the_content( 'Read more' ); ?>
         </div>
         <?php if ( !is_page() ) : ?>
           <footer>

@@ -124,3 +124,8 @@ function alter_wp_ver_css_js( $src ) {
   }
   return $src;
 }
+
+add_filter( 'the_content_more_link', 'nph_modify_read_more_link', 10, 2 );
+function nph_modify_read_more_link($more_link, $more_link_text) {
+  return $more_link . ' &rarr;';
+}

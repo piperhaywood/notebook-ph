@@ -85,7 +85,7 @@ function nph_format_plural($echo = true) {
   elseif ($format == 'link') :
     $return = 'Links';
   else :
-    $return = 'Standard posts';
+    $return = get_posts_label(false);
   endif;
 
   if ($echo === true) {
@@ -204,7 +204,7 @@ function nph_postmeta($echo = true) {
   $return .= !empty($cats) ? '<span class="categories"> ' . __('in', 'notebook-ph') . ' ' . $cats . '</span>': '';
   $return .= '. ';
   $return .= nph_permalink(false, '', __('Visit permalink', 'notebook-ph'), '&nbsp;&rarr; ');
-  $return .= nph_editlink(false, '', __('Edit post', 'notebook-ph'), '&nbsp;&rarr; ');
+  $return .= nph_editlink(false, '', __('Edit', 'notebook-ph'), '&nbsp;&rarr; ');
 
   if ($echo === true) {
     echo $return;
@@ -321,7 +321,7 @@ function nph_archive_str() {
     if (is_tax('post_format')) {
       $return .= $plural ? strtolower(nph_format_plural(false)) : get_post_format();
     } else {
-      $return .= $plural ? 'posts' : 'post';
+      $return .= $plural ? get_posts_label(false) : get_posts_label();
       if (is_tag()) {
         $term = get_term_by('id', get_query_var('tag_id'), 'post_tag');
         $return .= ' tagged &ldquo;' . $term->name . '&rdquo;';
@@ -357,4 +357,12 @@ function nph_get_copyright() {
   $copy .= date('Y');
   $copy = '&copy; ' . $copy;
   return $copy;
+}
+
+function get_posts_label($singular = true) {
+  if ($singular) {
+    return __('note', 'notebook-ph');
+  } else {
+    return __('notes', 'notebook-ph');
+  }
 }

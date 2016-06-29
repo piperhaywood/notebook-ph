@@ -203,8 +203,8 @@ function nph_postmeta($echo = true) {
   $return .= '<span class="author"> ' . __('by', 'notebook-ph') . ' ' . nph_author(false) . '</span>';
   $return .= !empty($cats) ? '<span class="categories"> ' . __('in', 'notebook-ph') . ' ' . $cats . '</span>': '';
   $return .= '. ';
-  $return .= nph_permalink(false, '', 'Visit permalink', '. ');
-  $return .= nph_editlink(false, '', 'Edit post', '. ');
+  $return .= nph_permalink(false, '', __('Visit permalink', 'notebook-ph'), '&nbsp;&rarr; ');
+  $return .= nph_editlink(false, '', __('Edit post', 'notebook-ph'), '&nbsp;&rarr; ');
 
   if ($echo === true) {
     echo $return;

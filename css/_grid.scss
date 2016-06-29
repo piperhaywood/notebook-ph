@@ -56,6 +56,7 @@
 @mixin grid-column($columns:false, $last-column:false, $center:false, $offset:false, $push:false, $pull:false, $collapse:false, $float:true) {
 
   position: relative;
+  float:left;
 
   // If collapsed, get rid of gutter padding
   @if $collapse {
@@ -95,7 +96,5 @@
     margin-right: auto;
     float: none !important;
   }
-
-  float:left;
 
 }

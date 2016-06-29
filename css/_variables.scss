@@ -4,8 +4,8 @@ $grey: #999;
 $line-height: 1.35;
 $line-height-em: ($line-height)*(1em);
 $lh: $line-height-em;
-$font-sans: "HermesRegularCondensed", Helvetica, Arial, sans-serif;
-$font-serif: "HermesRegularCondensed", Helvetica, Arial, sans-serif;
+$font-sans: Helvetica, Arial, sans-serif;
+$font-serif: Helvetica, Arial, sans-serif;
 $font-code: Courier, monospace;
 
 $column-gutter: 20px;
@@ -48,6 +48,5 @@ $font-size-large: 1.5em;
 
 @mixin font-small {
   font-size: $font-size-small;
-  font-family: $font-sans;
   line-height: 1.3;
 }

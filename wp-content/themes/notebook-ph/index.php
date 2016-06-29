@@ -43,16 +43,16 @@
       <nav class="pagination">
         <p>
           <?php if (is_home() || is_archive()) : ?>
-            <?php previous_posts_link(__('Newer posts', 'notebook-ph')); ?>
+            <?php previous_posts_link(__('Previous page', 'notebook-ph')); ?>
           <?php elseif (is_singular('post')) : ?>
-            <?php previous_post_link('%link', __('Previous post', 'notebook-ph')); ?>
+            <?php previous_post_link('%link', __('Previous ', 'notebook-ph') . get_posts_label()); ?>
           <?php endif; ?>
         </p>
         <p>
           <?php if (is_home() || is_archive()) : ?>
-            <?php next_posts_link(__('Older posts', 'notebook-ph')); ?>
+            <?php next_posts_link(__('Next page', 'notebook-ph')); ?>
           <?php elseif (is_singular('post')) : ?>
-            <?php next_post_link('%link', __('Next post', 'notebook-ph')); ?>
+            <?php next_post_link('%link', __('Next ', 'notebook-ph') . get_posts_label()); ?>
           <?php endif; ?>
         </p>
       </nav>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="<?php bloginfo('charset'); ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><?php wp_title( ' | ', 'false', 'right' ); ?></title>
+    <title><?php wp_title(' | ', 'false', 'right'); ?></title>
 
     <?php wp_head(); ?>
 
@@ -26,7 +26,7 @@
       <header class="header header--flex">
         <div class="header--flex__1">
           <div class="header__title">
-            <?php $name = get_option( 'nph_display_name', get_bloginfo( 'name' ) ); ?>
+            <?php $name = get_option('nph_display_name', get_bloginfo('name')); ?>
             <h1><a href="<?php echo get_site_url(); ?>"><?php echo $name; ?></a></h1>
           </div>
         </div>
@@ -37,9 +37,9 @@
         <div class="header--flex__2">
           <div class="header__meta">
             <?php $return = nph_archive_str(); ?>
-            <?php $desc = nph_archivedesc( false ); ?>
-            <?php if( $desc ) : ?>
-              <?php $return .= strip_tags( $desc, '<a><i><b><strong><em>' ); ?>
+            <?php $desc = nph_archivedesc(false); ?>
+            <?php if ($desc) : ?>
+              <?php $return .= strip_tags($desc, '<a><i><b><strong><em>'); ?>
             <?php endif; ?>
 
             <p><?php echo $return; ?></p>

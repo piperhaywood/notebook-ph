@@ -6,7 +6,7 @@ register_nav_menus(array(
 ));
 
 function nph_menu() {
-  wp_nav_menu( array(
+  wp_nav_menu(array(
     'container'       => false,
     'container_class' => '',
     'menu'            => '',
@@ -21,7 +21,7 @@ function nph_menu() {
 }
 
 function nph_menu_footer() {
-  wp_nav_menu( array(
+  wp_nav_menu(array(
     'container'       => false,
     'container_class' => '',
     'menu'            => '',

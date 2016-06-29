@@ -9,7 +9,7 @@
     <div class="footer__text">
       <p>My name is <a href="http://piperhaywood.com">Piper Haywood</a>, and this is where I keep my notes. </p>
       <?php nph_menu_footer(); ?>
-      <p class="credit">Notebook <?php _e( 'theme by', 'notebook-ph' ); ?> <a href="http://piperhaywood.com">Piper Haywood</a>. </p>
+      <p class="credit">Notebook <?php _e('theme by', 'notebook-ph'); ?> <a href="http://piperhaywood.com">Piper Haywood</a>. </p>
     </div>
   </div>
   <div class="footer--flex__3">

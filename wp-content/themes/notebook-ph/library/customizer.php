@@ -1,7 +1,7 @@
 <?php
 
-add_action( 'customize_register', 'nph_customize_register' );
-function nph_customize_register( $wp_customize ) {
+add_action('customize_register', 'nph_customize_register');
+function nph_customize_register($wp_customize) {
 
   // COLORS
   $wp_customize->add_setting(
@@ -17,7 +17,7 @@ function nph_customize_register( $wp_customize ) {
       $wp_customize,
       'header_color',
       array(
-        'label'      => __( 'Header Color', 'notebook-ph' ),
+        'label'      => __('Header Color', 'notebook-ph'),
         'section'    => 'colors',
         'settings'   => 'nph_header_color'
       )
@@ -28,7 +28,7 @@ function nph_customize_register( $wp_customize ) {
   $wp_customize->add_section(
     'nph_display_options',
     array(
-      'title'     => __( 'Display Options', 'notebook-ph' ),
+      'title'     => __('Display Options', 'notebook-ph'),
       'priority'  => 200
     )
   );
@@ -36,7 +36,7 @@ function nph_customize_register( $wp_customize ) {
   $wp_customize->add_setting(
     'nph_display_name',
     array(
-      'default'   =>  get_bloginfo( 'name' ),
+      'default'   =>  get_bloginfo('name'),
       'type'      =>  'option',
       'transport' =>  'refresh',
       'sanitize_callback' => 'sanitize_text_field'
@@ -47,7 +47,7 @@ function nph_customize_register( $wp_customize ) {
     'nph_display_name',
     array(
       'section'   => 'nph_display_options',
-      'label'     => __( 'Display name', 'notebook-ph' ),
+      'label'     => __('Display name', 'notebook-ph'),
       'type'      => 'text'
     )
   );
@@ -64,7 +64,7 @@ function nph_customize_register( $wp_customize ) {
     'nph_display_credit',
     array(
       'section'   => 'nph_display_options',
-      'label'     => __( 'Display Credit?', 'notebook-ph'),
+      'label'     => __('Display Credit?', 'notebook-ph'),
       'type'      => 'checkbox'
     )
   );
@@ -81,7 +81,7 @@ function nph_customize_register( $wp_customize ) {
     'nph_display_authors',
     array(
       'section'   => 'nph_display_options',
-      'label'     => __( 'Display Authors?', 'notebook-ph'),
+      'label'     => __('Display Authors?', 'notebook-ph'),
       'type'      => 'checkbox'
     )
   );
@@ -98,38 +98,38 @@ function nph_customize_register( $wp_customize ) {
     'nph_display_categories',
     array(
       'section'   => 'nph_display_options',
-      'label'     => __( 'Display Categories?', 'notebook-ph'),
+      'label'     => __('Display Categories?', 'notebook-ph'),
       'type'      => 'checkbox'
     )
   );
 }
 
-add_action( 'wp_head', 'nph_customizer_css' );
+add_action('wp_head', 'nph_customizer_css');
 function nph_customizer_css() {
   ?>
   <style type="text/css">
-    .drawer { background: rgba(<?php echo hex2rgb( get_theme_mod( 'nph_header_color' ) ); ?>, 0.8); }
-    <?php if( false === get_theme_mod( 'nph_display_authors' ) ) { ?>
+    .drawer { background: rgba(<?php echo hex2rgb(get_theme_mod('nph_header_color')); ?>, 0.8); }
+    <?php if (false === get_theme_mod('nph_display_authors')) { ?>
         span.author { display: none; }
     <?php } ?>
-    <?php if( false === get_theme_mod( 'nph_display_categories' ) ) { ?>
+    <?php if (false === get_theme_mod('nph_display_categories')) { ?>
         span.categories { display: none; }
     <?php } ?>
-    <?php if( false === get_theme_mod( 'nph_display_credit' ) ) { ?>
+    <?php if (false === get_theme_mod('nph_display_credit')) { ?>
         p.credit { display: none; }
     <?php } ?>
   </style>
   <?php
 }
 
-add_action( 'customize_preview_init', 'nph_customizer_live_preview' );
+add_action('customize_preview_init', 'nph_customizer_live_preview');
 function nph_customizer_live_preview() {
   $version = nph_get_theme_version();
 
   wp_enqueue_script(
     'nph-theme-customizer',
     get_template_directory_uri() . '/customizer.js',
-    array( 'jquery', 'customize-preview' ),
+    array('jquery', 'customize-preview'),
     $version,
     true
   );

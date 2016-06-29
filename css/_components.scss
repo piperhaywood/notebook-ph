@@ -159,6 +159,8 @@
 
 .post {
   @include grid-column;
+  padding-bottom: $column-gutter/2;
+  padding-top: $column-gutter/2;
   margin-bottom: $lh*8;
   width: 100%;
   &__title {
@@ -211,4 +213,8 @@
 
 .small {
   @include font-small;
+}
+
+.sticky {
+  box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.3);
 }

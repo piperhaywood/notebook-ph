@@ -1,4 +1,5 @@
 var gulp         = require('gulp');
+var browserSync  = require('browser-sync').create();
 var gutil        = require('gulp-util');
 var sass         = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
@@ -71,12 +72,21 @@ gulp.task('customizer', function() {
     .pipe(gulp.dest(themeDir));
 });
 
-gulp.task('build', ['sass', 'js', 'fonts', 'customizer']);
+gulp.task('browserSync', function() {
+  browserSync.init({
+    ghostMode: false,
+    open: true,
+    notify: false,
+    proxy: 'localhost:8888/pipers-notes',
+  });
+});
 
-gulp.task('watch', ['build'], function() {
+gulp.task('default', ['sass', 'js', 'fonts', 'customizer']);
+
+gulp.task('watch', ['default', 'browserSync'], function() {
   gulp.watch('css/**/*.scss', ['sass']);
   gulp.watch('js/scripts.js', ['js']);
   gulp.watch('fonts/**/*.scss', ['fonts']);
   gulp.watch('js/customizer.js', ['customizer']);
+  gulp.watch(themeDir + '**/*').on('change', browserSync.reload);
 });
-

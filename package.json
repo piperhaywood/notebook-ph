@@ -10,11 +10,12 @@
   },
   "license": "GPL-3.0",
   "private": false,
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/piperhaywood/notebook-ph.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/piperhaywood/notebook-ph.git"
   },
   "devDependencies": {
+    "browser-sync": "^2.23.6",
     "gulp": "^3.9.1",
     "gulp-add-src": "^0.2.0",
     "gulp-autoprefixer": "^3.1.0",

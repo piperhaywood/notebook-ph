@@ -129,3 +129,10 @@ add_filter('the_content_more_link', 'nph_modify_read_more_link', 10, 2);
 function nph_modify_read_more_link($more_link, $more_link_text) {
   return $more_link . ' &rarr;';
 }
+
+add_filter('the_content', 'ph_remove_arrows');
+function ph_remove_arrows($content) {
+  $content = str_replace('&rarr;', '', $content);
+  $content = str_replace('→', '', $content);
+  return $content;
+}

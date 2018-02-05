@@ -24,7 +24,7 @@ code[class*="language-"],
 pre[class*="language-"] {
   color: #f8f8f2;
   text-shadow: 0 1px rgba(0, 0, 0, 0.3);
-  font-family: $font-code;
+  font-family: Courier, monospace;
   font-size: 92%;
   direction: ltr;
   text-align: left;
@@ -42,7 +42,7 @@ pre[class*="language-"] {
 /* Code blocks */
 pre[class*="language-"] {
   padding: 1em;
-  margin: 0 0 $lh 0;
+  margin: 0 0 1em 0;
   overflow: auto;
   // border-radius: 0.3em;
 }

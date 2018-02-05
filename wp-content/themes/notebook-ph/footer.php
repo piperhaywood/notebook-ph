@@ -1,22 +1,11 @@
-<footer class="footer footer--flex">
+<footer class="footer">
   
-  <div class="footer--flex__1">
-    <div class="footer__copyright">
-      <p><?php echo nph_get_copyright(); ?></p>
-    </div>
+  <div class="footer__content">
+    <?php nph_menu_footer(); ?>
+    <p class="footer__copyright copyright"><span class="copyright__year"><?php echo nph_get_copyright(); ?></span> <a class="copyright__credit" href="<?php echo site_url(); ?>"><?php bloginfo('name'); ?></a></p>
+    <p class="credit"><?php _e('This site uses the', 'notebook-ph'); ?> Notebook <?php _e('theme by', 'notebook-ph'); ?> <a href="http://piperhaywood.com">Piper Haywood</a>. </p>
   </div>
-  <div class="footer--flex__2">
-    <div class="footer__text">
-      <p>My name is <a href="http://piperhaywood.com">Piper Haywood</a>, and this is where I keep my notes. </p>
-      <?php nph_menu_footer(); ?>
-      <p class="credit">Notebook <?php _e('theme by', 'notebook-ph'); ?> <a href="http://piperhaywood.com">Piper Haywood</a>. </p>
-    </div>
-  </div>
-  <div class="footer--flex__3">
-    <div class="footer__rss">
-      <p><a href="<?php bloginfo('rss2_url'); ?>">RSS</a></p>
-    </div>
-  </div>
+
 </footer>
 
 </div>

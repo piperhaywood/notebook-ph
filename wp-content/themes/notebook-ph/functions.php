@@ -85,7 +85,7 @@ function nph_format_plural($echo = true) {
   elseif ($format == 'link') :
     $return = 'Links';
   else :
-    $return = get_posts_label(false);
+    $return = get_posts_label(true);
   endif;
 
   if ($echo === true) {
@@ -199,12 +199,12 @@ function nph_postmeta($echo = true) {
   $return .= !empty($format) ? $format . ' ' . __('posted', 'notebook-ph') : __('Posted', 'notebook-ph');
 
   $return .=  ' ';
-  $return .= '<span class="date"><time datetime="' . nph_date(true, false) . '">' . nph_date(false, false) . '</time></span>';
+  $return .= '<span class="date"><time datetime="' . nph_date(true, false) . '">' . nph_permalink(false, '', nph_date(false, false)) . '</time></span>';
   $return .= '<span class="author"> ' . __('by', 'notebook-ph') . ' ' . nph_author(false) . '</span>';
   $return .= !empty($cats) ? '<span class="categories"> ' . __('in', 'notebook-ph') . ' ' . $cats . '</span>': '';
-  $return .= '. ';
-  $return .= nph_permalink(false, '', __('Visit permalink', 'notebook-ph'), '&nbsp;&rarr; ');
-  $return .= nph_editlink(false, '', __('Edit', 'notebook-ph'), '&nbsp;&rarr; ');
+  // $return .= '. ';
+  // $return .= nph_permalink(false, '', __('Visit permalink', 'notebook-ph'), '&nbsp;&rarr; ');
+  $return .= nph_editlink(false, ' (', __('edit', 'notebook-ph'), ')');
 
   if ($echo === true) {
     echo $return;
@@ -319,12 +319,12 @@ function nph_archive_str() {
     $return .= ' for query &ldquo;' . get_query_var('s') . '&rdquo;';
   } else {
     if (is_tax('post_format')) {
-      $return .= $plural ? strtolower(nph_format_plural(false)) : get_post_format();
+      $return .= '[' . get_post_format() . '] type ' . get_posts_label($plural);
     } else {
-      $return .= $plural ? get_posts_label(false) : get_posts_label();
+      $return .= get_posts_label($plural);
       if (is_tag()) {
         $term = get_term_by('id', get_query_var('tag_id'), 'post_tag');
-        $return .= ' tagged &ldquo;' . $term->name . '&rdquo;';
+        $return .= ' tagged #' . $term->slug;
       } elseif (is_category()) {
         $return .= ' in category &ldquo;' . single_cat_title('', false) . '&rdquo;';
       } elseif (is_search()) {
@@ -359,10 +359,67 @@ function nph_get_copyright() {
   return $copy;
 }
 
-function get_posts_label($singular = true) {
-  if ($singular) {
-    return __('note', 'notebook-ph');
-  } else {
+function get_posts_label($plural = false) {
+  if ($plural) {
     return __('notes', 'notebook-ph');
+  } else {
+    return __('note', 'notebook-ph');
   }
 }
+
+function nph_get_navigation($menu_name) {
+  $menu_items = false;
+
+  $menu = wp_get_nav_menu_object($menu_name);
+  if ($menu) {
+    $menu_items = wp_get_nav_menu_items($menu->term_id);
+  }
+
+  return $menu_items;
+}
+
+function nph_tag_opacity($tag, $max_opacity = .8, $min_opacity = .2) {
+  $opacity = 1;
+  $args = array('orderby' => 'count', 'number' => 1);
+  $least = get_tags($args);
+  $min_in = $least[0]->count;
+  $args['order'] = 'DESC';
+  $most = get_tags($args);
+  $max_in = $most[0]->count;
+  $max_in = 15;
+  $count = $tag->count > $max_in ? $max_in : $tag->count;
+
+  $percentage = ($count - $min_in) / ($max_in - $min_in);
+
+  $opacity = $percentage * ($max_opacity - $min_opacity) + $min_opacity;
+  return round($opacity, 4);
+}
+
+function nph_map_hue($timezone, $lat, $unix) {
+  $tz = new DateTimeZone($timezone);
+  $datetime = DateTime::createFromFormat('U', $unix);
+  $datetime->setTimezone($tz);
+  $dayofyear = $datetime->format('z');
+  $june_dt = DateTime::createFromFormat('Y-m-d', $datetime->format('Y') . '-06-22');
+  $june_dt->setTimezone($tz);
+  $june_doy = $june_dt->format('z');
+  $last_dt = DateTime::createFromFormat('Y-m-d', $datetime->format('Y') . '-12-31');
+  $last_dt->setTimezone($tz);
+  $last_doy = $last_dt->format('z');
+  $offset = $lat > 0 ? 52 : 200;
+  if ($dayofyear < $june_doy) {
+    $diff = $dayofyear + ($last_doy - $june_doy);
+  } else {
+    $diff = $dayofyear - $june_doy;
+  }
+
+  $return = 0 - $diff;
+  $return = $return + $offset;
+  $return = $return < 0 ? $return + 360 : $return;
+  return $return;
+}
+
+// function nph_get_bg_hsl($hue) {
+//   $hsl = sprintf('hsl(%1$s, 100%, %2$s)', $hue, )
+//   return $hsl;
+// }

@@ -116,7 +116,7 @@ function nph_customizer_css() {
         span.categories { display: none; }
     <?php } ?>
     <?php if (false === get_theme_mod('nph_display_credit')) { ?>
-        p.credit { display: none; }
+        .credit { display: none; }
     <?php } ?>
   </style>
   <?php

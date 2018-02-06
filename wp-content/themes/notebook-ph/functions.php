@@ -423,3 +423,14 @@ function nph_map_hue($timezone, $lat, $unix) {
 //   $hsl = sprintf('hsl(%1$s, 100%, %2$s)', $hue, )
 //   return $hsl;
 // }
+
+function nph_get_hsl($hsl_post = false) {
+  if ($hsl_post) {
+    $unix = get_the_date('U', $hsl_post->ID);
+  } else {
+    $unix = time();
+  }
+  $hue = nph_map_hue('Europe/London', 51.567592, $unix);
+  $hsl = sprintf('hsl(%s, 55%%, 95%%)', $hue);
+  return $hsl;
+}

@@ -20,7 +20,6 @@
           <footer>
             <div class="post__meta">
               <?php $args = array('orderby' => 'count', 'order' => 'DESC'); ?>
-              <?php //$args = false; ?>
               <?php $tags = wp_get_post_tags($post->ID, $args); ?>
               <?php if (!empty($tags)) : ?>
                 <ul class="post__tags">
@@ -36,8 +35,7 @@
                     </li>
                   <?php endif; ?>
                   <?php foreach($tags as $tag) : ?>
-                    <?php $opacity = nph_tag_opacity($tag); ?>
-                    <li class="post__tag" style="--tag-color: rgba(34,34,34,<?php echo $opacity; ?>);">
+                    <li class="post__tag">
                       <a href="<?php echo get_tag_link($tag->term_id); ?>">
                         #<?php echo $tag->slug; ?>
                       </a>

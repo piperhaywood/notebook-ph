@@ -30,14 +30,14 @@
                   <?php if ($format != false) : ?>
                     <li class="post__tag">
                       <a href="<?php echo get_post_format_link($format); ?>">
-                        [<?php echo $format; ?>]
+                        <?php echo $format; ?>
                       </a>
                     </li>
                   <?php endif; ?>
                   <?php foreach($tags as $tag) : ?>
                     <li class="post__tag">
                       <a href="<?php echo get_tag_link($tag->term_id); ?>">
-                        #<?php echo $tag->slug; ?>
+                        <?php echo $tag->name; ?>
                       </a>
                     </li>
                   <?php endforeach; ?>

@@ -22,11 +22,14 @@
           <div class="post__content">
             <?php the_content('Read more'); ?>
           </div>
-          <?php if (!is_page()) : ?>
-            <footer>
-              <div class="post__meta">
-                <?php $args = array('orderby' => 'count', 'order' => 'DESC'); ?>
 
+
+        <?php if (!is_page()) : ?>
+          <footer>
+            <div class="post__meta">
+              <?php $args = array('orderby' => 'count', 'order' => 'DESC'); ?>
+              <?php $tags = wp_get_post_tags($post->ID, $args); ?>
+              <?php if (!empty($tags)) : ?>
                 <ul class="post__tags">
                   <li class="post__tag post__date">
                     <time datetime="<?php echo nph_date(true, false); ?>"><a href="<?php the_permalink(); ?>"><?php echo get_the_date('Y.m.d'); ?></a></time>
@@ -35,21 +38,17 @@
                   <?php if ($format != false) : ?>
                     <li class="post__tag">
                       <a href="<?php echo get_post_format_link($format); ?>">
-                        [<?php echo $format; ?>]
+                        <?php echo $format; ?>
                       </a>
                     </li>
                   <?php endif; ?>
-                  <?php $tags = wp_get_post_tags($post->ID, $args); ?>
-                  <?php if (!empty($tags)) : ?>
-                    <?php foreach($tags as $tag) : ?>
-                      <?php $opacity = nph_tag_opacity($tag); ?>
-                      <li class="post__tag" style="--tag-color: rgba(34,34,34,<?php echo $opacity; ?>);">
-                        <a href="<?php echo get_tag_link($tag->term_id); ?>">
-                          #<?php echo $tag->slug; ?>
-                        </a>
-                      </li>
-                    <?php endforeach; ?>
-                  <?php endif; ?>
+                  <?php foreach($tags as $tag) : ?>
+                    <li class="post__tag">
+                      <a href="<?php echo get_tag_link($tag->term_id); ?>">
+                        <?php echo $tag->name; ?>
+                      </a>
+                    </li>
+                  <?php endforeach; ?>
                 </ul>
 
                 <?php $meta = nph_postmeta(false); ?>

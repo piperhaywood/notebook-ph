@@ -1,7 +1,9 @@
 @import "prism";
 
+$black: rgba(0, 0, 0, .85);;
+
 :root {
-  --tag-color: rgba(34, 34, 34, .8);
+  --tag-color: $black;
   --first-color: hsl(1, 100%, 100%);
   --second-color: var(--first-color);
 }
@@ -85,6 +87,10 @@ h6::after {
 
 pre, code {
   word-spacing: normal;
+  background-color: $black;
+  color: white;
+  font-size: 1em;
+  padding: .125em .25em;
 }
 
 a {
@@ -101,6 +107,7 @@ a:active {
 
 img {
   max-width: 100%;
+  height: auto;
 }
 
 cite {
@@ -200,11 +207,19 @@ blockquote > p:last-of-type {
 }
 
 .post__tags .post__tag {
-  margin-right: 10px;
+  margin-right: 1ch;
 }
 
 .post__tag {
   color: var(--tag-color);
+}
+
+.post__tags li::after {
+  content: "/";
+}
+
+.post__tags li:last-of-type::after {
+  content: "";
 }
 
 .post__tag a {

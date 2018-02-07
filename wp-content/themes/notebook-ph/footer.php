@@ -14,7 +14,9 @@ if ($total) {
 
 ?>
 
-<footer class="footer">
+<?php $hsl = nph_get_hsl($post); ?>
+
+<footer class="footer gradient"<?php if ($hsl) : ?> style="--first-color:<?php echo $hsl; ?>;--second-color: var(--first-color);"<?php endif; ?>>
   <div class="container">
     <?php $prev = false; ?>
     <?php $next = false; ?>

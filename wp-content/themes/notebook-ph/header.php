@@ -24,7 +24,7 @@
 
     <div class="wrapper">
       <?php $hsl = nph_get_hsl($post); ?>
-      <header class="header gradient" <?php if ($hsl) : ?>style="--first-color:<?php echo $hsl; ?>;--second-color: var(--first-color);"<?php endif; ?>>
+      <header class="header gradient"<?php if ($hsl) : ?> style="--first-color:<?php echo $hsl; ?>;--second-color: var(--first-color);"<?php endif; ?>>
         
         <div class="container">
           <div class="header__meta">

@@ -3,9 +3,10 @@
 <main class="content">
   <?php if (have_posts()) : ?>
     <?php $i = 0; ?>
+    <?php $total = $wp_query->post_count; ?>
     <?php while (have_posts()) : the_post(); ?>
       <?php $current_hsl = nph_get_hsl($post); ?>
-      <?php $prev = $wp_query->posts[$i + 1]; ?>
+      <?php $prev = $i + 1 < $total ? $wp_query->posts[$i + 1] : false; ?>
       <?php $prev_hsl = $prev ? nph_get_hsl($prev) : $current_hsl; ?>
       <article <?php post_class(array('post', 'gradient')); ?> style="--first-color:<?php echo $current_hsl; ?>;--second-color:<?php echo $prev_hsl; ?>;">
         <div class="container">

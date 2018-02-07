@@ -24,12 +24,9 @@
           </div>
 
 
-        <?php if (!is_page()) : ?>
-          <footer>
-            <div class="post__meta">
-              <?php $args = array('orderby' => 'count', 'order' => 'DESC'); ?>
-              <?php $tags = wp_get_post_tags($post->ID, $args); ?>
-              <?php if (!empty($tags)) : ?>
+          <?php if (!is_page()) : ?>
+            <footer>
+              <div class="post__meta">
                 <ul class="post__tags">
                   <li class="post__tag post__date">
                     <time datetime="<?php echo nph_date(true, false); ?>"><a href="<?php the_permalink(); ?>"><?php echo get_the_date('Y.m.d'); ?></a></time>
@@ -42,13 +39,17 @@
                       </a>
                     </li>
                   <?php endif; ?>
-                  <?php foreach($tags as $tag) : ?>
-                    <li class="post__tag">
-                      <a href="<?php echo get_tag_link($tag->term_id); ?>">
-                        <?php echo $tag->name; ?>
-                      </a>
-                    </li>
-                  <?php endforeach; ?>
+                  <?php $args = array('orderby' => 'count', 'order' => 'DESC'); ?>
+                  <?php $tags = wp_get_post_tags($post->ID, $args); ?>
+                  <?php if (!empty($tags)) : ?>
+                    <?php foreach($tags as $tag) : ?>
+                      <li class="post__tag">
+                        <a href="<?php echo get_tag_link($tag->term_id); ?>">
+                          <?php echo $tag->name; ?>
+                        </a>
+                      </li>
+                    <?php endforeach; ?>
+                  <?php endif; ?>
                 </ul>
 
                 <?php $meta = nph_postmeta(false); ?>

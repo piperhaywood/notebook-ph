@@ -23,7 +23,7 @@
   <body <?php body_class(); ?>>
 
     <div class="wrapper">
-      <?php $first_hsl = nph_get_hsl(); ?>
+      <?php $first_hsl = nph_get_hsl($post); ?>
       <?php $second_hsl = nph_get_hsl($post); ?>
       <header class="header gradient"<?php if ($first_hsl && $second_hsl) : ?> style="--first-color:<?php echo $first_hsl; ?>;--second-color: <?php echo $second_hsl; ?>;"<?php endif; ?>>
         

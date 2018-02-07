@@ -1,9 +1,248 @@
-@import
-  "variables"
-  ,"normalize"
-  ,"grid"
-  ,"global"
-  ,"components"
-  ,"prism"
-  ,"forms"
-  ;
+@import "prism";
+
+:root {
+  --tag-color: rgba(34, 34, 34, .8);
+  --first-color: hsl(1, 100%, 100%);
+  --second-color: hsl(1, 100%, 100%);
+}
+
+* {
+  box-sizing:border-box;
+}
+
+html {
+  // background-color: var(--first-color);
+  background: linear-gradient(var(--first-color), var(--second-color));
+}
+
+body {
+  max-width: 40em;
+  margin-left: auto;
+  margin-right: auto;
+  padding: .75em;
+  color: #333;
+  font-family: Courier, monospace;
+  line-height: 1.5;
+}
+
+figure, blockquote,
+p, ul, ol, li, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+}
+
+
+ul, ol {
+  margin-left: 1em;
+}
+
+blockquote,
+h1, h2, h3, h4, h5, h6,
+p, ul, ol, blockquote {
+  margin-bottom: 1.5em;
+}
+
+figure,
+img {
+  margin-bottom: 1.5em;
+}
+
+figure img {
+  margin-bottom: 0;
+}
+
+h1, h2, h3, h4, h5, h6,
+p, ul, ol, figcaption {
+  word-spacing: -.2em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 1em;
+  text-transform: uppercase;
+}
+
+h1::before,
+h1::after,
+h2::before,
+h2::after,
+h3::before,
+h3::after,
+h4::before,
+h4::after,
+h5::before,
+h5::after,
+h6::before,
+h6::after {
+  content: "--------------------------------------------------------------------------------";
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+pre, code {
+  word-spacing: normal;
+}
+
+a {
+  color: currentColor;
+  text-decoration: none;
+  text-decoration-skip: ink;
+}
+
+a:hover,
+a:focus,
+a:active {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+}
+
+cite {
+  font-style: normal;
+}
+
+.header {
+  margin-bottom: 6em;
+}
+
+.post {
+  margin-bottom: 12em;
+}
+
+
+figcaption {
+  color: rgba(34, 34, 34, .3);
+}
+
+blockquote::before {
+  content: '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>';
+  // content: '>';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1ch;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+blockquote {
+  position: relative;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 2ch;
+}
+
+blockquote footer::before,
+blockquote > p.small::before {
+  display: block;
+  content: "---";
+}
+
+blockquote > p:last-of-type {
+  margin-bottom: 0;
+}
+
+.footer__nav,
+.header__nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer__nav li,
+.header__nav li {
+  margin-right: 1em;
+}
+
+.pagination::before,
+.pagination::after,
+.header__description::before,
+.header__description::after {
+  content: "--------------------------------------------------------------------------------";
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 12em;
+}
+
+.pagination p {
+  margin-bottom: 0;
+  margin-right: 1em;
+}
+
+.post__content a {
+  text-decoration: underline;
+}
+
+.post__content a:hover,
+.post__content a:focus,
+.post__content a:active {
+  text-decoration: none;
+}
+
+.post__tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.post__tags .post__tag {
+  margin-right: 10px;
+}
+
+.post__tag {
+  color: var(--tag-color);
+}
+
+.post__tag a {
+  text-decoration: none;
+}
+
+.post__tag a:hover,
+.post__tag a:focus,
+.post__tag a:active {
+  text-decoration: underline;
+}
+
+.footer__content {
+  margin-bottom: 2em;
+}
+
+.footer__nav {
+  margin-bottom: 0;
+}
+
+.browse__method::before,
+.browse__methods::after {
+  content: "--------------------------------------------------------------------------------";
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.browse__methods select {
+  width: 100%;
+}
+
+.browse__search {
+  display: flex;
+}
+
+
+.browse__search input[type="text"] {
+  flex: 1 1 auto;
+  margin-right: 1em;
+}

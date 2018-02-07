@@ -1,12 +1,11 @@
 <?php get_header(); ?>
 
 <main class="content <?php nph_pagetype(); ?>">
-  <?php if( have_posts() ) : ?>
-    <?php while( have_posts() ) : the_post(); ?>
-      <article <?php post_class( 'post' ); ?>>
-        
+  <?php if (have_posts()) : ?>
+    <?php while (have_posts()) : the_post(); ?>
+      <article <?php post_class('post'); ?>>
         <?php $format = get_post_format(); ?>
-        <?php if ( !is_singular() && !$format ) : ?>
+        <?php if (!is_singular() && !$format) : ?>
           <header>
             <h1 class="post__title">
               <?php nph_title(); ?>
@@ -15,23 +14,39 @@
         <?php endif; ?>
         
         <div class="post__content">
-          <?php the_content( 'Read more' ); ?>
+          <?php the_content('Read more'); ?>
         </div>
-        <?php if ( !is_page() ) : ?>
+        <?php if (!is_page()) : ?>
           <footer>
             <div class="post__meta">
-              <?php $meta = nph_postmeta( false ); ?>
-              <p class="thepermalink"><?php echo $meta; ?></p>
-              <?php $tags = get_the_tags(); ?>
-              <?php if( !empty( $tags ) ) : ?>
+              <?php $args = array('orderby' => 'count', 'order' => 'DESC'); ?>
+              <?php //$args = false; ?>
+              <?php $tags = wp_get_post_tags($post->ID, $args); ?>
+              <?php if (!empty($tags)) : ?>
                 <ul class="post__tags">
-                  <?php foreach( $tags as $tag ) : ?>
-                    <li class="post__tag post__tag--<?php echo $tag->slug; ?>">
-                      <a class="post__tag__btn" href="<?php echo get_tag_link( $tag->term_id ); ?>"><?php echo $tag->name; ?></a>
+                  <li class="post__tag post__date">
+                    <time datetime="<?php echo nph_date(true, false); ?>"><a href="<?php the_permalink(); ?>"><?php echo get_the_date('Y.m.d'); ?></a></time>
+                  </li>
+                  <?php $format = get_post_format(); ?>
+                  <?php if ($format != false) : ?>
+                    <li class="post__tag">
+                      <a href="<?php echo get_post_format_link($format); ?>">
+                        [<?php echo $format; ?>]
+                      </a>
+                    </li>
+                  <?php endif; ?>
+                  <?php foreach($tags as $tag) : ?>
+                    <?php $opacity = nph_tag_opacity($tag); ?>
+                    <li class="post__tag" style="--tag-color: rgba(34,34,34,<?php echo $opacity; ?>);">
+                      <a href="<?php echo get_tag_link($tag->term_id); ?>">
+                        #<?php echo $tag->slug; ?>
+                      </a>
                     </li>
                   <?php endforeach; ?>
                 </ul>
               <?php endif; ?>
+              <?php $meta = nph_postmeta(false); ?>
+              <p class="thepermalink" style="display: none;"><?php echo $meta; ?></p>
             </div>
 
             <?php wp_link_pages(); ?>
@@ -40,28 +55,31 @@
       </article>
     <?php endwhile; ?>
 
-      <nav class="pagination">
-        <p>
-          <?php if( is_home() || is_archive() ) : ?>
-            <?php previous_posts_link( __( 'Newer posts', 'notebook-ph' ) ); ?>
-          <?php elseif( is_singular( 'post' ) ) : ?>
-            <?php previous_post_link( '%link', __( 'Previous post', 'notebook-ph' ) ); ?>
+      <?php $prev = false; ?>
+      <?php $next = false; ?>
+      <?php if (is_home() || is_archive()) : ?>
+        <?php $prev = get_previous_posts_link(__('Previous page', 'notebook-ph')); ?>
+        <?php $next = get_next_posts_link(__('Next page', 'notebook-ph')); ?>
+      <?php elseif (is_singular('post')) : ?>
+        <?php $prev = get_previous_post_link('%link', __('Previous ', 'notebook-ph') . get_posts_label(false)); ?>
+        <?php $next = get_next_post_link('%link', __('Next ', 'notebook-ph') . get_posts_label(false)); ?>
+      <?php endif; ?>
+      <?php if ($prev || $next) : ?>
+        <nav class="pagination">
+          <?php if ($prev) : ?>
+            <p><?php echo $prev; ?></p>
           <?php endif; ?>
-        </p>
-        <p>
-          <?php if( is_home() || is_archive() ) : ?>
-            <?php next_posts_link( __( 'Older posts', 'notebook-ph' ) ); ?>
-          <?php elseif( is_singular( 'post' ) ) : ?>
-            <?php next_post_link( '%link', __( 'Next post', 'notebook-ph' ) ); ?>
+          <?php if ($next) : ?>
+            <p><?php echo $next; ?></p>
           <?php endif; ?>
-        </p>
-      </nav>
+        </nav>
+      <?php endif; ?>
   <?php else : ?>
 
     <article class="post type-<?php echo get_post_type(); ?>">
       <div class="post__content">
         <p>Try searching again, or browse content below. </p>
-        <?php get_template_part( 'content', 'browse' ); ?>
+        <?php get_template_part('content', 'browse'); ?>
       </div>
     </article>
 

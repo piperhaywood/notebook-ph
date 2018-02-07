@@ -5,26 +5,29 @@ $black: rgba(0, 0, 0, .85);;
 :root {
   --tag-color: $black;
   --first-color: hsl(1, 100%, 100%);
-  --second-color: hsl(1, 100%, 100%);
+  --second-color: var(--first-color);
 }
 
 * {
   box-sizing:border-box;
 }
 
-html {
-  // background-color: var(--first-color);
+.gradient {
   background: linear-gradient(var(--first-color), var(--second-color));
 }
 
 body {
+  margin: 0;
+  color: #333;
+  font-family: Courier, monospace;
+  line-height: 1.5;
+}
+
+.container, {
   max-width: 40em;
   margin-left: auto;
   margin-right: auto;
   padding: .75em;
-  color: $black;
-  font-family: Courier, monospace;
-  line-height: 1.5;
 }
 
 figure, blockquote,
@@ -111,12 +114,9 @@ cite {
   font-style: normal;
 }
 
-.header {
-  margin-bottom: 6em;
-}
-
 .post {
-  margin-bottom: 12em;
+  padding-top: 6em;
+  padding-bottom: 6em;
 }
 
 

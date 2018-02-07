@@ -23,8 +23,9 @@
   <body <?php body_class(); ?>>
 
     <div class="wrapper">
-      <?php $hsl = nph_get_hsl($post); ?>
-      <header class="header gradient"<?php if ($hsl) : ?> style="--first-color:<?php echo $hsl; ?>;--second-color: var(--first-color);"<?php endif; ?>>
+      <?php $first_hsl = nph_get_hsl(); ?>
+      <?php $second_hsl = nph_get_hsl($post); ?>
+      <header class="header gradient"<?php if ($first_hsl && $second_hsl) : ?> style="--first-color:<?php echo $first_hsl; ?>;--second-color: <?php echo $second_hsl; ?>;"<?php endif; ?>>
         
         <div class="container">
           <div class="header__meta">

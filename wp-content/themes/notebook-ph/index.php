@@ -63,7 +63,7 @@
 
   <?php else : ?>
     <?php // TODO apply today’s date to this for color ?>
-    <article class="post type-<?php echo get_post_type(); ?>" style="--first-color:<?php echo nph_get_hsl(); ?>;">
+    <article class="post gradient type-<?php echo get_post_type(); ?>" style="--first-color:<?php echo nph_get_hsl(); ?>;--second-color: var(--first-color);">
       <div class="container">
         <div class="post__content">
           <p>Try searching again, or browse content below. </p>

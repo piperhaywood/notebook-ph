@@ -207,11 +207,19 @@ blockquote > p:last-of-type {
 }
 
 .post__tags .post__tag {
-  margin-right: 10px;
+  margin-right: 1ch;
 }
 
 .post__tag {
   color: var(--tag-color);
+}
+
+.post__tags li::after {
+  content: "/";
+}
+
+.post__tags li:last-of-type::after {
+  content: "";
 }
 
 .post__tag a {

@@ -51,9 +51,6 @@
                     <?php endforeach; ?>
                   <?php endif; ?>
                 </ul>
-
-                <?php $meta = nph_postmeta(false); ?>
-                <p class="thepermalink" style="display: none;"><?php echo $meta; ?></p>
               </div>
 
               <?php wp_link_pages(); ?>

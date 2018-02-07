@@ -1,7 +1,9 @@
 @import "prism";
 
+$black: rgba(0, 0, 0, .85);;
+
 :root {
-  --tag-color: rgba(34, 34, 34, .8);
+  --tag-color: $black;
   --first-color: hsl(1, 100%, 100%);
   --second-color: hsl(1, 100%, 100%);
 }
@@ -20,7 +22,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   padding: .75em;
-  color: #333;
+  color: $black;
   font-family: Courier, monospace;
   line-height: 1.5;
 }

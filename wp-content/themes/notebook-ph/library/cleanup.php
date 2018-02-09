@@ -114,3 +114,15 @@ function ph_remove_arrows($content) {
   $content = str_replace('→', '', $content);
   return $content;
 }
+
+add_filter('wp_calculate_image_sizes', 'nph_sizes');
+function nph_sizes() {
+  return '(max-width: 638px) 100vw, 638px';
+}
+
+// Accounts for Wordpress incorrect srcset order
+add_filter( 'wp_calculate_image_srcset', 'ph_adjust_srcset', 10, 5 );
+function ph_adjust_srcset( $sources, $size_array, $image_src, $image_meta, $attachment_id ) {
+  ksort($sources);
+  return $sources;
+}

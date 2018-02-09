@@ -34,9 +34,7 @@
                   <?php $format = get_post_format(); ?>
                   <?php if ($format != false) : ?>
                     <li class="post__tag">
-                      <a href="<?php echo get_post_format_link($format); ?>">
-                        <?php echo $format; ?>
-                      </a>
+                      <a href="<?php echo get_post_format_link($format); ?>"><?php echo $format; ?></a>
                     </li>
                   <?php endif; ?>
                   <?php $args = array('orderby' => 'count', 'order' => 'DESC'); ?>
@@ -44,9 +42,7 @@
                   <?php if (!empty($tags)) : ?>
                     <?php foreach($tags as $tag) : ?>
                       <li class="post__tag">
-                        <a href="<?php echo get_tag_link($tag->term_id); ?>">
-                          <?php echo $tag->name; ?>
-                        </a>
+                        <a href="<?php echo get_tag_link($tag->term_id); ?>"><?php echo $tag->name; ?></a>
                       </li>
                     <?php endforeach; ?>
                   <?php endif; ?>

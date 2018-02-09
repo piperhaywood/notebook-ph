@@ -40,9 +40,7 @@
       <?php if ($tag->count > 1) : ?>
         <?php $opacity = nph_tag_opacity($tag); ?>
         <li class="post__tag" style="--tag-color: rgba(34,34,34,<?php echo $opacity; ?>);">
-          <a href="<?php echo get_tag_link($tag->term_id); ?>">
-            <?php echo $tag->slug; ?>
-          </a>
+          <a href="<?php echo get_tag_link($tag->term_id); ?>"><?php echo $tag->slug; ?></a>
         </li>
       <?php endif; ?>
     <?php endforeach; ?>

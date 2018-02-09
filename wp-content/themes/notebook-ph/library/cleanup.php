@@ -5,8 +5,6 @@ function start_cleanup() {
   add_action('init', 'cleanup_head');
   add_filter('the_generator', 'remove_rss_version');
   add_filter('gallery_style', 'gallery_style');
-  add_filter('get_image_tag_class', 'image_tag_class', 0, 4);
-  add_filter('get_image_tag', 'image_editor', 0, 4);
   add_filter('the_content', 'img_unautop', 30);
 }
 
@@ -89,26 +87,6 @@ function fixed_img_caption_shortcode($attr, $content = null) {
   $markup .= '>';
   $markup .= do_shortcode($content) . '<figcaption>' . $caption . '</figcaption></figure>';
   return $markup;
-}
-
-function image_tag_class($class, $id, $align, $size) {
-  $align = 'align' . esc_attr($align);
-  return $align;
-}
-
-function image_editor($html, $id, $alt, $title) {
-  return preg_replace(array(
-      '/\s+width="\d+"/i',
-      '/\s+height="\d+"/i',
-      '/alt=""/i'
-    ),
-    array(
-      '',
-      '',
-      '',
-      'alt="' . $title . '"'
-    ),
-    $html);
 }
 
 function img_unautop($pee) {

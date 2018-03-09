@@ -23,6 +23,10 @@ body {
   line-height: 1.5;
 }
 
+.page .wrapper--post {
+  min-height: calc(100vh - 275px);
+}
+
 .container, {
   max-width: 40em;
   margin-left: auto;
@@ -44,7 +48,7 @@ ul, ol {
 
 blockquote,
 h1, h2, h3, h4, h5, h6,
-p, ul, ol, blockquote {
+p, ul, ol, blockquote, hr {
   margin-bottom: 1.5em;
 }
 
@@ -78,11 +82,16 @@ h4::after,
 h5::before,
 h5::after,
 h6::before,
-h6::after {
+h6::after,
+hr::after {
   content: "--------------------------------------------------------------------------------";
   display: block;
   overflow: hidden;
   white-space: nowrap;
+}
+
+hr {
+  border: none;
 }
 
 pre, code {
@@ -113,12 +122,6 @@ img {
 cite {
   font-style: normal;
 }
-
-.post {
-  padding-top: 6em;
-  padding-bottom: 6em;
-}
-
 
 figcaption {
   color: rgba(34, 34, 34, .3);
@@ -261,4 +264,15 @@ blockquote > p:last-of-type {
 .browse__search input[type="text"] {
   flex: 1 1 auto;
   margin-right: 1em;
+}
+
+.wrapper {
+  margin-left: .75em;
+  // padding-right: .75em;
+  background-color: white;
+}
+
+.wrapper--post {
+  padding-top: 6em;
+  padding-bottom: 6em;
 }

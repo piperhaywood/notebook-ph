@@ -319,7 +319,7 @@ function nph_archive_str() {
     $return .= ' for query &ldquo;' . get_query_var('s') . '&rdquo;';
   } else {
     if (is_tax('post_format')) {
-      $return .= '[' . get_post_format() . '] type ' . get_posts_label($plural);
+      $return .= $plural ? strtolower(nph_format_plural(false)) : get_post_format();
     } else {
       $return .= get_posts_label($plural);
       if (is_tag()) {

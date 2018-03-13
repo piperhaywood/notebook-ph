@@ -49,8 +49,15 @@
             <?php if ($desc) : ?>
               <?php $return .= strip_tags($desc, '<a><i><b><strong><em>'); ?>
             <?php endif; ?>
+            <?php if (is_front_page() && !is_paged()) : ?>
+              <?php $return = 'Hello, my name is Piper Haywood. ' . $return; ?>
+            <?php endif; ?>
 
-            <p class="header__description"><?php if (is_front_page() && !is_paged()) : ?>Hello, my name is Piper Haywood. <?php endif; ?><?php echo $return; // TODO this has the page title! ?></p>
+            <?php if (!is_singular()) : ?>
+              <p class="header__description"><?php echo $return; ?></p>
+            <?php else : ?>
+              <h1 class="p-name header__description"><?php echo $return; ?></h1>
+            <?php endif; ?>
 
           </div>
         </div>

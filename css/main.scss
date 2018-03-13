@@ -237,7 +237,6 @@ blockquote > p:last-of-type {
 
 .pagination p {
   margin-bottom: 0;
-  margin-right: 1em;
 }
 
 .post__content a {
@@ -258,19 +257,30 @@ blockquote > p:last-of-type {
   list-style: none;
 }
 
-.post__tags .post__tag {
-  margin-right: 1ch;
-}
-
 .post__tag {
   display: inline-block;
   color: var(--tag-color);
 }
 
+.pagination p {
+  display: inline-block;
+}
+
+.pagination p,
+.post__tags .post__tag {
+  margin-right: 1ch;
+}
+
+.pagination p::after,
 .post__tags li::after {
   content: "/";
 }
 
+.pagination p::after {
+  margin-left: 1ch;
+}
+
+.pagination p:last-of-type::after,
 .post__tags li:last-of-type::after {
   content: "";
 }

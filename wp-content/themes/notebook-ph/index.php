@@ -30,7 +30,7 @@
                 <div class="post__meta">
                   <ul class="post__tags">
                     <li class="post__tag post__date">
-                      <time class="dt-published" datetime="<?php echo nph_date(true, false); ?>"><a class="u-url" href="<?php the_permalink(); ?>"><?php echo get_the_date('Y.m.d') . ' at ' . get_the_date('H:i'); ?></a></time>
+                      <time class="dt-published" datetime="<?php echo nph_date(true, false); ?>"><a class="u-url" href="<?php the_permalink(); ?>"><?php echo get_the_date() . ' at ' . get_the_time(); ?></a></time>
                     </li>
                     <?php $format = get_post_format(); ?>
                     <?php if ($format != false) : ?>

@@ -14,13 +14,13 @@
             <?php $format = get_post_format(); ?>
             <?php if (!is_singular() && !$format) : ?>
               <header>
-                <h1 class="post__title">
+                <h1 class="p-name post__title">
                   <?php nph_title(); ?>
                 </h1>
               </header>
             <?php endif; ?>
             
-            <div class="post__content">
+            <div class="e-content post__content">
               <?php the_content('Read more'); ?>
             </div>
 
@@ -30,7 +30,7 @@
                 <div class="post__meta">
                   <ul class="post__tags">
                     <li class="post__tag post__date">
-                      <time datetime="<?php echo nph_date(true, false); ?>"><a href="<?php the_permalink(); ?>"><?php echo get_the_date('Y.m.d') . ' at ' . get_the_date('H:i'); ?></a></time>
+                      <time class="dt-published" datetime="<?php echo nph_date(true, false); ?>"><a class="u-url" href="<?php the_permalink(); ?>"><?php echo get_the_date('Y.m.d') . ' at ' . get_the_date('H:i'); ?></a></time>
                     </li>
                     <?php $format = get_post_format(); ?>
                     <?php if ($format != false) : ?>

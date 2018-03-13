@@ -82,11 +82,51 @@ h5::before,
 h5::after,
 h6::before,
 h6::after,
-hr::after {
+hr::after,
+.jp-relatedposts::before {
   content: "--------------------------------------------------------------------------------";
   display: block;
   overflow: hidden;
   white-space: nowrap;
+}
+
+// Turn this in to a list since we can't change the markup
+.jp-relatedposts-list {
+  list-style-type: disc;
+  margin-left: 1em;
+}
+
+// Turn this in to a list item since we can't change the markup
+.jp-relatedposts-list .jp-relatedposts-post {
+  display: list-item;
+  margin-bottom: 0;
+}
+
+.jp-relatedposts-post-date {
+  margin-left: 1ch;
+}
+
+h3.jp-relatedposts-headline {
+  margin-bottom: 0;
+}
+
+h3.jp-relatedposts-headline em {
+  font-style: normal;
+}
+
+h3.jp-relatedposts-headline::before,
+h3.jp-relatedposts-headline::after {
+  content: none;
+}
+
+a.jp-relatedposts-post-a {
+  text-decoration: underline;
+}
+
+a.jp-relatedposts-post-a:hover,
+a.jp-relatedposts-post-a:active,
+a.jp-relatedposts-post-a:focus {
+  text-decoration: none;
 }
 
 hr {

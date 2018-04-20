@@ -33,8 +33,8 @@ if ($total) {
         <?php $prev = get_previous_posts_link(__('Previous page', 'notebook-ph')); ?>
         <?php $next = get_next_posts_link(__('Next page', 'notebook-ph')); ?>
       <?php elseif (is_singular('post')) : ?>
-        <?php $prev = get_previous_post_link('%link', __('Previous', 'notebook-ph')); ?>
-        <?php $next = get_next_post_link('%link', __('Next', 'notebook-ph')); ?>
+        <?php $prev = get_previous_post_link('%link', __('Older', 'notebook-ph')); ?>
+        <?php $next = get_next_post_link('%link', __('Newer', 'notebook-ph')); ?>
       <?php endif; ?>
       <?php if ($prev || $next) : ?>
         <nav class="pagination">

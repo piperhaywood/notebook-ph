@@ -368,3 +368,13 @@ body {
 * {
   background-color: transparent;
 }
+
+.archive .header__description a {
+  text-decoration: underline;
+}
+
+.archive .header__description a:hover,
+.archive .header__description a:active,
+.archive .header__description a:focus {
+  text-decoration: none;
+}

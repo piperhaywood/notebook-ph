@@ -1,6 +1,6 @@
 @import "prism";
 
-$black: rgba(0, 0, 0, .85);;
+$black: rgba(0, 0, 0, .85);
 
 :root {
   --tag-color: $black;
@@ -42,8 +42,12 @@ p, ul, ol, li, h1, h2, h3, h4, h5, h6 {
 }
 
 
-ul, ol {
+ul {
   margin-left: 1em;
+}
+
+ol {
+  margin-left: 1.5em;
 }
 
 blockquote,
@@ -61,9 +65,11 @@ figure img {
   margin-bottom: 0;
 }
 
-h1, h2, h3, h4, h5, h6,
-p, ul, ol, figcaption {
-  word-spacing: -.2em;
+header, main, footer {
+  h1, h2, h3, h4, h5, h6,
+  p, ul, ol, figcaption {
+    word-spacing: -.2em;
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -135,7 +141,7 @@ hr {
 
 pre, code {
   word-spacing: normal;
-  background-color: $black;
+  background-color: $prism-black;
   color: white;
   font-size: 1em;
   padding: .125em .25em;
@@ -334,4 +340,31 @@ blockquote > p:last-of-type {
 .wrapper--post {
   padding-top: 6em;
   padding-bottom: 6em;
+}
+
+.comments .avatar {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 0;
+}
+
+.comments .comment-body {
+  margin-bottom: 3em;
+}
+
+.comment-form-comment label {
+  display: block;
+}
+
+.comment-form-comment textarea {
+  width: 100%;
+}
+
+body {
+  // z-index: 100;
+  background-color: transparent;
+}
+
+* {
+  background-color: transparent;
 }

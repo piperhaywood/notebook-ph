@@ -51,6 +51,7 @@
                 </div>
 
                 <?php wp_link_pages(); ?>
+
               </footer>
             <?php endif; ?>
           </div>

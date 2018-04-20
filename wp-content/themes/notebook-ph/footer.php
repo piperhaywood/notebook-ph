@@ -19,8 +19,13 @@ if ($total) {
 <footer class="footer gradient"<?php if ($hsl) : ?> style="--first-color:<?php echo $hsl; ?>;--second-color: var(--first-color);"<?php endif; ?>>
   <div class="wrapper">
     <div class="container">
-      <?php if ( class_exists( 'Jetpack_RelatedPosts' ) && is_singular()) : ?>
-        <?php echo do_shortcode( '[jetpack-related-posts]' ); ?>
+      <?php if (is_singular()) : ?>
+        <?php if (class_exists( 'Jetpack_RelatedPosts' )) : ?>
+          <?php echo do_shortcode('[jetpack-related-posts]'); ?>
+        <?php endif; ?>
+        <?php if (comments_open() || get_comments_number()) : ?>
+          <?php comments_template(); ?>
+        <?php endif; ?>
       <?php endif; ?>
       <?php $prev = false; ?>
       <?php $next = false; ?>

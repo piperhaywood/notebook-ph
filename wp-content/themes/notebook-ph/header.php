@@ -22,44 +22,40 @@
 
   <body <?php body_class(); ?>>
 
-    <?php $first_hsl = nph_get_hsl($post); ?>
-    <?php $second_hsl = nph_get_hsl($post); ?>
-    <header class="header gradient"<?php if ($first_hsl && $second_hsl) : ?> style="--first-color:<?php echo $first_hsl; ?>;--second-color: <?php echo $second_hsl; ?>;"<?php endif; ?>>
-      <div class="wrapper">
-        <div class="container">
-          <div class="header__meta">
-            <?php $nav = false; ?>
-            <nav class="header__nav">
-              <ul>
-              <?php if (!is_front_page() || is_paged()) : ?>
-                <li><a href="<?php echo site_url(); ?>"><?php _e('Home', 'notebook-ph'); ?></a></li>
-              <?php endif; ?>
-              <?php $nav = is_front_page() ? nph_get_navigation('header') : nph_get_navigation(get_the_title()); ?>
-              <?php $nav = $nav ? $nav : nph_get_navigation('header'); ?>
-              <?php if ($nav) : ?>
-                <?php foreach ($nav as $item) : ?>
-                  <li><a href="<?php echo esc_url($item->url); ?>"><?php echo $item->title; ?></a></li>
-                <?php endforeach; ?>
-              <?php endif; ?>
-              </ul>
-            </nav>
+    <input type="checkbox" id="menu-toggle">
+    <label class="open-menu" for="menu-toggle">Menu</label>
 
-            <?php $return = nph_archive_str(); ?>
-            <?php $desc = nph_archivedesc(false); ?>
-            <?php if ($desc) : ?>
-              <?php $return .= strip_tags($desc, '<a><i><b><strong><em>'); ?>
-            <?php endif; ?>
-            <?php if (is_front_page() && !is_paged()) : ?>
-              <?php $return = 'Hello, my name is Piper Haywood. ' . $return; ?>
-            <?php endif; ?>
+    <div class="wrapper">
+      <header class="header">
+        <div class="header__inner">
 
-            <?php if (!is_singular()) : ?>
-              <p class="header__description"><?php echo $return; ?></p>
-            <?php else : ?>
-              <h1 class="p-name header__description"><?php echo $return; ?></h1>
-            <?php endif; ?>
-
+          <div class="container">
+            <a class="header__link" href="<?php echo site_url(); ?>" data-title="<?php bloginfo('name'); ?>" aria-label="Go to homepage">
+              <h1 class="header__description"><?php echo nph_archive_str(); ?></h1>
+            </a>
           </div>
+
+          <?php $desc = nph_archivedesc(false); ?>
+          <?php if ($desc) : ?>
+            <div class="prose container">
+              <?php echo $desc; ?>
+            </div>
+          <?php endif; ?>
+
+          <div class="container">
+            <?php get_search_form(); ?>
+          </div>
+
+          <?php wp_nav_menu( array(
+            'theme_location' => 'header',
+            'container' => 'nav',
+            'menu_class' => 'menu container'
+          ) ); ?>
+
+          <div class="container">
+            <p class="copyright"><span class="copyright__year"><?php echo nph_get_copyright(); ?></span> <a class="h-card copyright__credit" rel="me" href="<?php echo site_url(); ?>"><?php bloginfo('name'); ?></a></p>
+            <p class="credit"><?php _e('This site uses the', 'notebook-ph'); ?> Notebook <?php _e('theme by', 'notebook-ph'); ?> <a href="http://piperhaywood.com">Piper Haywood</a>. </p>
+          </div>
+
         </div>
-      </div>
-    </header>
+      </header>

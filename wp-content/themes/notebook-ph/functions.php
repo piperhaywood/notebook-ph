@@ -64,37 +64,6 @@ function nph_editlink($echo = true, $prefix = '', $link_text = '', $suffix = '')
   }
 }
 
-function nph_format_plural($echo = true) {
-  $return = '';
-
-  $format = get_post_format();
-  if ($format == 'image') :
-    $return = 'Images';
-  elseif ($format == 'quote') :
-    $return = 'Quotes';
-  elseif ($format == 'aside') :
-    $return = 'Asides';
-  elseif ($format == 'gallery') :
-    $return = 'Galleries';
-  elseif ($format == 'audio') :
-    $return = 'Audio';
-  elseif ($format == 'video') :
-    $return = 'Videos';
-  elseif ($format == 'chat') :
-    $return = 'Chat threads';
-  elseif ($format == 'link') :
-    $return = 'Links';
-  else :
-    $return = get_posts_label(true);
-  endif;
-
-  if ($echo === true) {
-    echo $return;
-  } else {
-    return $return;
-  }
-}
-
 function nph_date($format = false, $echo = true) {
   if (!$format) {
     $date = get_the_date();
@@ -227,7 +196,7 @@ function nph_subtitle($echo = true, $prefix = '', $suffix = '') {
   } elseif (is_search()) {
     $return = '&ldquo;' . get_query_var('s') . '&rdquo;';
   } elseif (is_tax('post_format')) {
-    $return = nph_format_plural(false);
+    $return = get_post_format();
   } elseif (is_author()) {
     $return = 'By ' . get_the_author_meta('display_name', get_query_var('author'));
   } elseif (is_month()) {
@@ -282,89 +251,50 @@ function nph_archive_str() {
     return 'Page not found <code>404 error</code>';
   }
   global $wp_query;
-
-  $return = '';
-
-  $ppp = get_option('posts_per_page');
-  $total = $wp_query->found_posts;
+  $total = is_search() ? ' ~ ' : ' &ndash; ';
+  $total = $total . $wp_query->found_posts;
   $paged = get_query_var('paged');
-  $plural = true;
-  if ($ppp >= $total && $paged == 0) {
-    $return .= $total . ' ';
-    $plural = $total > 1 ? true : false;
-  } else {
-    $min = 1;
-    $max = $ppp;
-    if ($paged > 0) {
-      $min = $ppp * $paged + $min;
-      $max = $min + $ppp - 1;
-      if ($max > $total) {
-        $max = $total;
-      }
-    }
-    if ($total != $max) {
-      $return .= $min . '&ndash;' . $max;
-    } else {
-      $return .= 'last';
-    }
-    $return .= ' of ' . $total . ' ';
+  $page = $paged > 0 ? ' | Page ' . $paged : null;
+  if (is_front_page()) {
+    $title = get_bloginfo('name');
+    $total = null;
+  } elseif (is_tax('post_format')) {
+    $title = '* ' . get_post_format(); // &#8258; indicates subchapter
+  } elseif (is_tag()) {
+    $title = single_tag_title('# ', false );
+  } elseif (is_category()) {
+    $title = single_cat_title('§ ', false); // § indicates section
+  } elseif (is_search()) {
+    $title = '&ldquo;' . get_query_var('s') . '&rdquo;'; // ◊ indicates possibility
+  } elseif (is_author()) {
+    $title = 'By ' . get_the_author_meta('display_name', get_query_var('author'));
+  } elseif (is_month()) {
+    $title = 'Published in ' . get_the_date('F Y');
+  } elseif (is_year()) {
+    $title = 'Published in ' . get_the_date('Y');
   }
-
-  if (is_search()) {
-    if ($total <= 0) {
-      return 'No search results for query &ldquo;' . get_query_var('s') . '&rdquo;';
-    }
-    $return .= 'search ';
-    $return .= $plural ? 'results' : 'result';
-    $return .= ' for query &ldquo;' . get_query_var('s') . '&rdquo;';
-  } else {
-    if (is_tax('post_format')) {
-      $return .= $plural ? strtolower(nph_format_plural(false)) : get_post_format();
-    } else {
-      $return .= get_posts_label($plural);
-      if (is_tag()) {
-        $term = get_term_by('id', get_query_var('tag_id'), 'post_tag');
-        $return .= ' tagged #' . $term->slug;
-      } elseif (is_category()) {
-        $return .= ' in category &ldquo;' . single_cat_title('', false) . '&rdquo;';
-      } elseif (is_search()) {
-        $return .= ' for query &ldquo;' . get_query_var('s') . '&rdquo;';
-      } elseif (is_author()) {
-        $return .= ' by ' . get_the_author_meta('display_name', get_query_var('author'));
-      } elseif (is_month()) {
-        $return .= ' published in ' . get_the_date('F Y');
-      } elseif (is_year()) {
-        $return .= ' published in ' . get_the_date('Y');
-      }
-    }
-  }
-  $return = !empty($return) ? 'Showing ' . $return . '. ' : '';
-  return $return;
+  return $title . $total . $page;
 }
 
 function nph_get_copyright() {
   $copy = '';
-  $args = array(
-    'order' => 'ASC',
-    'posts_per_page' => 1,
-    'post_type' => 'any',
-    'post_status' => 'publish,private,draft'
-  );
-  $posts_array = get_posts($args);
-  if (!empty($posts_array)) {
-    $copy .= get_the_date('Y', $posts_array[0]->ID) . '&ndash;';
+  if (is_single()) {
+    $copy .= get_the_date('Y');
+  } else {
+    $args = array(
+      'order' => 'ASC',
+      'posts_per_page' => 1,
+      'post_type' => 'any',
+      'post_status' => 'publish,private,draft'
+    );
+    $posts_array = get_posts($args);
+    if (!empty($posts_array)) {
+      $copy .= get_the_date('Y', $posts_array[0]->ID) . '&ndash;';
+    }
+    $copy .= date('Y');
   }
-  $copy .= date('Y');
   $copy = '&copy; ' . $copy;
   return $copy;
-}
-
-function get_posts_label($plural = false) {
-  if ($plural) {
-    return __('notes', 'notebook-ph');
-  } else {
-    return __('note', 'notebook-ph');
-  }
 }
 
 function nph_get_navigation($menu_name) {

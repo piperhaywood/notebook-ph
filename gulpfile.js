@@ -49,7 +49,7 @@ gulp.task('fonts', function() {
 
 gulp.task('js', function() {
   return gulp.src([
-    'bower_components/jquery/dist/jquery.js',
+    'node_modules/infinite-scroll/dist/infinite-scroll.pkgd.js',
     'bower_components/jquery.fitvids/jquery.fitvids.js',
     'bower_components/prism/prism.js',
     'js/scripts.js',

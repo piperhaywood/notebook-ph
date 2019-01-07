@@ -36,17 +36,6 @@ gulp.task('sass', function() {
     .pipe(gulp.dest(themeDir));
 });
 
-gulp.task('fonts', function() {
-  return gulp.src('fonts/**/*.scss')
-    .pipe(sourcemaps.init())
-    .pipe(sass())
-    .pipe(sourcemaps.write())
-    .pipe(autoprefixer())
-    .pipe(concat('fonts.css'))
-    .pipe(cssmin())
-    .pipe(gulp.dest(themeDir));
-});
-
 gulp.task('js', function() {
   return gulp.src([
     'node_modules/infinite-scroll/dist/infinite-scroll.pkgd.js',
@@ -75,7 +64,6 @@ gulp.task('customizer', function() {
 gulp.task('watch', function(done) {
   gulp.watch('css/**/*.scss', gulp.series('sass'));
   gulp.watch('js/scripts.js', gulp.series('js'));
-  gulp.watch('fonts/**/*.scss', gulp.series('fonts'));
   gulp.watch('js/customizer.js', gulp.series('customizer'));
   gulp.watch(themeDir + '**/*').on('change', browserSync.reload);
   done();
@@ -91,5 +79,5 @@ gulp.task('browserSync', function(done) {
   done();
 });
 
-gulp.task('dev', gulp.parallel('sass', 'js', 'fonts', 'customizer'));
+gulp.task('dev', gulp.parallel('sass', 'js', 'customizer'));
 gulp.task('default', gulp.series('dev', gulp.parallel('watch', 'browserSync')));

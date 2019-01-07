@@ -379,3 +379,50 @@ function nph_get_next_link() {
   }
   return $link;
 }
+
+function nph_get_adjacent_post($post, $previous = true) {
+  global $wpdb;
+
+  if ( empty( $post ) )
+    return null;
+
+  $current_post_date = $post->post_date;
+
+  $cat = false;
+  $tag = false;
+  $format = false;
+
+  $join = '';
+  $posts_in_ex_cats_sql = '';
+  if ( $cat ) {
+    $join = " INNER JOIN $wpdb->term_relationships AS tr ON p.ID = tr.object_id INNER JOIN $wpdb->term_taxonomy tt ON tr.term_taxonomy_id = tt.term_taxonomy_id";
+
+    if ( $cat ) {
+      $cat_array = wp_get_object_terms($post->ID, 'category', array('fields' => 'ids'));
+      $join .= " AND tt.taxonomy = 'category' AND tt.term_id IN (" . implode(',', $cat_array) . ")";
+    }
+
+    $posts_in_ex_cats_sql = "AND tt.taxonomy = 'category'";
+  }
+
+  $adjacent = $previous ? 'previous' : 'next';
+  $op = $previous ? '<' : '>';
+  $order = $previous ? 'DESC' : 'ASC';
+
+  $join  = apply_filters( "get_{$adjacent}_post_join", $join, $in_same_cat, $excluded_categories );
+  $where = apply_filters( "get_{$adjacent}_post_where", $wpdb->prepare("WHERE p.post_date $op %s AND p.post_type = %s AND p.post_status = 'publish' $posts_in_ex_cats_sql", $current_post_date, $post->post_type), $in_same_cat, $excluded_categories );
+  $sort  = apply_filters( "get_{$adjacent}_post_sort", "ORDER BY p.post_date $order LIMIT 1" );
+
+  $query = "SELECT p.* FROM $wpdb->posts AS p $join $where $sort";
+  $query_key = 'adjacent_post_' . md5($query);
+  $result = wp_cache_get($query_key, 'counts');
+  if ( false !== $result )
+    return $result;
+
+  $result = $wpdb->get_row("SELECT p.* FROM $wpdb->posts AS p $join $where $sort");
+  if ( null === $result )
+    $result = '';
+
+  wp_cache_set($query_key, $result, 'counts');
+  return $result;
+}

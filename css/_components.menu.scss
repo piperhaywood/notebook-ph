@@ -1,0 +1,38 @@
+.menu ul {
+  list-style-type: none;
+}
+
+.menu > ul {
+  padding-left: 0;
+}
+
+.menu li {
+  @include style-h1;
+  margin: .5em 0;
+}
+
+.menu a {
+  display: inline-block;
+}
+
+.menu a:hover {
+  text-decoration: underline;
+}
+
+#menu-toggle {
+  display: none;
+}
+
+.open-menu {
+  background: white;
+  cursor: pointer;
+  height: $header-height;
+  padding: $container-padding var(--gutter);
+  position: fixed;
+  right: calc((100vw - #{$container-width}) / 2);
+  top: 0;
+  z-index: 70;
+  @media (max-width: $container-width) {
+    right: 0;
+  }
+}

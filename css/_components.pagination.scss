@@ -1,0 +1,9 @@
+.pagination {
+  margin-bottom: 30vh;
+}
+
+.pagination__link {
+  @include style-h1;
+}
+
+// TODO check single pagination

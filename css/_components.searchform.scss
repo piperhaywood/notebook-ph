@@ -1,0 +1,27 @@
+.searchform {
+  margin-bottom: 15vh;
+  margin-left: calc(-1 * var(--gutter));
+  margin-right: calc(-1 * var(--gutter));
+  margin-top: 15vh;
+}
+
+.searchform label {
+  @include visuallyhidden;
+}
+
+.searchform input[type="text"] {
+  border: 1px solid black;
+  display: block;
+  margin-bottom: .5rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: calc(100vw - (var(--gutter) * 2));
+  padding: $container-padding;
+  width: 100%;
+}
+
+.searchform input[type="submit"] {
+  cursor: pointer;
+  float: right;
+  padding: .5em var(--gutter);
+}

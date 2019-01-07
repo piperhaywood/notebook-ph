@@ -1,0 +1,364 @@
+.post__footer,
+.post__header,
+.prose > div,
+.prose > p,
+.prose > ul,
+.prose > ol,
+.prose > h1,
+.prose > h2,
+.prose > h3,
+.prose > h4,
+.prose > h5,
+.prose > h6,
+.prose > dl,
+.prose > blockquote,
+.prose > address {
+  @include container;
+}
+
+.prose > ol {
+  @media (max-width: 45em) {
+    margin-left: calc(2ch + #{$container-padding});
+  }
+}
+
+.prose > ul:not(.post__tags) {
+  @media (max-width: 42em) {
+    margin-left: $container-padding;
+  }
+}
+
+.prose p img.alignnone {
+  padding: 0;
+}
+
+.post__title {
+  @include style-h1;
+}
+
+.post__footer {
+  clear: both;
+  margin-top: 3em;
+}
+
+.prose a {
+  text-decoration: underline;
+}
+
+.prose a:hover {
+  text-decoration: none;
+}
+
+.prose h1 {
+  @include style-h1;
+  margin-bottom: 1.5em;
+  margin-top: 1.5em;
+}
+
+.prose h2,
+.prose h3 {
+  @include style-h2;
+  margin-bottom: 1.5em;
+  margin-top: 1.5em;
+}
+
+.prose h4,
+.prose h5,
+.prose h6 {
+  @include style-h4;
+}
+
+.link_description > *,
+.prose > * {
+  margin-bottom: 1.5em;
+  margin-top: 1.5em;
+}
+
+.prose > iframe {
+  
+}
+
+.prose > iframe.instagram-media {
+  margin-right: auto !important;
+  margin-left: auto !important;
+  width: calc(100vw - (var(--gutter) * 2)) !important;
+}
+
+.prose img.alignleft,
+.prose img.alignright,
+.prose .wp-caption.alignleft,
+.prose .wp-caption.alignright {
+  margin-bottom: $container-padding;
+}
+
+.wp-caption {
+  max-width: 100%;
+}
+
+.prose .wp-caption-text,
+.prose p img {
+  margin-bottom: 0;
+}
+
+.prose .wp-caption img {
+  margin-bottom: .5em;
+}
+
+.prose abbr,
+.prose acronym {
+  text-decoration: none;
+}
+
+.prose address {
+  font-style: normal;
+}
+
+.prose hr {
+  border: none;
+  height: 1px;
+  color: var(--first-color);
+  background-color: var(--first-color);
+  @include container;
+}
+
+.header__description code,
+.prose code,
+.prose kbd {
+  font-family: $font-mono;
+  font-size: inherit;
+  background: #ddd;
+  padding: 0 .25em;
+}
+
+.prose pre {
+  width: $container-width;
+  max-width: calc(100vw - (var(--gutter) * 2));
+  overflow: scroll;
+  margin-left: auto;
+  margin-right: auto;
+  background: #ddd;
+  padding: $container-padding;
+}
+
+.prose pre[class],
+.prose pre[class] code {
+  background: black;
+}
+
+.prose pre h1,
+.prose pre h2,
+.prose pre h3,
+.prose pre h4,
+.prose pre h5,
+.prose pre h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.prose pre code {
+  display: block;
+  white-space: pre-wrap;
+}
+
+.prose table {
+  display: block;
+  max-width: 100%;
+  width: fit-content;
+  overflow-x: scroll;
+  border-collapse: collapse;
+  padding-bottom: 1.5em;
+  padding-right: var(--gutter);
+  padding-left: var(--gutter);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.prose th {
+  font-weight: normal;
+  text-align: left;
+}
+
+.prose tr {
+  vertical-align: top;
+}
+
+.prose tr > * {
+  padding-top: .5em;
+  padding-bottom: .5em;
+  border-bottom: 1px solid var(--first-color);
+}
+
+.prose tr > * {
+  min-width: 9em;
+  padding-right: .5em;
+}
+
+.prose tr > *:last-child {
+  padding-right: 0;
+}
+
+.prose dd {
+  padding-left: 1.5em;
+}
+
+.prose ins {
+  position: relative;
+}
+
+.prose ins:before {
+  content: "‸";
+  top: 2px;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
+.article .prose blockquote {
+  border: 1px solid var(--first-color);
+  padding: $container-padding;
+}
+
+.prose blockquote p {
+  margin-bottom: $container-padding;
+}
+
+@media (max-width: 42em) {
+  .article .prose > blockquote {
+    margin-right: var(--gutter);
+    margin-left: var(--gutter);
+  }
+}
+
+.prose > blockquote blockquote {
+  margin-bottom: $container-padding;
+}
+
+.prose blockquote *:last-child {
+  margin-bottom: 0;
+}
+
+.post__title a,
+.post__tag a {
+  text-decoration: none;
+}
+
+.post__title a:hover,
+.post__tag a:hover {
+  text-decoration: underline;
+}
+
+@supports (text-decoration-color: var(--first-color)) {
+  .prose s,
+  .prose del,
+  .prose strike,
+  .post__tag a:hover,
+  .post__title a:hover,
+  .prose a,
+  .prose ins {
+    text-decoration-color: var(--first-color);
+  }
+}
+
+.prose .aligncenter img,
+.prose img.aligncenter,
+.prose .aligncenter .wp-caption-text {
+  max-width: calc(100vw - (var(--gutter) * 2));
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.prose div.alignnone {
+  @include container;
+  width: 100% !important;
+}
+
+.prose .aligncenter {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.prose .aligncenter .wp-caption-text {
+  text-align: center;
+  @media (max-width: #{$container-width}) {
+    text-align: left;
+  }
+}
+
+$max-aligned-img: 16em;
+
+.prose .alignleft img,
+.prose .alignright img,
+.prose .alignleft,
+.prose .alignright,
+.prose img.alignleft,
+.prose img.alignright,
+.prose .alignleft .wp-caption-text,
+.prose .alignright .wp-caption-text {
+  width: 40vw !important;
+  max-width: $max-aligned-img;
+}
+
+.prose .alignleft {
+  float: left;
+  margin-right: $container-padding;
+  margin-left: var(--gutter);
+}
+
+.prose p .alignleft {
+  margin-left: 0;
+}
+
+.prose .alignright {
+  float: right;
+  margin-left: $container-padding;
+  margin-right: var(--gutter);
+}
+
+.prose p .alignright {
+  margin-right: 0;
+}
+
+@media (min-width: 74em) {
+  .prose .alignleft img,
+  .prose .alignleft
+  .prose img.alignleft,
+  .prose .alignleft .wp-caption-text {
+    margin-left: calc((100vw - #{$container-width}) / 2 - #{$max-aligned-img} - #{$container-padding});
+  }
+  .prose .alignright img,
+  .prose .alignright,
+  .prose img.alignright,
+  .prose .alignright .wp-caption-text {
+    margin-right: calc((100vw - #{$container-width}) / 2 - #{$max-aligned-img} - #{$container-padding});
+  }
+}
+
+.prose .alignnone .wp-caption {
+  max-width: 100%;
+}
+
+.prose .wp-caption-text {
+  font-style: italic;
+}
+
+.prose .wp-caption-text i,
+.prose .wp-caption-text em {
+  font-style: normal;
+}
+
+.prose > *:last-child {
+  margin-bottom: 0 !important;
+}
+
+// .prose > *:first-child {
+//   margin-top: 0 !important;
+// }
+
+.prose {
+  // padding-bottom: 30vh;
+  // padding-bottom: 30vh;
+}
+
+.prose [class*="instagram"] {
+  margin: 0 auto !important;
+}

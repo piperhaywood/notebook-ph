@@ -1,0 +1,65 @@
+.header__inner {
+  background: white;
+  height: $header-height;
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: height $transition-duration;
+  z-index: 60;
+}
+
+#menu-toggle:checked ~ .wrapper .header__inner {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+#menu-toggle:checked ~ .wrapper .header,
+#menu-toggle:checked ~ .wrapper .header__inner {
+  height: 100%;
+  background: white;
+}
+
+.header__link {
+  display: block;
+  height: 57px;
+}
+
+.header__link:hover {
+  display: block;
+  position: relative;
+}
+
+.header__link:hover:after {
+  display: block;
+  content: attr(data-title);
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  position: absolute;
+  top: 0;
+}
+
+.header__title {
+  display: inline-block;
+  font-size: inherit;
+  font-weight: inherit;
+  overflow: hidden;
+  padding-bottom: $container-padding;
+  padding-top: $container-padding;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 34em;
+  @media (max-width: $container-width) {
+    width: calc(100vw - 6em);
+  }
+}
+
+.header__link:hover .header__title {
+  opacity: 0;
+}
+
+#menu-toggle:checked ~ .wrapper .header__title {
+  overflow: visible;
+  white-space: normal;
+}

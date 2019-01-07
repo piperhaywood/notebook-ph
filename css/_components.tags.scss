@@ -1,0 +1,37 @@
+.post__tags {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin-left: 0;
+  padding: 0;
+}
+
+.post__tag {
+  color: var(--tag-color);
+  display: inline-block;
+  margin-right: 1ch;
+}
+
+.post__tags .post__tag {
+  margin-right: 1ch;
+}
+
+.post__tags .post__tag::after {
+  color: var(--first-color);
+  content: "/";
+}
+
+.post__tags .post__tag:last-of-type::after {
+  content: none;
+}
+
+.post__tag a {
+  text-decoration: none;
+}
+
+.post__tag a:hover,
+.post__tag a:focus,
+.post__tag a:active {
+  text-decoration: underline;
+  text-decoration-color: var(--first-color);
+}

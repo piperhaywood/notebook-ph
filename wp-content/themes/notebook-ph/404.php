@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<main class="main <?php nph_pagetype(); ?>">
+<main class="main <?php nph_pagetype(); ?>" role="main">
   <article class="article gradient type-<?php echo get_post_type(); ?>">
     <div class="article__inner">
       <div class="prose">

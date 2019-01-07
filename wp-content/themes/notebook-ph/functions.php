@@ -359,3 +359,23 @@ function nph_get_hsl($hsl_post = false) {
   $hsl = sprintf('hsl(%s, 70%%, 50%%)', $hue);
   return $hsl;
 }
+
+function nph_get_previous_link() {
+  $link = false;
+  if (is_home() || is_archive() || is_search()) {
+    $link = get_previous_posts_link(__('Previous page', 'notebook-ph'));
+  } elseif (is_singular('post')) {
+    $link = get_previous_post_link('%link', __('Older', 'notebook-ph'));
+  }
+  return $link;
+}
+
+function nph_get_next_link() {
+  $link = false;
+  if (is_home() || is_archive() || is_search()) {
+    $link = get_next_posts_link(__('Next page', 'notebook-ph'));
+  } elseif (is_singular('post')) {
+    $link = get_next_post_link('%link', __('Newer', 'notebook-ph'));
+  }
+  return $link;
+}

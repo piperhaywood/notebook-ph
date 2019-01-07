@@ -1,4 +1,4 @@
-<footer class="footer">
+<footer class="site-footer" role="contentinfo">
   <?php if (is_singular()) : ?>
     <?php if (class_exists( 'Jetpack_RelatedPosts' )) : ?>
       <?php echo do_shortcode('[jetpack-related-posts]'); ?>
@@ -7,22 +7,15 @@
       <?php comments_template(); ?>
     <?php endif; ?>
   <?php endif; ?>
-  <?php $prev = false; ?>
-  <?php $next = false; ?>
-  <?php if (is_home() || is_archive() || is_search()) : ?>
-    <?php $prev = get_previous_posts_link(__('Previous page', 'notebook-ph')); ?>
-    <?php $next = get_next_posts_link(__('Next page', 'notebook-ph')); ?>
-  <?php elseif (is_singular('post')) : ?>
-    <?php $prev = get_previous_post_link('%link', __('Older', 'notebook-ph')); ?>
-    <?php $next = get_next_post_link('%link', __('Newer', 'notebook-ph')); ?>
-  <?php endif; ?>
+  <?php $prev = nph_get_previous_link(); ?>
+  <?php $next = nph_get_next_link(); ?>
   <?php if ($prev || $next) : ?>
-    <nav class="pagination">
+    <nav class="pagination js-pagination">
       <?php if ($prev) : ?>
-        <p class="pagination__previous"><?php echo $prev; ?></p>
+        <p class="pagination__link pagination__link--previous js-previous"><?php echo $prev; ?></p>
       <?php endif; ?>
       <?php if ($next) : ?>
-        <p class="pagination__next"><?php echo $next; ?></p>
+        <p class="pagination__link pagination__link--next js-next"><?php echo $next; ?></p>
       <?php endif; ?>
     </nav>
   <?php endif; ?>

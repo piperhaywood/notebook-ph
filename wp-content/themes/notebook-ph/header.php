@@ -20,24 +20,24 @@
 
   </head>
 
-  <body <?php body_class(); ?>>
+  <body <?php body_class('rainbow'); ?>>
 
     <input type="checkbox" id="menu-toggle">
     <label class="open-menu" for="menu-toggle">Menu</label>
 
-    <div class="wrapper">
-      <header class="header">
+    <div class="wrapper js-wrapper">
+      <header class="header" role="banner">
         <div class="header__inner">
 
           <div class="container">
             <a class="header__link" href="<?php echo site_url(); ?>" data-title="<?php bloginfo('name'); ?>" aria-label="Go to homepage">
-              <h1 class="header__description"><?php echo nph_archive_str(); ?></h1>
+              <h1 class="header__title"><?php echo nph_archive_str(); ?></h1>
             </a>
           </div>
 
           <?php $desc = nph_archivedesc(false); ?>
           <?php if ($desc) : ?>
-            <div class="prose container">
+            <div class="prose">
               <?php echo $desc; ?>
             </div>
           <?php endif; ?>

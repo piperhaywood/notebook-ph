@@ -1,15 +1,13 @@
 <?php get_header(); ?>
 
-<main class="main">
+<main class="main" role="main">
   <section class="articles <?php echo !is_singular() ? 'js-infinite-container' : false; ?>">
   <?php if (have_posts()) : ?>
-    <?php $i = 0; ?>
-    <?php $total = $wp_query->post_count; ?>
     <?php while (have_posts()) : the_post(); ?>
       <?php $current_hsl = nph_get_hsl($post); ?>
-      <?php $prev = $i + 1 < $total ? $wp_query->posts[$i + 1] : false; ?>
+      <?php $prev = get_previous_post(); ?>
       <?php $prev_hsl = $prev ? nph_get_hsl($prev) : $current_hsl; ?>
-      <article <?php post_class(array('post', 'article')); ?> style="--first-color:<?php echo $current_hsl; ?>;--second-color:<?php echo $prev_hsl; ?>;">
+      <article <?php post_class(array('post', 'article', 'js-article')); ?> style="--first-color:<?php echo $current_hsl; ?>;--second-color:<?php echo $prev_hsl; ?>;">
         <div class="article__inner prose">
           <?php $format = get_post_format(); ?>
           <?php if (!$format) : ?>
@@ -61,7 +59,6 @@
           <?php endif; ?>
         </div>
       </article>
-      <?php $i++; ?>
     <?php endwhile; ?>
 
   <?php else : ?>

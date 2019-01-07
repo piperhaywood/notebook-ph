@@ -2,11 +2,14 @@
 
   $('.post').fitVids();
 
-  $('.js-infinite-container').infiniteScroll({
-    path: '.pagination__next a',
-    append: '.article',
-    elementScroll: '.wrapper',
-    hideNav: '.pagination'
-  });
+  $pagination = $('.pagination');
+  if ($pagination.length) {
+    $('.js-infinite-container').infiniteScroll({
+      path: '.js-next a',
+      append: '.js-article',
+      elementScroll: '.js-wrapper',
+      hideNav: '.js-pagination'
+    });
+  }
 
 })(jQuery);

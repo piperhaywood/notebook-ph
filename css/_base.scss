@@ -28,7 +28,6 @@ body {
 body {
   @include style-body;
   color: $black;
-  overflow-y: hidden;
 }
 
 h1,

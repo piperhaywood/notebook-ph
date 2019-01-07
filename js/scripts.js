@@ -7,7 +7,6 @@
     $('.js-infinite-container').infiniteScroll({
       path: '.js-next a',
       append: '.js-article',
-      elementScroll: '.js-wrapper',
       hideNav: '.js-pagination'
     });
   }

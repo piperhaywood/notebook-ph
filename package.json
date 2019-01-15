@@ -1,12 +1,12 @@
 {
   "name": "notebook-ph",
   "title": "Notebook by PH",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "description": "A simple WordPress theme for keeping notes. ",
   "author": {
     "name": "Piper Haywood",
     "email": "contact@piperhaywood.com",
-    "url": "http://piperhaywood.com"
+    "url": "https://piperhaywood.com"
   },
   "license": "GPL-3.0",
   "private": false,
@@ -16,14 +16,16 @@
   },
   "devDependencies": {
     "browser-sync": "^2.23.6",
-    "gulp": "^3.9.1",
-    "gulp-add-src": "^0.2.0",
+    "gulp": "^4.0.0",
+    "gulp-add-src": "^1.0.0",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-concat": "^2.6.0",
     "gulp-cssmin": "^0.1.7",
     "gulp-sass": "^2.2.0",
     "gulp-sourcemaps": "^1.6.0",
-    "gulp-uglify": "^1.5.3"
+    "gulp-uglify": "^1.5.3",
+    "infinite-scroll": "^3.0.5",
+    "prismjs": "^1.15.0"
   },
   "dependencies": {
     "gulp-header": "^1.7.1",

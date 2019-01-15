@@ -5,8 +5,6 @@ function start_cleanup() {
   add_action('init', 'cleanup_head');
   add_filter('the_generator', 'remove_rss_version');
   add_filter('gallery_style', 'gallery_style');
-  add_filter('get_image_tag_class', 'image_tag_class', 0, 4);
-  add_filter('get_image_tag', 'image_editor', 0, 4);
   add_filter('the_content', 'img_unautop', 30);
 }
 
@@ -61,58 +59,8 @@ function gallery_style($css) {
   return preg_replace("!<style type='text/css'>(.*?)</style>!s", '', $css);
 }
 
-add_shortcode('wp_caption', 'fixed_img_caption_shortcode');
-add_shortcode('caption', 'fixed_img_caption_shortcode');
-function fixed_img_caption_shortcode($attr, $content = null) {
-  if (! isset($attr['caption'])) {
-    if (preg_match('#((?:<a [^>]+>\s*)?<img [^>]+>(?:\s*</a>)?)(.*)#is', $content, $matches)) {
-      $content = $matches[1];
-      $attr['caption'] = trim($matches[2]);
-    }
-  }
-  $output = apply_filters('img_caption_shortcode', '', $attr, $content);
-  if ($output != '')
-    return $output;
-  extract(shortcode_atts(array(
-    'id'      => '',
-    'align'   => 'alignnone',
-    'width'   => '',
-    'caption' => '',
-    'class'   => ''
-  ), $attr));
-  if (1 > (int) $width || empty($caption))
-    return $content;
-
-  $markup = '<figure';
-  if ($id) $markup .= ' id="' . esc_attr($id) . '"';
-  if ($class) $markup .= ' class="' . esc_attr($class) . '"';
-  $markup .= '>';
-  $markup .= do_shortcode($content) . '<figcaption>' . $caption . '</figcaption></figure>';
-  return $markup;
-}
-
-function image_tag_class($class, $id, $align, $size) {
-  $align = 'align' . esc_attr($align);
-  return $align;
-}
-
-function image_editor($html, $id, $alt, $title) {
-  return preg_replace(array(
-      '/\s+width="\d+"/i',
-      '/\s+height="\d+"/i',
-      '/alt=""/i'
-    ),
-    array(
-      '',
-      '',
-      '',
-      'alt="' . $title . '"'
-    ),
-    $html);
-}
-
 function img_unautop($pee) {
-  $pee = preg_replace('/<p>\\s*?(<a .*?><img.*?><\\/a>|<img.*?>)?\\s*<\\/p>/s', '$1', $pee);
+  $pee = preg_replace('/<p>\\s*?(<a .*?><img.*class=".*aligncenter.*"?><\\/a>|<img.*class=".*aligncenter.*"?>)?\\s*<\\/p>/s', '$1', $pee);
   return $pee;
 }
 
@@ -135,4 +83,58 @@ function ph_remove_arrows($content) {
   $content = str_replace('&rarr;', '', $content);
   $content = str_replace('→', '', $content);
   return $content;
+}
+
+add_filter('wp_calculate_image_sizes', 'nph_sizes');
+function nph_sizes() {
+  return '(max-width: 638px) 100vw, 638px';
+}
+
+// Accounts for Wordpress incorrect srcset order
+add_filter( 'wp_calculate_image_srcset', 'ph_adjust_srcset', 10, 5 );
+function ph_adjust_srcset( $sources, $size_array, $image_src, $image_meta, $attachment_id ) {
+  ksort($sources);
+  return $sources;
+}
+
+// First, make sure Jetpack doesn't concatenate all its CSS
+add_filter( 'jetpack_implode_frontend_css', '__return_false' );
+
+// Then, remove each CSS file, one at a time
+function jeherve_remove_all_jp_css() {
+  wp_deregister_style( 'AtD_style' ); // After the Deadline
+  wp_deregister_style( 'jetpack_likes' ); // Likes
+  wp_deregister_style( 'jetpack_related-posts' ); //Related Posts
+  wp_deregister_style( 'jetpack-carousel' ); // Carousel
+  wp_deregister_style( 'grunion.css' ); // Grunion contact form
+  wp_deregister_style( 'the-neverending-homepage' ); // Infinite Scroll
+  wp_deregister_style( 'infinity-twentyten' ); // Infinite Scroll - Twentyten Theme
+  wp_deregister_style( 'infinity-twentyeleven' ); // Infinite Scroll - Twentyeleven Theme
+  wp_deregister_style( 'infinity-twentytwelve' ); // Infinite Scroll - Twentytwelve Theme
+  wp_deregister_style( 'noticons' ); // Notes
+  wp_deregister_style( 'post-by-email' ); // Post by Email
+  wp_deregister_style( 'publicize' ); // Publicize
+  wp_deregister_style( 'sharedaddy' ); // Sharedaddy
+  wp_deregister_style( 'sharing' ); // Sharedaddy Sharing
+  wp_deregister_style( 'stats_reports_css' ); // Stats
+  wp_deregister_style( 'jetpack-widgets' ); // Widgets
+  wp_deregister_style( 'jetpack-slideshow' ); // Slideshows
+  wp_deregister_style( 'presentations' ); // Presentation shortcode
+  wp_deregister_style( 'jetpack-subscriptions' ); // Subscriptions
+  wp_deregister_style( 'tiled-gallery' ); // Tiled Galleries
+  wp_deregister_style( 'widget-conditions' ); // Widget Visibility
+  wp_deregister_style( 'jetpack_display_posts_widget' ); // Display Posts Widget
+  wp_deregister_style( 'gravatar-profile-widget' ); // Gravatar Widget
+  wp_deregister_style( 'widget-grid-and-list' ); // Top Posts widget
+  wp_deregister_style( 'jetpack-widgets' ); // Widgets
+}
+add_action('wp_print_styles', 'jeherve_remove_all_jp_css' );
+
+add_filter( 'wp', 'jetpackme_remove_rp', 20 );
+function jetpackme_remove_rp() {
+  if ( class_exists( 'Jetpack_RelatedPosts' ) ) {
+    $jprp = Jetpack_RelatedPosts::init();
+    $callback = array( $jprp, 'filter_add_target_to_dom' );
+    remove_filter( 'the_content', $callback, 40 );
+  }
 }

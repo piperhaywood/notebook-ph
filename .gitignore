@@ -1,4 +1,4 @@
-.DS_Store
+*.DS_Store
 node_modules
 .sass-cache
 *.map
@@ -6,7 +6,6 @@ node_modules
 /*
 !/.gitignore
 !/gulpfile.js
-!/bower.json
 !/package.json
 !/README.md
 !/favicon.ico

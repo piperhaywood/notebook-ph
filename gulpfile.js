@@ -36,22 +36,10 @@ gulp.task('sass', function() {
     .pipe(gulp.dest(themeDir));
 });
 
-gulp.task('fonts', function() {
-  return gulp.src('fonts/**/*.scss')
-    .pipe(sourcemaps.init())
-    .pipe(sass())
-    .pipe(sourcemaps.write())
-    .pipe(autoprefixer())
-    .pipe(concat('fonts.css'))
-    .pipe(cssmin())
-    .pipe(gulp.dest(themeDir));
-});
-
 gulp.task('js', function() {
   return gulp.src([
-    'bower_components/jquery/dist/jquery.js',
-    'bower_components/jquery.fitvids/jquery.fitvids.js',
-    'bower_components/prism/prism.js',
+    'node_modules/infinite-scroll/dist/infinite-scroll.pkgd.js',
+    'node_modules/prismjs/prism.js',
     'js/scripts.js',
   ])
     .pipe(sourcemaps.init())
@@ -72,21 +60,23 @@ gulp.task('customizer', function() {
     .pipe(gulp.dest(themeDir));
 });
 
-gulp.task('browserSync', function() {
+gulp.task('watch', function(done) {
+  gulp.watch('css/**/*.scss', gulp.series('sass'));
+  gulp.watch('js/scripts.js', gulp.series('js'));
+  gulp.watch('js/customizer.js', gulp.series('customizer'));
+  gulp.watch(themeDir + '**/*').on('change', browserSync.reload);
+  done();
+});
+
+gulp.task('browserSync', function(done) {
   browserSync.init({
     ghostMode: false,
     open: true,
     notify: false,
-    proxy: 'localhost:8888/pipers-notes',
+    proxy: 'localhost:8888/notebook-ph',
   });
+  done();
 });
 
-gulp.task('default', ['sass', 'js', 'fonts', 'customizer']);
-
-gulp.task('watch', ['default', 'browserSync'], function() {
-  gulp.watch('css/**/*.scss', ['sass']);
-  gulp.watch('js/scripts.js', ['js']);
-  gulp.watch('fonts/**/*.scss', ['fonts']);
-  gulp.watch('js/customizer.js', ['customizer']);
-  gulp.watch(themeDir + '**/*').on('change', browserSync.reload);
-});
+gulp.task('dev', gulp.parallel('sass', 'js', 'customizer'));
+gulp.task('default', gulp.series('dev', gulp.parallel('watch', 'browserSync')));

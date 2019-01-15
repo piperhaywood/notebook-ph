@@ -1,0 +1,23 @@
+.container {
+  @include container;
+}
+
+.visuallyhidden {
+  @include visuallyhidden;
+}
+
+.has-bg {
+  background: black;
+  color: white;
+  padding: .25em;
+}
+
+.has-bg a {
+  text-decoration: none;
+}
+
+a.has-bg:hover {
+  background: none;
+  color: inherit;
+  text-decoration: none;
+}

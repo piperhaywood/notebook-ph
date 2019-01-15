@@ -1,22 +1,5 @@
 <!doctype html>
-
-<?php
-$first_hsl = false;
-$second_hsl = false;
-$total = $wp_query->post_count;
-if ($total) {
-  $last = $wp_query->posts[$total - 1];
-  $start_unix = get_the_date('U');
-  $end_unix = $total > 1 ? get_the_date('U', $last->ID) : $start_unix;
-  $first_hue = nph_map_hue('Europe/London', 51.567592, $start_unix);
-  $second_hue = nph_map_hue('Europe/London', 51.567592, $end_unix);
-  $first_hsl = sprintf('--first-color: hsl(%s, 60%%, 92%%);', $first_hue);
-  $second_hsl = sprintf('--second-color: hsl(%s, 60%%, 92%%);', $second_hue);
-}
-
-?>
-
-<html <?php language_attributes(); ?> <?php if ($first_hsl || $second_hsl) : ?>style="<?php echo $first_hsl; ?><?php echo $second_hsl; ?>"<?php endif; ?>>
+<html <?php language_attributes(); ?>>
   <head>
     <meta charset="<?php bloginfo('charset'); ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,46 +8,69 @@ if ($total) {
     <?php wp_head(); ?>
 
     <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-21148761-2', 'auto');
-      ga('send', 'pageview');
-
+      if( window.location.host == 'piperhaywood.com' ) {
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-21148761-1', 'auto');
+        ga('send', 'pageview');
+      }
     </script>
 
   </head>
 
-  <body <?php body_class(); ?>>
+  <?php $rainbow = get_theme_mod('nph_rainbow') ? 'rainbow' : ''; ?>
+  <body <?php body_class($rainbow); ?>>
 
-    <div class="wrapper">
-      <header class="header">
-        <div class="header__meta">
-          <?php $nav = false; ?>
-          <nav class="header__nav">
-            <ul>
-            <?php if (!is_front_page() || is_paged()) : ?>
-              <li><a href="<?php echo site_url(); ?>"><?php _e('Home', 'notebook-ph'); ?></a></li>
+    <input type="checkbox" id="menu-toggle">
+    <label
+      class="open-menu"
+      for="menu-toggle"
+      data-close="Close"
+      role="button">
+      <span class="open-menu__button open-menu__button--open"
+        aria-controls="main-menu"
+        aria-label="Open menu">Menu</span>
+      <span class="open-menu__button open-menu__button--close"
+        aria-controls="main-menu"
+        aria-label="Close menu">Close</span>
+    </label>
+
+    <header class="header" role="banner">
+      <div class="header__inner">
+
+        <div class="container">
+          <h1 class="header__title">
+            <?php if (!is_front_page()) : ?>
+              <a class="header__link" href="<?php echo site_url(); ?>" data-title="<?php bloginfo('name'); ?>" aria-label="Go to homepage">PH</a> / <?php echo nph_archive_str(); ?>
+            <?php else : ?>
+              <a class="header__link" href="<?php echo site_url(); ?>" data-title="<?php bloginfo('name'); ?>" aria-label="Go to homepage"><?php bloginfo('name'); ?></a>
             <?php endif; ?>
-            <?php $nav = is_front_page() ? nph_get_navigation('header') : nph_get_navigation(get_the_title()); ?>
-            <?php $nav = $nav ? $nav : nph_get_navigation('header'); ?>
-            <?php if ($nav) : ?>
-              <?php foreach ($nav as $item) : ?>
-                <li><a href="<?php echo esc_url($item->url); ?>"><?php echo $item->title; ?></a></li>
-              <?php endforeach; ?>
-            <?php endif; ?>
-            </ul>
-          </nav>
-
-          <?php $return = nph_archive_str(); ?>
-          <?php $desc = nph_archivedesc(false); ?>
-          <?php if ($desc) : ?>
-            <?php $return .= strip_tags($desc, '<a><i><b><strong><em>'); ?>
-          <?php endif; ?>
-
-          <p class="header__description"><?php if (is_front_page()) : ?>Hello, my name is Piper Haywood. <?php endif; ?><?php echo $return; // TODO this has the page title! ?></p>
-
+            
+          </h1>
         </div>
-      </header>
+
+        <?php wp_nav_menu( array(
+          'theme_location' => 'nph-menu',
+          'container' => 'nav',
+          'menu_class' => 'menu container'
+        ) ); ?>
+
+        <div class="container">
+          <?php get_search_form(); ?>
+        </div>
+
+        
+        <div class="container smallprint">
+          <?php $copyright = get_theme_mod('nph_copyright'); ?>
+          <?php if ($copyright) : ?>
+            <p class="copyright"><?php echo $copyright; ?></p>
+          <?php endif; ?>
+          <p class="credit"><?php _e('This site uses the', 'notebook-ph'); ?> Notebook <?php _e('theme by', 'notebook-ph'); ?> <a href="http://piperhaywood.com">Piper Haywood</a>. </p>
+        </div>
+
+      </div>
+    </header>
+    <div class="wrapper js-wrapper">
+      

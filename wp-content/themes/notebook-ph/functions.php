@@ -64,37 +64,6 @@ function nph_editlink($echo = true, $prefix = '', $link_text = '', $suffix = '')
   }
 }
 
-function nph_format_plural($echo = true) {
-  $return = '';
-
-  $format = get_post_format();
-  if ($format == 'image') :
-    $return = 'Images';
-  elseif ($format == 'quote') :
-    $return = 'Quotes';
-  elseif ($format == 'aside') :
-    $return = 'Asides';
-  elseif ($format == 'gallery') :
-    $return = 'Galleries';
-  elseif ($format == 'audio') :
-    $return = 'Audio';
-  elseif ($format == 'video') :
-    $return = 'Videos';
-  elseif ($format == 'chat') :
-    $return = 'Chat threads';
-  elseif ($format == 'link') :
-    $return = 'Links';
-  else :
-    $return = get_posts_label(true);
-  endif;
-
-  if ($echo === true) {
-    echo $return;
-  } else {
-    return $return;
-  }
-}
-
 function nph_date($format = false, $echo = true) {
   if (!$format) {
     $date = get_the_date();
@@ -190,70 +159,21 @@ function nph_postformat($echo = true) {
   }
 }
 
-function nph_postmeta($echo = true) {
-  $return = '';
-
-  $cats = nph_categories(false);
-  $format = nph_postformat(false);
-
-  $return .= !empty($format) ? $format . ' ' . __('posted', 'notebook-ph') : __('Posted', 'notebook-ph');
-
-  $return .=  ' ';
-  $return .= '<span class="date"><time datetime="' . nph_date(true, false) . '">' . nph_permalink(false, '', nph_date(false, false)) . '</time></span>';
-  $return .= '<span class="author"> ' . __('by', 'notebook-ph') . ' ' . nph_author(false) . '</span>';
-  $return .= !empty($cats) ? '<span class="categories"> ' . __('in', 'notebook-ph') . ' ' . $cats . '</span>': '';
-  // $return .= '. ';
-  // $return .= nph_permalink(false, '', __('Visit permalink', 'notebook-ph'), '&nbsp;&rarr; ');
-  $return .= nph_editlink(false, ' (', __('edit', 'notebook-ph'), ')');
-
-  if ($echo === true) {
-    echo $return;
-  } else {
-    return $return;
-  }
-}
-
-function nph_subtitle($echo = true, $prefix = '', $suffix = '') {
-  $return = '';
-  if (is_tag()) {
-    $term = get_term_by('id', get_query_var('tag_id'), 'post_tag');
-    $return .= '<ul class="post__tags">';
-    $return .= '<li class="post__tag post__tag--' . $term->slug . '">';
-    $return .= '<a class="post__tag__btn" href="' . get_tag_link($term) . '">' . $term->name . '</a>';
-    $return .= '</li>';
-    $return .= '</ul>';
-  } elseif (is_category()) {
-    $return = single_cat_title('', false);
-  } elseif (is_search()) {
-    $return = '&ldquo;' . get_query_var('s') . '&rdquo;';
-  } elseif (is_tax('post_format')) {
-    $return = nph_format_plural(false);
-  } elseif (is_author()) {
-    $return = 'By ' . get_the_author_meta('display_name', get_query_var('author'));
-  } elseif (is_month()) {
-    $return = get_the_date('F Y');
-  } elseif (is_year()) {
-    $return = get_the_date('Y');
-  }
-
-  $return = !empty($return) ? $prefix . $return . $suffix : '';
-
-  if ($echo === true) {
-    echo $return;
-  } else {
-    return $return;
-  }
-}
-
 function nph_archivedesc($echo = true, $prefix = '', $suffix = '') {
+  global $wp_query;
+  $total = $wp_query->found_posts;
   $return = '';
   if (is_tag()) {
-    $return = tag_description();
+    $return .= tag_description();
   } elseif (is_category()) {
-    $return = category_description();
+    $return .= category_description();
   } elseif (is_author()) {
-    $return = '<p>' . get_the_author_meta('description') . '</p>';
+    $return .= '<p>' . get_the_author_meta('description') . '</p>';
   }
+
+  // $return .= '<p>Showing ' . $total . ' note';
+  // $return .= $total == 1 ? '. ' : 's. ';
+  // $return .= '</p>';
 
   $return = !empty($return) ? $prefix . $return . $suffix : '';
 
@@ -279,114 +199,60 @@ function nph_archive_str() {
     return get_the_title();
   }
   if (is_404()) {
-    return 'Page not found <code>404 error</code>';
+    return 'Page not found [404 error]';
   }
-  global $wp_query;
-
-  $return = '';
-
-  $ppp = get_option('posts_per_page');
-  $total = $wp_query->found_posts;
   $paged = get_query_var('paged');
-  $plural = true;
-  if ($ppp >= $total && $paged == 0) {
-    $return .= $total . ' ';
-    $plural = $total > 1 ? true : false;
-  } else {
-    $min = 1;
-    $max = $ppp;
-    if ($paged > 0) {
-      $min = $ppp * $paged + $min;
-      $max = $min + $ppp - 1;
-      if ($max > $total) {
-        $max = $total;
-      }
-    }
-    if ($total != $max) {
-      $return .= $min . '&ndash;' . $max;
-    } else {
-      $return .= 'last';
-    }
-    $return .= ' of ' . $total . ' ';
+  $page = $paged > 0 ? ' p.' . $paged : null;
+  if (is_front_page()) {
+    $title = get_bloginfo('name');
+    $total = null;
+  } elseif (is_tax('post_format')) {
+    $title = '*&thinsp;' . get_post_format(); // &#8258; indicates subchapter
+  } elseif (is_tag()) {
+    $title = single_tag_title('#&thinsp;', false );
+  } elseif (is_category()) {
+    $title = single_cat_title('§&thinsp;', false); // § indicates section
+  } elseif (is_search()) {
+    $title = '&ldquo;' . get_query_var('s') . '&rdquo;'; // ◊ indicates possibility
+  } elseif (is_author()) {
+    $title = 'by ' . get_the_author_meta('display_name', get_query_var('author'));
+  } elseif (is_month()) {
+    $title = 'Published in ' . get_the_date('F Y');
+  } elseif (is_year()) {
+    $title = 'Published in ' . get_the_date('Y');
   }
-
-  if (is_search()) {
-    if ($total <= 0) {
-      return 'No search results for query &ldquo;' . get_query_var('s') . '&rdquo;';
-    }
-    $return .= 'search ';
-    $return .= $plural ? 'results' : 'result';
-    $return .= ' for query &ldquo;' . get_query_var('s') . '&rdquo;';
-  } else {
-    if (is_tax('post_format')) {
-      $return .= '[' . get_post_format() . '] type ' . get_posts_label($plural);
-    } else {
-      $return .= get_posts_label($plural);
-      if (is_tag()) {
-        $term = get_term_by('id', get_query_var('tag_id'), 'post_tag');
-        $return .= ' tagged #' . $term->slug;
-      } elseif (is_category()) {
-        $return .= ' in category &ldquo;' . single_cat_title('', false) . '&rdquo;';
-      } elseif (is_search()) {
-        $return .= ' for query &ldquo;' . get_query_var('s') . '&rdquo;';
-      } elseif (is_author()) {
-        $return .= ' by ' . get_the_author_meta('display_name', get_query_var('author'));
-      } elseif (is_month()) {
-        $return .= ' published in ' . get_the_date('F Y');
-      } elseif (is_year()) {
-        $return .= ' published in ' . get_the_date('Y');
-      }
-    }
-  }
-  $return = !empty($return) ? 'Showing ' . $return . '. ' : '';
-  return $return;
+  return $title . $page;
 }
 
 function nph_get_copyright() {
   $copy = '';
-  $args = array(
-    'order' => 'ASC',
-    'posts_per_page' => 1,
-    'post_type' => 'any',
-    'post_status' => 'publish,private,draft'
-  );
-  $posts_array = get_posts($args);
-  if (!empty($posts_array)) {
-    $copy .= get_the_date('Y', $posts_array[0]->ID) . '&ndash;';
+  if (is_single()) {
+    $copy .= get_the_date('Y');
+  } else {
+    $args = array(
+      'order' => 'ASC',
+      'posts_per_page' => 1,
+      'post_type' => 'any',
+      'post_status' => 'publish,private,draft'
+    );
+    $posts_array = get_posts($args);
+    if (!empty($posts_array)) {
+      $copy .= get_the_date('Y', $posts_array[0]->ID) . '&ndash;';
+    }
+    $copy .= date('Y');
   }
-  $copy .= date('Y');
   $copy = '&copy; ' . $copy;
   return $copy;
 }
 
-function get_posts_label($plural = false) {
-  if ($plural) {
-    return __('notes', 'notebook-ph');
-  } else {
-    return __('note', 'notebook-ph');
-  }
-}
-
-function nph_get_navigation($menu_name) {
-  $menu_items = false;
-
-  $menu = wp_get_nav_menu_object($menu_name);
-  if ($menu) {
-    $menu_items = wp_get_nav_menu_items($menu->term_id);
-  }
-
-  return $menu_items;
-}
-
-function nph_tag_opacity($tag, $max_opacity = .8, $min_opacity = .2) {
+function nph_tag_opacity($tag, $max_opacity = 1, $min_opacity = .1) {
   $opacity = 1;
   $args = array('orderby' => 'count', 'number' => 1);
-  $least = get_tags($args);
-  $min_in = $least[0]->count;
-  $args['order'] = 'DESC';
-  $most = get_tags($args);
-  $max_in = $most[0]->count;
-  $max_in = 15;
+  $tags = get_tags($args);
+  $min_in = $tags[0]->count;
+  $tags = array_reverse($tags);
+  $max_in = $tags[0]->count;
+  $max_in = 8;
   $count = $tag->count > $max_in ? $max_in : $tag->count;
 
   $percentage = ($count - $min_in) / ($max_in - $min_in);
@@ -419,7 +285,35 @@ function nph_map_hue($timezone, $lat, $unix) {
   return $return;
 }
 
-// function nph_get_bg_hsl($hue) {
-//   $hsl = sprintf('hsl(%1$s, 100%, %2$s)', $hue, )
-//   return $hsl;
-// }
+function nph_get_hsl($hsl_post = false) {
+  if (!$hsl_post) {
+    return 'hsl(1, 100, 0)';
+  }
+  $unix = get_the_date('U', $hsl_post->ID);
+  $hue = nph_map_hue('Europe/London', 51.567592, $unix);
+  $hsl = sprintf('hsl(%s, 70%%, 50%%)', $hue);
+  return $hsl;
+}
+
+function nph_group_posts_by_year() {
+  global $post;
+  $years = array();
+  $posts = get_posts(array(
+    'posts_per_page' => -1
+  ));
+  foreach ($posts as $post) {
+    setup_postdata($post);
+    $year = get_the_date('Y');
+    if (!isset($years[$year])) {
+      $years[$year] = array();
+    }
+    $years[$year][] = array(
+      'title' => get_the_title(),
+      'permalink' => get_the_permalink(),
+      'hsl' => nph_get_hsl($post),
+      'id' => get_the_id($post)
+    );
+  }
+  wp_reset_postdata();
+  return $years;
+}

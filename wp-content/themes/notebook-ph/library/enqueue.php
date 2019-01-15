@@ -27,7 +27,7 @@ function nph_assets() {
   wp_register_script(
     'nph-scripts',
     get_template_directory_uri() . '/scripts.js',
-    '',
+    array('jquery'),
     $version,
     true
   );

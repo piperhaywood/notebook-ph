@@ -9,22 +9,20 @@
  * Theme customised heavily by Piper Haywood
  */
 
-$prism-pink: #f92672;
+$prism-pink: #e08;
 $prism-grey: #75715E;
 $prism-white: #F8F8F2;
-$prism-orange: #FD971F;
+$prism-orange: #d70;
 $prism-yellow: #E6DB74;
-$prism-green: #A6E22E;
-$prism-blue: #66D9EF;
-$prism-purple: #AE81FF;
+$prism-green: #0a2;
+$prism-blue: #07d;
+$prism-purple: #98d;
 $prism-black: #282828;
 
 
 code[class*="language-"],
 pre[class*="language-"] {
-  color: #f8f8f2;
-  text-shadow: 0 1px rgba(0, 0, 0, 0.3);
-  font-family: Courier, monospace;
+  color: $prism-black;
   font-size: 92%;
   direction: ltr;
   text-align: left;
@@ -49,13 +47,12 @@ pre[class*="language-"] {
 
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-  background: $prism-black;
+  background: #eeeeee;
 }
 
 /* Inline code */
 :not(pre) > code[class*="language-"] {
   padding: .1em;
-  // border-radius: .3em;
 }
 
 .token.comment,
@@ -66,7 +63,7 @@ pre[class*="language-"] {
 }
 
 .token.punctuation {
-  color: $prism-white;
+  color: $prism-black;
 }
 
 .namespace {
@@ -101,13 +98,13 @@ pre[class*="language-"] {
 .language-css .token.string,
 .style .token.string,
 .token.variable {
-  color: $prism-white;
+  color: $prism-black;
 }
 
 .token.atrule,
 .token.attr-value,
 .token.function {
-  color: $prism-yellow;
+  color: $prism-orange;
 }
 
 .token.keyword {

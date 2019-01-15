@@ -73,7 +73,7 @@ gulp.task('browserSync', function(done) {
     ghostMode: false,
     open: true,
     notify: false,
-    proxy: 'localhost:8888/pipers-notes',
+    proxy: 'localhost:8888/notebook-ph',
   });
   done();
 });

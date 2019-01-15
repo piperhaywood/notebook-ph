@@ -49,9 +49,8 @@ gulp.task('fonts', function() {
 
 gulp.task('js', function() {
   return gulp.src([
-    'bower_components/jquery/dist/jquery.js',
-    'bower_components/jquery.fitvids/jquery.fitvids.js',
-    'bower_components/prism/prism.js',
+    'node_modules/infinite-scroll/dist/infinite-scroll.pkgd.js',
+    'node_modules/prismjs/prism.js',
     'js/scripts.js',
   ])
     .pipe(sourcemaps.init())

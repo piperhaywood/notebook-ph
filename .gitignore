@@ -6,7 +6,6 @@ node_modules
 /*
 !/.gitignore
 !/gulpfile.js
-!/bower.json
 !/package.json
 !/README.md
 !/favicon.ico

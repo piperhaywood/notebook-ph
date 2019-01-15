@@ -1,8 +1,6 @@
 .searchform {
-  margin-bottom: 15vh;
-  margin-left: calc(-1 * var(--gutter));
-  margin-right: calc(-1 * var(--gutter));
-  margin-top: 15vh;
+  margin-bottom: 2em;
+  margin-top: 2em;
 }
 
 .searchform label {
@@ -10,18 +8,27 @@
 }
 
 .searchform input[type="text"] {
-  border: 1px solid black;
+  border: 1px solid transparent;
   display: block;
-  margin-bottom: .5rem;
   margin-left: auto;
   margin-right: auto;
   max-width: calc(100vw - (var(--gutter) * 2));
-  padding: $container-padding;
+  padding: $container-padding 0 $container-padding $container-padding;
   width: 100%;
 }
 
 .searchform input[type="submit"] {
+  background: white;
   cursor: pointer;
-  float: right;
-  padding: .5em var(--gutter);
+  padding: 1rem;
+}
+
+.searchform input[type="submit"]:hover {
+  text-decoration: underline;
+}
+
+.searchform__group {
+  border: 1px solid black;
+  display: flex;
+  margin-bottom: .5rem;
 }

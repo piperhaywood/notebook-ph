@@ -8,3 +8,19 @@
   width: 100%;
   z-index: 55;
 }
+
+.infinite-loading,
+.infinite-end {
+  display: none;
+  margin-bottom: 2em;
+  padding-top: 10vh;
+}
+
+.infinite-loading.show,
+.infinite-end.show {
+  display: block;
+}
+
+.infinite-end a:hover {
+  text-decoration: underline;
+}

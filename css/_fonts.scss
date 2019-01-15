@@ -28,24 +28,3 @@
        url('fonts/IBMPlexMono-Italic.woff') format('woff'), /* Pretty Modern Browsers */
        url('fonts/IBMPlexMono-Italic.ttf')  format('truetype'); /* Safari, Android, iOS */
 }
-
-@font-face {
-  font-family: 'IBMPlexSans';
-  font-weight: 300;
-  src: url('IBMPlexMono-Bold.eot'); /* IE9 Compat Modes */
-  src: url('IBMPlexMono-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('IBMPlexMono-Bold.woff2') format('woff2'), /* Super Modern Browsers */
-       url('IBMPlexMono-Bold.woff') format('woff'), /* Pretty Modern Browsers */
-       url('IBMPlexMono-Bold.ttf')  format('truetype'); /* Safari, Android, iOS */
-}
-
-@font-face {
-  font-family: 'IBMPlexSans';
-  font-weight: 300;
-  font-style: italic;
-  src: url('IBMPlexMono-Bold.eot'); /* IE9 Compat Modes */
-  src: url('IBMPlexMono-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('IBMPlexMono-Bold.woff2') format('woff2'), /* Super Modern Browsers */
-       url('IBMPlexMono-Bold.woff') format('woff'), /* Pretty Modern Browsers */
-       url('IBMPlexMono-Bold.ttf')  format('truetype'); /* Safari, Android, iOS */
-}

@@ -1,9 +1,7 @@
-.prose > *:first-of-type {
+.prose > *:first-child {
   margin-top: 0;
 }
 
-.post__footer,
-.post__header,
 .prose > div,
 .prose > p,
 .prose > ul,
@@ -22,27 +20,18 @@
 
 .prose > ol {
   @media (max-width: 45em) {
-    margin-left: calc(2ch + #{$container-padding});
+    margin-left: calc(2ch + 16px);
   }
 }
 
 .prose > ul:not(.post__tags) {
   @media (max-width: 42em) {
-    margin-left: $container-padding;
+    margin-left: 18px;
   }
 }
 
 .prose p img.alignnone {
   padding: 0;
-}
-
-.post__title {
-  @include style-h1;
-}
-
-.post__footer {
-  clear: both;
-  margin-top: 3em;
 }
 
 .prose a {
@@ -54,32 +43,32 @@
 }
 
 .prose h1 {
-  @include style-h1;
+  @include style-h1(700);
   margin-bottom: 1.5em;
   margin-top: 1.5em;
 }
 
-.prose h2,
-.prose h3 {
-  @include style-h2;
+.prose h2 {
+  @include style-h2(700);
   margin-bottom: 1.5em;
-  margin-top: 1.5em;
+  margin-top: 4em;
 }
 
+.prose h3,
 .prose h4,
 .prose h5,
 .prose h6 {
   @include style-h4;
 }
 
+.prose small {
+  font-size: inherit;
+}
+
 .link_description > *,
 .prose > * {
   margin-bottom: 1.5em;
   margin-top: 1.5em;
-}
-
-.prose > iframe {
-  
 }
 
 .prose > iframe.instagram-media {
@@ -120,18 +109,14 @@
 .prose hr {
   border: none;
   height: 1px;
-  color: var(--first-color);
-  background-color: var(--first-color);
+  color: black;
+  background-color: black;
   @include container;
 }
 
-.header__description code,
 .prose code,
 .prose kbd {
-  font-family: $font-mono;
-  font-size: inherit;
-  background: #ddd;
-  padding: 0 .25em;
+  @include code;
 }
 
 .prose pre {
@@ -140,13 +125,8 @@
   overflow: scroll;
   margin-left: auto;
   margin-right: auto;
-  background: #ddd;
+  background: #eeeeee;
   padding: $container-padding;
-}
-
-.prose pre[class],
-.prose pre[class] code {
-  background: black;
 }
 
 .prose pre h1,
@@ -189,7 +169,7 @@
 .prose tr > * {
   padding-top: .5em;
   padding-bottom: .5em;
-  border-bottom: 1px solid var(--first-color);
+  border-bottom: 1px solid black;
 }
 
 .prose tr > * {
@@ -218,7 +198,7 @@
 }
 
 .article .prose blockquote {
-  border: 1px solid var(--first-color);
+  border: 1px solid black;
   padding: $container-padding;
 }
 
@@ -239,28 +219,6 @@
 
 .prose blockquote *:last-child {
   margin-bottom: 0;
-}
-
-.post__title a,
-.post__tag a {
-  text-decoration: none;
-}
-
-.post__title a:hover,
-.post__tag a:hover {
-  text-decoration: underline;
-}
-
-@supports (text-decoration-color: var(--first-color)) {
-  .prose s,
-  .prose del,
-  .prose strike,
-  .post__tag a:hover,
-  .post__title a:hover,
-  .prose a,
-  .prose ins {
-    text-decoration-color: var(--first-color);
-  }
 }
 
 .prose .aligncenter img,
@@ -352,15 +310,6 @@ $max-aligned-img: 16em;
 
 .prose > *:last-child {
   margin-bottom: 0 !important;
-}
-
-// .prose > *:first-child {
-//   margin-top: 0 !important;
-// }
-
-.prose {
-  // padding-bottom: 30vh;
-  // padding-bottom: 30vh;
 }
 
 .prose [class*="instagram"] {

@@ -1,17 +1,33 @@
-body,
-.wrapper {
-  
+html,
+body {
+  height: 100%;
 }
 
-// .wrapper {
-//   display: flex;
-//   flex-wrap: wrap;
-//   height: calc(100% - #{$header-height});
-//   margin-top: $header-height;
-//   overflow-x: hidden;
-//   overflow-y: scroll;
-//   -webkit-overflow-scrolling: touch;
-// }
+body {
+  overflow-y: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+body.admin-bar {
+  margin-top: 32px;
+}
+
+.wrapper {
+  background: white;
+  height: calc(100% - #{$header-height});
+  margin-top: $header-height;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.admin-bar .wrapper {
+  height: calc(100% - #{$header-height} - 32px);
+}
 
 #menu-toggle:checked ~ .wrapper {
   overflow-y: hidden;
@@ -27,14 +43,17 @@ body,
 }
 
 .post__footer {
-  padding-bottom: 30vh !important;
+  padding-bottom: 10vh !important;
 }
 
 .article {
-  padding-top: 30vh;
+  padding-top: 10vh;
 }
 
 .article:first-of-type {
-  padding-top: calc(#{$header-height} + 15vh);
+  padding-top: calc(#{$header-height} + 10vh);
 }
 
+.prose .post__header {
+  margin-bottom: 2em;
+}

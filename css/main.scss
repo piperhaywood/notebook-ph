@@ -4,11 +4,14 @@
 @import "base";
 @import "layout";
 @import "components.pagination";
-@import "components.menu"; // TODO check
+@import "components.menu";
 @import "components.searchform";
 @import "components.tags";
-@import "components.site-header"; // TODO check
+@import "components.site-header";
 @import "components.site-footer";
+@import "post";
+@import "browse";
 @import "prism";
-@import "typography"; // TODO check
+@import "typography";
 @import "utilities";
+@import "rainbow";

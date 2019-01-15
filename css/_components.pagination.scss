@@ -1,9 +1,17 @@
 .pagination {
-  margin-bottom: 30vh;
+  margin-bottom: 2em;
+  padding-top: 10vh;
+}
+
+.pagination__label {
+  margin-bottom: .5rem;
 }
 
 .pagination__link {
   @include style-h1;
 }
 
-// TODO check single pagination
+.pagination--post .pagination__link a {
+  display: inline-block;
+  width: 100%;
+}

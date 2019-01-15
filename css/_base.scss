@@ -1,7 +1,6 @@
 :root {
   --tag-color: $black;
-  --first-color: $black;
-  --second-color: $black;
+  --color: $black;
   --gutter: $container-padding-mobile;
   @media (min-width: 500px) {
     --gutter: $container-padding;
@@ -13,16 +12,39 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+body {
+  font-size: 1em;
+}
+
+html {
+  font-size: 87.5%;
+}
+
+button,
+select,
+textarea,
+input {
+  font-size: 16px;
+}
+
+@media (min-width: 500px) {
+  html {
+    font-size: 100%;
+  }
+
+  button,
+  select,
+  textarea,
+  input {
+    font-size: 100%;
+  }
+}
+
 *,
 *::after,
 *::before {
   box-sizing: inherit;
   margin: 0;
-}
-
-html,
-body {
-  height: 100%;
 }
 
 body {
@@ -54,7 +76,6 @@ img {
 
 button, input, select, textarea {
   font-family: inherit;
-  font-size: 100%;
 }
 
 button,
@@ -72,4 +93,20 @@ svg {
   display: inline-block;
   height: auto;
   vertical-align: middle;
+}
+
+summary {
+  cursor: pointer;
+}
+
+body:not(.user-is-tabbing) button:focus,
+body:not(.user-is-tabbing) input:focus,
+body:not(.user-is-tabbing) select:focus,
+body:not(.user-is-tabbing) textarea:focus,
+body:not(.user-is-tabbing) summary:focus {
+  outline: none;
+}
+
+iframe {
+  max-width: 100%;
 }

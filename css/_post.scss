@@ -1,0 +1,32 @@
+.post__footer,
+.post__header {
+  @include container;
+}
+
+.post__time {
+  margin-bottom: 2em;
+  display: inline-block;
+}
+
+.post__title {
+  @include style-h1(700);
+  margin-bottom: 2em;
+}
+
+.post__title a {
+  text-decoration: none;
+}
+
+.post__title a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.post__footer {
+  clear: both;
+  margin-top: 1.5em;
+}
+
+.post__author a:hover {
+  text-decoration: underline;
+}

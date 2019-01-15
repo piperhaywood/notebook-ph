@@ -1,8 +1,5 @@
 (function($) {
 
-  $('select').hover(function() {
-    $(this).css('cursor', 'pointer');
-  });
   $next = $('.js-next');
   if ($next.length) {
     var $container = $('.js-infinite-container');
@@ -21,6 +18,5 @@
     });
   }
 
-  $('.post').fitVids();
 
 })(jQuery);

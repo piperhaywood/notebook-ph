@@ -1,0 +1,70 @@
+.header__inner {
+  background: white;
+  height: $header-height;
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 60;
+}
+
+.header__description code {
+  @include code;
+}
+
+#menu-toggle:checked ~ .header .header__inner {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+#menu-toggle:checked ~ .header .header,
+#menu-toggle:checked ~ .header .header__inner {
+  height: 100%;
+  background: white;
+}
+
+#menu-toggle:checked ~ .wrapper, {
+  opacity: .5;
+}
+
+.header__title {
+  display: inline-block;
+  font-size: inherit;
+  font-weight: inherit;
+  overflow: hidden;
+  padding-bottom: $container-padding;
+  padding-top: $container-padding;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 34em;
+  @media (max-width: $container-width) {
+    width: calc(100vw - 6em);
+  }
+}
+
+.header__link:hover {
+  text-decoration: underline;
+}
+
+#menu-toggle:checked ~ .header .header__title {
+  overflow: visible;
+  white-space: normal;
+}
+
+.smallprint {
+  color: $grey;
+  margin-bottom: 1em;
+}
+
+.smallprint a:hover {
+  text-decoration: underline;
+}
+
+.admin-bar .header__inner {
+  top: 32px;
+}
+
+.header .searchform {
+  margin-top: .75rem;
+}

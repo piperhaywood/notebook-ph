@@ -59,38 +59,8 @@ function gallery_style($css) {
   return preg_replace("!<style type='text/css'>(.*?)</style>!s", '', $css);
 }
 
-add_shortcode('wp_caption', 'fixed_img_caption_shortcode');
-add_shortcode('caption', 'fixed_img_caption_shortcode');
-function fixed_img_caption_shortcode($attr, $content = null) {
-  if (! isset($attr['caption'])) {
-    if (preg_match('#((?:<a [^>]+>\s*)?<img [^>]+>(?:\s*</a>)?)(.*)#is', $content, $matches)) {
-      $content = $matches[1];
-      $attr['caption'] = trim($matches[2]);
-    }
-  }
-  $output = apply_filters('img_caption_shortcode', '', $attr, $content);
-  if ($output != '')
-    return $output;
-  extract(shortcode_atts(array(
-    'id'      => '',
-    'align'   => 'alignnone',
-    'width'   => '',
-    'caption' => '',
-    'class'   => ''
-  ), $attr));
-  if (1 > (int) $width || empty($caption))
-    return $content;
-
-  $markup = '<figure';
-  if ($id) $markup .= ' id="' . esc_attr($id) . '"';
-  if ($class) $markup .= ' class="' . esc_attr($class) . '"';
-  $markup .= '>';
-  $markup .= do_shortcode($content) . '<figcaption>' . $caption . '</figcaption></figure>';
-  return $markup;
-}
-
 function img_unautop($pee) {
-  $pee = preg_replace('/<p>\\s*?(<a .*?><img.*?><\\/a>|<img.*?>)?\\s*<\\/p>/s', '$1', $pee);
+  $pee = preg_replace('/<p>\\s*?(<a .*?><img.*class=".*aligncenter.*"?><\\/a>|<img.*class=".*aligncenter.*"?>)?\\s*<\\/p>/s', '$1', $pee);
   return $pee;
 }
 

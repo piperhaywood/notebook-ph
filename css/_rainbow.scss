@@ -1,0 +1,36 @@
+.rainbow .has-bg {
+  background: var(--color);
+}
+
+.rainbow .post__title a:hover {
+  color: var(--color);
+}
+
+.rainbow .prose hr {
+  color: var(--color);
+  background-color: var(--color);
+}
+
+.rainbow .prose tr > * {
+  border-bottom: 1px solid var(--color);
+}
+
+.rainbow .article .prose blockquote {
+  border: 1px solid var(--color);
+}
+
+@supports (text-decoration-color: var(--color)) {
+  .rainbow .prose s,
+  .rainbow .prose del,
+  .rainbow .prose strike,
+  .rainbow .prose a,
+  .rainbow .prose ins,
+  .rainbow .post__author a:hover,
+  .rainbow .post__author a:focus,
+  .rainbow .post__author a:active,
+  .rainbow .post__tag a:hover,
+  .rainbow .post__tag a:focus,
+  .rainbow .post__tag a:active {
+    text-decoration-color: var(--color);
+  }
+}

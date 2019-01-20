@@ -1,3 +1,11 @@
+.prose img.alignnone {
+  padding: 0;
+}
+
+.prose .alignnone.wp-caption {
+  width: auto !important;
+}
+
 // LEFT / RIGHT
 
 $max-aligned-img: 16em;

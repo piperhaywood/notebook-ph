@@ -71,12 +71,6 @@
   margin-top: 1.5em;
 }
 
-.prose > iframe.instagram-media {
-  margin-right: auto !important;
-  margin-left: auto !important;
-  width: calc(100vw - (var(--gutter) * 2)) !important;
-}
-
 .prose img.alignleft,
 .prose img.alignright,
 .prose .wp-caption.alignleft,
@@ -221,84 +215,6 @@
   margin-bottom: 0;
 }
 
-.prose .aligncenter img,
-.prose img.aligncenter,
-.prose .aligncenter .wp-caption-text {
-  max-width: calc(100vw - (var(--gutter) * 2));
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.prose div.alignnone {
-  @include container;
-  width: 100% !important;
-}
-
-.prose .aligncenter {
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.prose .aligncenter .wp-caption-text {
-  text-align: center;
-  @media (max-width: #{$container-width}) {
-    text-align: left;
-  }
-}
-
-$max-aligned-img: 16em;
-
-.prose .alignleft img,
-.prose .alignright img,
-.prose .alignleft,
-.prose .alignright,
-.prose img.alignleft,
-.prose img.alignright,
-.prose .alignleft .wp-caption-text,
-.prose .alignright .wp-caption-text {
-  width: 40vw !important;
-  max-width: $max-aligned-img;
-}
-
-.prose .alignleft {
-  float: left;
-  margin-right: $container-padding;
-  margin-left: var(--gutter);
-}
-
-.prose p .alignleft {
-  margin-left: 0;
-}
-
-.prose .alignright {
-  float: right;
-  margin-left: $container-padding;
-  margin-right: var(--gutter);
-}
-
-.prose p .alignright {
-  margin-right: 0;
-}
-
-@media (min-width: 74em) {
-  .prose .alignleft img,
-  .prose .alignleft
-  .prose img.alignleft,
-  .prose .alignleft .wp-caption-text {
-    margin-left: calc((100vw - #{$container-width}) / 2 - #{$max-aligned-img} - #{$container-padding});
-  }
-  .prose .alignright img,
-  .prose .alignright,
-  .prose img.alignright,
-  .prose .alignright .wp-caption-text {
-    margin-right: calc((100vw - #{$container-width}) / 2 - #{$max-aligned-img} - #{$container-padding});
-  }
-}
-
-.prose .alignnone .wp-caption {
-  max-width: 100%;
-}
-
 .prose .wp-caption-text {
   font-style: italic;
 }
@@ -312,6 +228,5 @@ $max-aligned-img: 16em;
   margin-bottom: 0 !important;
 }
 
-.prose [class*="instagram"] {
-  margin: 0 auto !important;
-}
+
+

@@ -12,15 +12,32 @@ $max-aligned-img: 16em;
   width: 100% !important; // NOTE override poor WP behaviour
 }
 
-.prose .alignleft {
-  float: left;
-  margin-top: 0;
+.prose .alignleft.wp-caption,
+.prose .alignright.wp-caption {
+  margin-right: 0;
+  margin-left: 0;
 }
 
-.prose .alignright {
-  float: right;
-  margin-top: 0;
+@media (min-width: 600px) {
+  .prose .alignleft {
+    float: left;
+    margin-top: 0;
+  }
+  .prose .alignright {
+    float: right;
+    margin-top: 0;
+  }
+  .prose img.alignleft {
+    margin-bottom: $container-padding;
+    padding-right: var(--gutter);
+  }
+  .prose img.alignright {
+    margin-bottom: $container-padding;
+    padding-left: var(--gutter);
+  }
 }
+
+
 
 .prose p .alignright {
   margin-right: 0;
@@ -28,14 +45,6 @@ $max-aligned-img: 16em;
 
 .prose p .alignleft {
   margin-left: 0;
-}
-
-.prose img.alignleft {
-  padding-right: var(--gutter);
-}
-
-.prose img.alignright {
-  padding-left: var(--gutter);
 }
 
 .prose img.alignleft {
@@ -58,7 +67,7 @@ $max-aligned-img: 16em;
   }
 }
 
-.prose .alignleft {
+.prose .alignleft.wp-caption {
   @media (min-width: 864px) {
     margin-left: calc((100vw - #{$container-width}) / 2 - (#{$max-aligned-img} / 2) + #{$container-padding});
   }
@@ -67,7 +76,7 @@ $max-aligned-img: 16em;
   }
 }
 
-.prose .alignright {
+.prose .alignright.wp-caption {
   @media (min-width: 864px) {
     margin-right: calc((100vw - #{$container-width}) / 2 - (#{$max-aligned-img} / 2) + #{$container-padding});
   }
@@ -77,8 +86,7 @@ $max-aligned-img: 16em;
 }
 
 .prose div.aligncenter {
-  max-width: none;
-
+  max-width: 100%;
   @media (min-width: 1200px) {
     max-width: 1200px;
   }

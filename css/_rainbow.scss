@@ -1,5 +1,10 @@
-.rainbow .has-bg {
+.rainbow .has-bg,
+.rainbow .rpbt_shortcode li {
   background: var(--color);
+}
+
+.rainbow .rpbt_shortcode li:hover {
+  background: none;
 }
 
 .rainbow .post__title a:hover {

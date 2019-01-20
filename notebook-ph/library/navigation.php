@@ -18,3 +18,11 @@ function nph_menu() {
     'depth'           => 5,
   ));
 }
+
+add_action('wp_footer', 'nph_related_posts');
+function nph_related_posts( $content ) {
+  global $post;
+  if (shortcode_exists('related_posts_by_tax') && is_singular('post') && is_main_query()) {
+    echo do_shortcode('[related_posts_by_tax post_id="' . $post->ID . '" taxonomies="post_tag" title="See also" public_only="true"]');
+  }
+}

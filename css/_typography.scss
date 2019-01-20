@@ -222,5 +222,35 @@
   margin-bottom: 0 !important;
 }
 
+.rpbt_shortcode {
+  margin-bottom: 2em;
+}
 
+.rpbt_shortcode h3 {
+  margin-bottom: .5rem;
+}
 
+.rpbt_shortcode ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.rpbt_shortcode li {
+  background: black;
+  color: white;
+  padding: .25em;
+}
+
+.rpbt_shortcode li:hover {
+  background: none;
+  color: inherit;
+  text-decoration: none;
+}
+
+.rpbt_shortcode li a {
+  text-decoration: none;
+}
+
+.rpbt_shortcode li:before {
+  content: attr(data-date) " – ";
+}

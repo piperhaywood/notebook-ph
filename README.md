@@ -2,6 +2,8 @@
 
 This is a simple WordPress theme for keeping notes. It is currently in use on [piperhaywood.com](https://piperhaywood.com).
 
+## Description
+
 Post titles are second-class citizens by design. For Standard posts (longer format writing), titles are displayed in the body of the content. For all other formats (aside, image, quote, etc.), titles are only displayed on the post permalink as a breadcrumb.
 
 The Browse page template offers search, year-based post lists, and a tag cloud. The tag cloud displays only tags with greater than one post count. The tag opacity is relative to the tag’s post count (the fewer the posts, the lighter the tag).
@@ -13,3 +15,7 @@ There are a few additional theme modification options on the WordPress Customize
 The theme isn’t currently translation-ready. I’ll try to get to this at some point.
 
 The accessibility is nowhere near where I want it to be. That needs to be the priority for the next update.
+
+## Development
+
+Set up a WordPress site locally in a separate site folder. See [multi-environment `wp-config.php` gist](https://gist.github.com/piperhaywood/2a7217964335e22574784153eab1d38b) if useful. In the new WP site you’ve just created, symlink the `/notebook-ph` directory (the built theme) in this project folder in to the `/wp-content/themes` directory. Back in the root of this project folder, run `npm i` to install dependencies. Run `gulp` to build the theme. Run `gulp dev` for development. To set a BrowserSync proxy other than `localhost:8888` (default), run `gulp dev --proxy custom-proxy` (replace `custom-proxy`). 

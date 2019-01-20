@@ -10,6 +10,60 @@ var uglify       = require('gulp-uglify');
 var addsrc       = require('gulp-add-src');
 var header       = require('gulp-header');
 
+// fetch command line arguments
+// var getArgs = function(argList) {
+//   var arg = {};
+//   var a, opt, thisOpt, curOpt;
+//   for (a = 0; a < argList.length; a++) {
+//     thisOpt = argList[a].trim();
+//     opt = thisOpt.replace(/^\-+/, '');
+
+//     if (opt === thisOpt) {
+
+//       // argument value
+//       if (curOpt) arg[curOpt] = opt;
+//       curOpt = null;
+
+//     }
+//     else {
+
+//       // argument name
+//       curOpt = opt;
+//       arg[curOpt] = true;
+
+//     }
+//   }
+//   return arg;
+// }
+const arg = (argList => {
+
+  let arg = {}, a, opt, thisOpt, curOpt;
+  for (a = 0; a < argList.length; a++) {
+
+    thisOpt = argList[a].trim();
+    opt = thisOpt.replace(/^\-+/, '');
+
+    if (opt === thisOpt) {
+
+      // argument value
+      if (curOpt) arg[curOpt] = opt;
+      curOpt = null;
+
+    }
+    else {
+
+      // argument name
+      curOpt = opt;
+      arg[curOpt] = true;
+
+    }
+
+  }
+
+  return arg;
+
+})(process.argv);
+
 var pkg = require('./package.json');
 var banner = ['/**',
   ' * Theme Name: <%= pkg.title %>',
@@ -22,7 +76,7 @@ var banner = ['/**',
   ' */',
   '',].join('\n');
 
-var themeDir = 'wp-content/themes/' + pkg.name + '/';
+var themeDir = pkg.name + '/';
 
 gulp.task('sass', function() {
   return gulp.src('css/**/*.scss')
@@ -69,14 +123,15 @@ gulp.task('watch', function(done) {
 });
 
 gulp.task('browserSync', function(done) {
+  var proxy = arg.proxy ? arg.proxy : 'localhost:8888/';
   browserSync.init({
     ghostMode: false,
     open: true,
     notify: false,
-    proxy: 'localhost:8888/notebook-ph',
+    proxy: proxy,
   });
   done();
 });
 
-gulp.task('dev', gulp.parallel('sass', 'js', 'customizer'));
-gulp.task('default', gulp.series('dev', gulp.parallel('watch', 'browserSync')));
+gulp.task('default', gulp.parallel('sass', 'js', 'customizer'));
+gulp.task('dev', gulp.series('default', gulp.parallel('watch', 'browserSync')));

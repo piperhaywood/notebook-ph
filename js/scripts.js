@@ -9,6 +9,11 @@
       hideNav: '.js-pagination',
       elementScroll: '.js-wrapper'
     });
+    $container.on('append.infiniteScroll', function(event, response, path, items) {
+      $(items).find('img').each(function(index, img) {
+        img.outerHTML = img.outerHTML;
+      });
+    });
     $container.on('request.infiniteScroll', function(event, path) {
       $('.js-infinite-loading').addClass('show');
     });

@@ -1,40 +1,13 @@
 var gulp         = require('gulp');
 var browserSync  = require('browser-sync').create();
-var gutil        = require('gulp-util');
 var sass         = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var sourcemaps   = require('gulp-sourcemaps');
 var cssmin       = require('gulp-cssmin');
 var concat       = require('gulp-concat');
 var uglify       = require('gulp-uglify');
-var addsrc       = require('gulp-add-src');
 var header       = require('gulp-header');
 
-// fetch command line arguments
-// var getArgs = function(argList) {
-//   var arg = {};
-//   var a, opt, thisOpt, curOpt;
-//   for (a = 0; a < argList.length; a++) {
-//     thisOpt = argList[a].trim();
-//     opt = thisOpt.replace(/^\-+/, '');
-
-//     if (opt === thisOpt) {
-
-//       // argument value
-//       if (curOpt) arg[curOpt] = opt;
-//       curOpt = null;
-
-//     }
-//     else {
-
-//       // argument name
-//       curOpt = opt;
-//       arg[curOpt] = true;
-
-//     }
-//   }
-//   return arg;
-// }
 const arg = (argList => {
 
   let arg = {}, a, opt, thisOpt, curOpt;
@@ -49,8 +22,7 @@ const arg = (argList => {
       if (curOpt) arg[curOpt] = opt;
       curOpt = null;
 
-    }
-    else {
+    } else {
 
       // argument name
       curOpt = opt;

@@ -5,7 +5,6 @@ function start_cleanup() {
   add_action('init', 'cleanup_head');
   add_filter('the_generator', 'remove_rss_version');
   add_filter('gallery_style', 'gallery_style');
-  add_filter('the_content', 'img_unautop', 30);
 }
 
 function addBackPostFeed() {
@@ -57,11 +56,6 @@ function remove_rss_version() { return ''; }
 
 function gallery_style($css) {
   return preg_replace("!<style type='text/css'>(.*?)</style>!s", '', $css);
-}
-
-function img_unautop($pee) {
-  $pee = preg_replace('/<p>\\s*?(<a .*?><img.*class=".*aligncenter.*"?><\\/a>|<img.*class=".*aligncenter.*"?>)?\\s*<\\/p>/s', '$1', $pee);
-  return $pee;
 }
 
 function alter_wp_ver_css_js($src) {

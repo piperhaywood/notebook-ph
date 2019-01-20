@@ -69,9 +69,6 @@
               </div>
             <?php endif; ?>
             <?php if (is_singular()) : ?>
-              <?php if (class_exists( 'Jetpack_RelatedPosts' )) : ?>
-                <?php echo do_shortcode('[jetpack-related-posts]'); ?>
-              <?php endif; ?>
               <?php if (comments_open() || get_comments_number()) : ?>
                 <?php comments_template(); ?>
               <?php endif; ?>

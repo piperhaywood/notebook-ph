@@ -13,6 +13,10 @@
       $(items).find('img').each(function(index, img) {
         img.outerHTML = img.outerHTML;
       });
+      // Reset audio HTML due to Infinite Scroll behaviour
+      $(items).find('audio').each(function(index, audio) {
+        audio.outerHTML = audio.outerHTML;
+      });
     });
     $container.on('request.infiniteScroll', function(event, path) {
       $('.js-infinite-loading').addClass('show');

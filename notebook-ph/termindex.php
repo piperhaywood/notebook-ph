@@ -12,12 +12,14 @@ if ($terms && is_array($terms)) {
     if ($term->count > 1) {
       // NOTE strip "post-format-" from slug, for some reason this gets included
       $slug = str_replace('post-format-', '', $term->slug);
+      $tax = get_taxonomy($term->taxonomy);
       $groups = nph_add_to_index($groups, array(
         'name' => $term->name,
         'url' => get_tag_link($term->term_id),
         'count' => $term->count,
         'slug' => $slug,
-        'type' => $term->taxonomy
+        'type' => $term->taxonomy,
+        'aria' => sprintf(__('%s: %s, %s posts', 'notebook-ph'), $tax->labels->singular_name, $term->name, $term->count)
       ));
     }
   }
@@ -42,7 +44,8 @@ if ($years) {
       'url' => get_year_link($year),
       'count' => $count,
       'slug' => $year,
-      'type' => 'year'
+      'type' => 'year',
+      'aria' => sprintf(__('Year: %s, %s posts', 'notebook-ph'), $year, $count)
     ));
   }
 }
@@ -56,7 +59,7 @@ if ($years) {
     <ol>
     <?php foreach ($terms as $slug => $term) : ?>
       <li>
-        <a href="<?php echo $term['url']; ?>"><span class="term term--<?php echo $term['type']; ?>"><?php echo $term['name']; ?></span>&nbsp;<span class="term__count"><?php echo $term['count']; ?></span></a>
+        <a aria-label="<?php echo $term['aria']; ?>" href="<?php echo $term['url']; ?>"><span class="term term--<?php echo $term['type']; ?>"><?php echo $term['name']; ?></span>&nbsp;<span class="term__count"><?php echo $term['count']; ?></span></a>
       </li>
     <?php endforeach; ?>
 </ol>

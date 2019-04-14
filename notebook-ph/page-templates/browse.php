@@ -23,10 +23,6 @@
             <?php get_search_form(); ?>
           </div>
 
-          <div class="container years">
-            <?php get_template_part('years'); ?>
-          </div>
-
           <div class="container container--full">
             <div class="termindex">
               <?php get_template_part('termindex'); ?>

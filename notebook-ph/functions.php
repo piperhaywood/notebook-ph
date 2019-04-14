@@ -195,6 +195,7 @@ function nph_get_theme_version() {
 }
 
 function nph_archive_str() {
+  global $wp_query;
   if (is_singular()) {
     return get_the_title();
   }
@@ -207,20 +208,21 @@ function nph_archive_str() {
     $title = get_bloginfo('name');
     $total = null;
   } elseif (is_tax('post_format')) {
-    $title = '*&thinsp;' . get_post_format(); // &#8258; indicates subchapter
+    $title = '<span class="term term--post_format">' . get_post_format() . '</span>';
   } elseif (is_tag()) {
-    $title = single_tag_title('#&thinsp;', false );
+    $title = '<span class="term term--post_tag">' . single_tag_title('', false ) . '</span>';
   } elseif (is_category()) {
-    $title = single_cat_title('§&thinsp;', false); // § indicates section
+    $title = '<span class="term term--category">' . single_cat_title('', false) . '</span>';
   } elseif (is_search()) {
     $title = '&ldquo;' . get_query_var('s') . '&rdquo;'; // ◊ indicates possibility
   } elseif (is_author()) {
     $title = 'by ' . get_the_author_meta('display_name', get_query_var('author'));
   } elseif (is_month()) {
-    $title = 'Published in ' . get_the_date('F Y');
+    $title = get_the_date('F Y');
   } elseif (is_year()) {
-    $title = 'Published in ' . get_the_date('Y');
+    $title = get_the_date('Y');
   }
+  $title = $title . '  <span class="term__count">' . $wp_query->post_count . '</span>';
   return $title . $page;
 }
 

@@ -45,7 +45,7 @@
                   <?php $format = get_post_format(); ?>
                   <?php if ($format != false) : ?>
                     <li class="post__tag">
-                      <a href="<?php echo get_post_format_link($format); ?>"><?php echo $format; ?></a><span class="separator">, </span>
+                      <a href="<?php echo get_post_format_link($format); ?>"><span class="term term--post_format"><?php echo $format; ?></span></a><span class="separator">, </span>
                     </li>
                   <?php endif; ?>
                   <?php $cats = wp_get_post_categories($post->ID, array(
@@ -61,7 +61,7 @@
                   <?php if (!empty($terms)) : ?>
                     <?php foreach($terms as $term) : ?>
                       <li class="post__tag">
-                        <a href="<?php echo get_tag_link($term->term_id); ?>"><?php echo $term->name; ?></a><span class="separator">, </span>
+                        <a href="<?php echo get_tag_link($term->term_id); ?>"><span class="term term--<?php echo $term->taxonomy; ?>"><?php echo $term->name; ?></span></a><span class="separator">, </span>
                       </li>
                     <?php endforeach; ?>
                   <?php endif; ?>

@@ -169,11 +169,12 @@ function nph_archivedesc($echo = true, $prefix = '', $suffix = '') {
     $return .= category_description();
   } elseif (is_author()) {
     $return .= '<p>' . get_the_author_meta('description') . '</p>';
+  } elseif (is_home()) {
+    $intro = get_theme_mod('nph_blog_intro');
+    if ($intro) {
+      $return .= '<p class="copyright">' . strip_tags($intro, '<em><a><img><br>') . '</p>';
+    }
   }
-
-  // $return .= '<p>Showing ' . $total . ' note';
-  // $return .= $total == 1 ? '. ' : 's. ';
-  // $return .= '</p>';
 
   $return = !empty($return) ? $prefix . $return . $suffix : '';
 

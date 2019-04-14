@@ -176,10 +176,6 @@ function nph_archivedesc($echo = true, $prefix = '', $suffix = '') {
     }
   }
 
-  // $return .= '<p>Showing ' . $total . ' note';
-  // $return .= $total == 1 ? '. ' : 's. ';
-  // $return .= '</p>';
-
   $return = !empty($return) ? $prefix . $return . $suffix : '';
 
   if ($echo === true) {

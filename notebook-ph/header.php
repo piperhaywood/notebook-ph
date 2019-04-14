@@ -51,7 +51,6 @@
           <?php get_search_form(); ?>
         </div>
 
-        
         <div class="container smallprint">
           <?php $copyright = get_theme_mod('nph_copyright'); ?>
           <?php if ($copyright) : ?>
@@ -63,4 +62,3 @@
       </div>
     </header>
     <div class="wrapper js-wrapper">
-      

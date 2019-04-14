@@ -195,6 +195,7 @@ function nph_get_theme_version() {
 }
 
 function nph_archive_str() {
+  global $wp_query;
   if (is_singular()) {
     return get_the_title();
   }
@@ -207,20 +208,21 @@ function nph_archive_str() {
     $title = get_bloginfo('name');
     $total = null;
   } elseif (is_tax('post_format')) {
-    $title = '*&thinsp;' . get_post_format(); // &#8258; indicates subchapter
+    $title = '<span class="term term--post_format">' . get_post_format() . '</span>';
   } elseif (is_tag()) {
-    $title = single_tag_title('#&thinsp;', false );
+    $title = '<span class="term term--post_tag">' . single_tag_title('', false ) . '</span>';
   } elseif (is_category()) {
-    $title = single_cat_title('§&thinsp;', false); // § indicates section
+    $title = '<span class="term term--category">' . single_cat_title('', false) . '</span>';
   } elseif (is_search()) {
     $title = '&ldquo;' . get_query_var('s') . '&rdquo;'; // ◊ indicates possibility
   } elseif (is_author()) {
     $title = 'by ' . get_the_author_meta('display_name', get_query_var('author'));
   } elseif (is_month()) {
-    $title = 'Published in ' . get_the_date('F Y');
+    $title = get_the_date('F Y');
   } elseif (is_year()) {
-    $title = 'Published in ' . get_the_date('Y');
+    $title = get_the_date('Y');
   }
+  $title = $title . '  <span class="term__count">' . $wp_query->post_count . '</span>';
   return $title . $page;
 }
 
@@ -316,4 +318,33 @@ function nph_group_posts_by_year() {
   }
   wp_reset_postdata();
   return $years;
+}
+
+function nph_get_years_array() {
+  global $wpdb;
+  $result = array();
+  $years = $wpdb->get_results(
+    $wpdb->prepare(
+      "SELECT YEAR(post_date) FROM {$wpdb->posts} WHERE post_status = %s GROUP BY YEAR(post_date) DESC",
+      array('publish')
+    ),
+    ARRAY_N
+  );
+  if (is_array($years) && count($years) > 0) {
+    foreach ($years as $year) {
+      $result[] = $year[0];
+    }
+  }
+  return $result;
+}
+
+function nph_add_to_index($groups, $args) {
+  $first_char = strtoupper($args['name'][0]);
+  if (is_numeric($first_char)) {
+    $first_char = '#';
+  } elseif (mb_detect_encoding($first_char) == 'UTF-8') {
+    $first_char = '?';
+  }
+  $groups[$first_char][$args['slug']] = $args;
+  return $groups;
 }

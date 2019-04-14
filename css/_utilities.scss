@@ -2,6 +2,10 @@
   @include container;
 }
 
+.container--full {
+  max-width: 100%;
+}
+
 .visuallyhidden {
   @include visuallyhidden;
 }

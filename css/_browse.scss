@@ -1,19 +1,16 @@
-.years {
-  margin-bottom: 2em;
+.termindex {
+  columns: 11rem auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
-.year-posts {
-  margin-bottom: 1em;
+.termindex ol {
+  list-style: none;
+  margin-bottom: 1.5rem;
+  padding-left: 0;
 }
 
-.year-post {
-  display: block;
-}
-
-.year-post {
-  padding: .25em .5em;
-}
-
-.tagcloud .post__tag {
-  color: var(--tag-color);
+.termindex li {
+  margin-left: 1rem; 
+  text-indent: -1rem 
 }

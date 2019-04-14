@@ -30,11 +30,6 @@
   color: $white;
 }
 
-.rainbow .termindex a:hover,
-.rainbow .termindex a:focus {
-  text-decoration-color: var(--color);
-}
-
 @supports (text-decoration-color: var(--color)) {
   .rainbow .prose s,
   .rainbow .prose del,
@@ -46,7 +41,10 @@
   .rainbow .post__author a:active,
   .rainbow .post__tag a:hover,
   .rainbow .post__tag a:focus,
-  .rainbow .post__tag a:active {
+  .rainbow .post__tag a:active,
+  .rainbow .termindex a:hover,
+  .rainbow .termindex a:focus,
+  .rainbow .termindex a:active {
     text-decoration-color: var(--color);
   }
 }

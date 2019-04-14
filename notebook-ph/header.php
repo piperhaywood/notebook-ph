@@ -28,7 +28,8 @@
 
     <header class="header" role="banner">
       <div class="header__inner">
-
+        <a class="skip-link" href="#main">Skip to main content</a>
+        <a class="skip-link" href="#searchform">Skip to search form</a>
         <div class="container">
           <h1 class="header__title">
             <?php if (!is_front_page()) : ?>
@@ -50,11 +51,10 @@
           <?php get_search_form(); ?>
         </div>
 
-        
         <div class="container smallprint">
           <?php $copyright = get_theme_mod('nph_copyright'); ?>
           <?php if ($copyright) : ?>
-            <p class="copyright"><?php echo $copyright; ?></p>
+            <p class="copyright"><?php echo strip_tags($copyright, '<em><a><img><br>'); ?></p>
           <?php endif; ?>
           <p class="credit"><?php _e('This site uses the', 'notebook-ph'); ?> Notebook <?php _e('theme by', 'notebook-ph'); ?> <a href="http://piperhaywood.com">Piper Haywood</a>. </p>
         </div>
@@ -62,4 +62,3 @@
       </div>
     </header>
     <div class="wrapper js-wrapper">
-      

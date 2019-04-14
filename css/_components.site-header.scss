@@ -67,4 +67,8 @@
 
 .header .searchform {
   margin-top: .75rem;
+  max-width: calc(100% - 3rem);
+  @media (min-width: $sm) {
+    max-width: calc(100% - 5rem);
+  }
 }

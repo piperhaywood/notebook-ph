@@ -131,6 +131,10 @@ $max-aligned-img: 16em;
   padding-left: calc(var(--gutter) / 2);
 }
 
+.prose .gallery br {
+  display: none;
+}
+
 .prose .gallery-columns-1 {
   display: block;
 }

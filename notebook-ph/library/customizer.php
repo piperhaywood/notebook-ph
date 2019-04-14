@@ -45,6 +45,23 @@ function nph_customize_register($wp_customize) {
     )
   );
 
+  $wp_customize->add_setting(
+    'nph_blog_intro',
+    array(
+      'default'    =>  '',
+      'sanitize_callback' => 'wp_kses_post'
+    )
+  );
+
+  $wp_customize->add_control(
+    'nph_blog_intro',
+    array(
+      'section'   => 'nph_texts',
+      'label'     => __('Blog introduction', 'notebook-ph'),
+      'type'      => 'textarea'
+    )
+  );
+
   $wp_customize->add_section(
     'nph_display_options',
     array(

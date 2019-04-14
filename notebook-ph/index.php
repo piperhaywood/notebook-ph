@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<main class="main" role="main">
+<main id="main" class="main" role="main">
   <?php $desc = nph_archivedesc(false); ?>
   <?php if ($desc) : ?>
     <div class="archive-description prose">
@@ -11,7 +11,7 @@
   <?php if (have_posts()) : ?>
     <?php while (have_posts()) : the_post(); ?>
       <?php if (is_page()) : ?>
-        <?php $hsl = 'hsl(1, 100, 0)'; ?>
+        <?php $hsl = nph_get_hsl(); ?>
       <?php else : ?>
         <?php $hsl = nph_get_hsl($post); ?>
       <?php endif; ?>
@@ -21,7 +21,7 @@
           <header class="post__header">
             <?php if (get_post_type() == 'post') : ?>
               <time class="dt-published post__time" datetime="<?php echo nph_date(true, false); ?>">
-                <a class="u-url has-bg" href="<?php the_permalink(); ?>">
+                <a class="u-url has-bg" href="<?php the_permalink(); ?>" aria-label="View post">
                   <?php echo get_the_date('l, j F Y'); ?>
                 </a>
               </time>
@@ -45,7 +45,7 @@
                   <?php $format = get_post_format(); ?>
                   <?php if ($format != false) : ?>
                     <li class="post__tag">
-                      <a href="<?php echo get_post_format_link($format); ?>"><?php echo $format; ?></a><span class="separator">, </span>
+                      <a aria-label="<?php printf(__('Format: %s', 'notebook-ph'), $format); ?>" href="<?php echo get_post_format_link($format); ?>"><span class="term term--post_format"><?php echo $format; ?></span></a><span class="separator">, </span>
                     </li>
                   <?php endif; ?>
                   <?php $cats = wp_get_post_categories($post->ID, array(
@@ -60,8 +60,9 @@
                   <?php $terms = array_merge($cats, $tags); ?>
                   <?php if (!empty($terms)) : ?>
                     <?php foreach($terms as $term) : ?>
+                      <?php $tax = get_taxonomy($term->taxonomy); ?>
                       <li class="post__tag">
-                        <a href="<?php echo get_tag_link($term->term_id); ?>"><?php echo $term->name; ?></a><span class="separator">, </span>
+                        <a aria-label="<?php printf(__('%s: %s', 'notebook-ph'), $tax->labels->singular_name, $term->name); ?>" href="<?php echo get_tag_link($term->term_id); ?>"><span class="term term--<?php echo $term->taxonomy; ?>"><?php echo $term->name; ?></span></a><span class="separator">, </span>
                       </li>
                     <?php endforeach; ?>
                   <?php endif; ?>

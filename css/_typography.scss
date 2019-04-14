@@ -213,6 +213,10 @@
   font-style: italic;
 }
 
+.prose mark {
+  background-color: rgba(255, 255, 64, 0.65);
+}
+
 .prose .wp-caption-text i,
 .prose .wp-caption-text em {
   font-style: normal;

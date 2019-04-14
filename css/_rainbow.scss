@@ -24,6 +24,12 @@
   border: 1px solid var(--color);
 }
 
+.rainbow a.skip-link:focus,
+.rainbow a.skip-link:active {
+  background-color: var(--color);
+  color: $white;
+}
+
 @supports (text-decoration-color: var(--color)) {
   .rainbow .prose s,
   .rainbow .prose del,
@@ -35,7 +41,10 @@
   .rainbow .post__author a:active,
   .rainbow .post__tag a:hover,
   .rainbow .post__tag a:focus,
-  .rainbow .post__tag a:active {
+  .rainbow .post__tag a:active,
+  .rainbow .termindex a:hover,
+  .rainbow .termindex a:focus,
+  .rainbow .termindex a:active {
     text-decoration-color: var(--color);
   }
 }

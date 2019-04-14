@@ -28,7 +28,8 @@
 
     <header class="header" role="banner">
       <div class="header__inner">
-
+        <a class="skip-link" href="#main">Skip to main content</a>
+        <a class="skip-link" href="#searchform">Skip to search form</a>
         <div class="container">
           <h1 class="header__title">
             <?php if (!is_front_page()) : ?>

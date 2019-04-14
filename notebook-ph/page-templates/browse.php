@@ -2,7 +2,7 @@
 
 <?php get_header(); ?>
 
-<main class="main" role="main">
+<main id="main" class="main" role="main">
   <section class="articles <?php echo !is_singular() ? 'js-infinite-container' : false; ?>">
   <?php if (have_posts()) : ?>
     <?php while (have_posts()) : the_post(); ?>

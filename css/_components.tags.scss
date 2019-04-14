@@ -24,3 +24,17 @@
 .post__tag a:active {
   text-decoration: underline;
 }
+
+.term__count {
+  color: $grey;
+}
+
+.term--category {
+  font-style: italic;
+  text-transform: uppercase;
+}
+
+.term--post_format {
+  font-style: italic;
+  text-transform: lowercase;
+}

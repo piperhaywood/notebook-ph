@@ -317,3 +317,32 @@ function nph_group_posts_by_year() {
   wp_reset_postdata();
   return $years;
 }
+
+function nph_get_years_array() {
+  global $wpdb;
+  $result = array();
+  $years = $wpdb->get_results(
+    $wpdb->prepare(
+      "SELECT YEAR(post_date) FROM {$wpdb->posts} WHERE post_status = %s GROUP BY YEAR(post_date) DESC",
+      array('publish')
+    ),
+    ARRAY_N
+  );
+  if (is_array($years) && count($years) > 0) {
+    foreach ($years as $year) {
+      $result[] = $year[0];
+    }
+  }
+  return $result;
+}
+
+function nph_add_to_index($groups, $args) {
+  $first_char = strtoupper($args['name'][0]);
+  if (is_numeric($first_char)) {
+    $first_char = '#';
+  } elseif (mb_detect_encoding($first_char) == 'UTF-8') {
+    $first_char = '?';
+  }
+  $groups[$first_char][$args['slug']] = $args;
+  return $groups;
+}

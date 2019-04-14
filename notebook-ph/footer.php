@@ -53,7 +53,7 @@
   <?php $end = get_theme_mod('nph_infinite_scroll_end'); ?>
   <?php $end = $end ? $end : '<em>The end.</em>'; ?>
   <div class="js-infinite-end infinite-end">
-    <p><?php echo $end; ?></p>
+    <p><?php echo strip_tags($end, '<em><a><img><br>'); ?></p>
   </div>
 
   <?php wp_footer(); ?>

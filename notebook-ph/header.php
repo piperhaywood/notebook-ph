@@ -54,7 +54,7 @@
         <div class="container smallprint">
           <?php $copyright = get_theme_mod('nph_copyright'); ?>
           <?php if ($copyright) : ?>
-            <p class="copyright"><?php echo $copyright; ?></p>
+            <p class="copyright"><?php echo strip_tags($copyright, '<em><a><img><br>'); ?></p>
           <?php endif; ?>
           <p class="credit"><?php _e('This site uses the', 'notebook-ph'); ?> Notebook <?php _e('theme by', 'notebook-ph'); ?> <a href="http://piperhaywood.com">Piper Haywood</a>. </p>
         </div>

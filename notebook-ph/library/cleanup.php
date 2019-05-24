@@ -26,7 +26,6 @@ function cleanup_head() {
   remove_action('wp_head', 'wp_generator');
   add_filter('style_loader_src', 'alter_wp_ver_css_js', 9999);
   add_filter('script_loader_src', 'alter_wp_ver_css_js', 9999);
-  add_filter('login_errors', create_function('$a', "return null;"));
 }
 
 add_filter('wp_title', 'nph_wp_title', 10, 2);

@@ -223,7 +223,7 @@ function nph_archive_str() {
   } elseif (is_year()) {
     $title = get_the_date('Y');
   }
-  $title = $title . '  <span class="term__count">' . $wp_query->post_count . '</span>';
+  $title = $title . '  <span class="term__count">' . $wp_query->found_posts . '</span>';
   return $title . $page;
 }
 

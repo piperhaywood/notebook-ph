@@ -16,6 +16,18 @@ The theme isn’t currently translation-ready. I’ll try to get to this at some
 
 The accessibility is nowhere near where I want it to be. That needs to be the priority for the next update.
 
+## Theme options
+
+In the WordPress Customiser, you can adjust:
+
+- The short site title that is displayed in the header on archive pages
+- The copyright text displayed in the menu
+- The text displayed at the end of infinite scroll
+- A blog introduction
+- Whether or not the theme credit is displayed
+- Whether or not the author is displayed
+- Whether or not the theme should use the rainbow colour scheme
+
 ## Development
 
-Set up a WordPress site locally in a separate site folder. See [multi-environment `wp-config.php` gist](https://gist.github.com/piperhaywood/2a7217964335e22574784153eab1d38b) if useful. In the new WP site you’ve just created, symlink the `/notebook-ph` directory (the built theme) in this project folder in to the `/wp-content/themes` directory. Back in the root of this project folder, run `npm i` to install dependencies. Run `gulp` to build the theme. Run `gulp dev` for development. To set a BrowserSync proxy other than `localhost:8888` (default), run `gulp dev --proxy custom-proxy` (replace `custom-proxy`). 
+Set up a WordPress site locally in a separate site folder. See [multi-environment `wp-config.php` gist](https://gist.github.com/piperhaywood/2a7217964335e22574784153eab1d38b) if useful. In the new WP site you’ve just created, symlink the `/notebook-ph` directory (the built theme) in this project folder in to the `/wp-content/themes` directory. Back in the root of this project folder, run `npm i` to install dependencies. Run `gulp` to build the theme. Run `gulp dev` for development. To set a BrowserSync proxy other than `localhost:8888` (default), run `gulp dev --proxy custom-proxy` (replace `custom-proxy`).

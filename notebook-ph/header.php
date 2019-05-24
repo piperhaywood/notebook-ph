@@ -3,7 +3,7 @@
   <head>
     <meta charset="<?php bloginfo('charset'); ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="referrer" content="origin-when-crossorigin" />
+    <meta name="referrer" content="origin-when-cross-origin" />
     <title><?php wp_title(' | ', 'false', 'right'); ?></title>
 
     <?php wp_head(); ?>

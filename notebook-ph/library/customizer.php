@@ -3,6 +3,24 @@
 add_action('customize_register', 'nph_customize_register');
 function nph_customize_register($wp_customize) {
 
+  $wp_customize->add_setting(
+    'nph_short_title',
+    array(
+      'default'    =>  '',
+      'sanitize_callback' => 'wp_kses_post'
+    )
+  );
+
+  $wp_customize->add_control(
+    'nph_short_title',
+    array(
+      'section'   => 'title_tagline',
+      'label'     => __('Short site title', 'notebook-ph'),
+      'type'      => 'text',
+      'description' => __('The short site title is displayed in the header on archive pages instead of the full site title. An example would be “PH” for a site titled “Piper Haywood”.', 'notebook-ph'),
+    )
+  );
+
   $wp_customize->add_section(
     'nph_texts',
     array(

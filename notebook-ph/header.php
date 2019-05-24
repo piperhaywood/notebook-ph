@@ -34,7 +34,8 @@
         <div class="container">
           <h1 class="header__title">
             <?php if (!is_front_page()) : ?>
-              <a class="header__link" href="<?php echo site_url(); ?>" data-title="<?php bloginfo('name'); ?>" aria-label="<?php esc_html_e('Go to homepage', 'notebook-ph'); ?>">PH</a> / <?php echo nph_archive_str(); ?>
+              <?php $short = get_theme_mod('nph_short_title'); ?>
+              <a class="header__link" href="<?php echo site_url(); ?>" data-title="<?php bloginfo('name'); ?>" aria-label="<?php esc_html_e('Go to homepage', 'notebook-ph'); ?>"><?php echo $short ? $short : get_bloginfo('name'); ?></a> / <?php echo nph_archive_str(); ?>
             <?php else : ?>
               <a class="header__link" href="<?php echo site_url(); ?>" data-title="<?php bloginfo('name'); ?>" aria-label="<?php esc_html_e('Go to homepage', 'notebook-ph'); ?>"><?php bloginfo('name'); ?></a>
             <?php endif; ?>

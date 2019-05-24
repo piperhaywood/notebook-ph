@@ -4,7 +4,7 @@
   <article class="article gradient type-<?php echo get_post_type(); ?>">
     <div class="article__inner">
       <div class="prose">
-        <p>Sorry, there&rsquo;s nothing to see here. Please search or browse keywords below. Get in touch if you can&rsquo;t find what you&rsquo;re looking&nbsp;for.</p>
+        <p><?php _e('Sorry, there&rsquo;s nothing to see here. Please search or browse keywords below. Get in touch if you can&rsquo;t find what you&rsquo;re looking&nbsp;for.', 'notebook-ph'); ?></p>
       </div>
       <div class="container browse-search">
         <?php get_search_form(); ?>

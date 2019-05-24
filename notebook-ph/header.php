@@ -17,26 +17,26 @@
     <label
       class="open-menu"
       for="menu-toggle"
-      data-close="Close"
+      data-close="<?php esc_html_e('Close', 'notebook-ph'); ?>"
       role="button">
       <span class="open-menu__button open-menu__button--open"
         aria-controls="main-menu"
-        aria-label="Open menu">Menu</span>
+        aria-label="<?php esc_html_e('Open menu', 'notebook-ph'); ?>"><?php esc_html_e('Menu', 'notebook-ph'); ?></span>
       <span class="open-menu__button open-menu__button--close"
         aria-controls="main-menu"
-        aria-label="Close menu">Close</span>
+        aria-label="<?php esc_html_e('Close menu', 'notebook-ph'); ?>"><?php esc_html_e('Close', 'notebook-ph'); ?></span>
     </label>
 
     <header class="header" role="banner">
       <div class="header__inner">
-        <a class="skip-link" href="#main">Skip to main content</a>
-        <a class="skip-link" href="#searchform">Skip to search form</a>
+        <a class="skip-link" href="#main"><?php esc_html_e('Skip to main content', 'notebook-ph'); ?></a>
+        <a class="skip-link" href="#searchform"><?php esc_html_e('Skip to search form', 'notebook-ph'); ?></a>
         <div class="container">
           <h1 class="header__title">
             <?php if (!is_front_page()) : ?>
-              <a class="header__link" href="<?php echo site_url(); ?>" data-title="<?php bloginfo('name'); ?>" aria-label="Go to homepage">PH</a> / <?php echo nph_archive_str(); ?>
+              <a class="header__link" href="<?php echo site_url(); ?>" data-title="<?php bloginfo('name'); ?>" aria-label="<?php esc_html_e('Go to homepage', 'notebook-ph'); ?>">PH</a> / <?php echo nph_archive_str(); ?>
             <?php else : ?>
-              <a class="header__link" href="<?php echo site_url(); ?>" data-title="<?php bloginfo('name'); ?>" aria-label="Go to homepage"><?php bloginfo('name'); ?></a>
+              <a class="header__link" href="<?php echo site_url(); ?>" data-title="<?php bloginfo('name'); ?>" aria-label="<?php esc_html_e('Go to homepage', 'notebook-ph'); ?>"><?php bloginfo('name'); ?></a>
             <?php endif; ?>
             
           </h1>
@@ -57,7 +57,19 @@
           <?php if ($copyright) : ?>
             <p class="copyright"><?php echo strip_tags($copyright, '<em><a><img><br>'); ?></p>
           <?php endif; ?>
-          <p class="credit"><?php _e('This site uses the', 'notebook-ph'); ?> Notebook <?php _e('theme by', 'notebook-ph'); ?> <a href="http://piperhaywood.com">Piper Haywood</a>. </p>
+          <p class="credit">
+            <?php
+              printf(
+                wp_kses(
+                  __('This site uses the %1$s theme by <a href="%2$s">%3$s</a>.', 'notebook-ph'),
+                  array('a' => array('href' => array()))
+                ),
+                'Notebook',
+                esc_url('https://piperhaywood.com'),
+                'Piper Haywood'
+              );
+            ?>
+          </p>
         </div>
 
       </div>

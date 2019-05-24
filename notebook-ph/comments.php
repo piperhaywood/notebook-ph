@@ -38,14 +38,14 @@ if ( post_password_required() ) {
           'avatar_size' => 100,
           'style'       => 'ol',
           'short_ping'  => true,
-          'reply_text'  => __( 'Reply', 'twentyseventeen' ),
+          'reply_text'  => __( 'Reply', 'notebook-ph' ),
         ) );
       ?>
     </ol>
 
     <?php the_comments_pagination( array(
-      'prev_text' => '<span class="screen-reader-text">' . __( 'Previous', 'twentyseventeen' ) . '</span>',
-      'next_text' => '<span class="screen-reader-text">' . __( 'Next', 'twentyseventeen' ) . '</span>',
+      'prev_text' => '<span class="screen-reader-text">' . __( 'Previous', 'notebook-ph' ) . '</span>',
+      'next_text' => '<span class="screen-reader-text">' . __( 'Next', 'notebook-ph' ) . '</span>',
     ) );
 
   endif; // Check for have_comments().

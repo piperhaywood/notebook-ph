@@ -19,7 +19,7 @@ if ($terms && is_array($terms)) {
         'count' => $term->count,
         'slug' => $slug,
         'type' => $term->taxonomy,
-        'aria' => sprintf(__('%s: %s, %s posts', 'notebook-ph'), $tax->labels->singular_name, $term->name, $term->count)
+        'aria' => sprintf(esc_html__('%s: %s, %s posts', 'notebook-ph'), $tax->labels->singular_name, $term->name, $term->count)
       ));
     }
   }
@@ -45,7 +45,7 @@ if ($years) {
       'count' => $count,
       'slug' => $year,
       'type' => 'year',
-      'aria' => sprintf(__('Year: %s, %s posts', 'notebook-ph'), $year, $count)
+      'aria' => sprintf(esc_html__('Year: %s, %s posts', 'notebook-ph'), $year, $count)
     ));
   }
 }

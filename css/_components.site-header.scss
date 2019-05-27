@@ -1,3 +1,8 @@
+.header {
+  position: relative;
+  z-index: -1;
+}
+
 .header__inner {
   background: white;
   height: $header-height;
@@ -24,8 +29,18 @@
   background: white;
 }
 
-#menu-toggle:checked ~ .wrapper, {
-  opacity: .5;
+#menu-toggle:checked ~ .header {
+  z-index: 60;
+}
+
+#menu-toggle:checked ~ .wrapper .main,
+#menu-toggle:checked ~ .wrapper .site-footer > *:not(#wpadminbar) {
+  opacity: 0;
+}
+
+#menu-toggle:checked ~ .header .header__title {
+  overflow: visible;
+  white-space: normal;
 }
 
 .header__title {
@@ -47,11 +62,6 @@
   text-decoration: underline;
 }
 
-#menu-toggle:checked ~ .header .header__title {
-  overflow: visible;
-  white-space: normal;
-}
-
 .smallprint {
   color: $grey;
   margin-bottom: 1em;
@@ -66,7 +76,7 @@
 }
 
 .header .searchform {
-  margin-top: .75rem;
+  margin-top: 0.75rem;
   max-width: calc(100% - 3rem);
   @media (min-width: $sm) {
     max-width: calc(100% - 5rem);

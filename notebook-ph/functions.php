@@ -201,10 +201,10 @@ function nph_archive_str() {
     return get_the_title();
   }
   if (is_404()) {
-    return 'Page not found [404 error]';
+    return __('Page not found [404 error]', 'notebook-ph');
   }
   $paged = get_query_var('paged');
-  $page = $paged > 0 ? ' p.' . $paged : null;
+  $page = $paged > 0 ? ' ' . _x('p.', 'paged', 'notebook-ph') . $paged : null;
   if (is_front_page()) {
     $title = get_bloginfo('name');
     $total = null;
@@ -215,7 +215,7 @@ function nph_archive_str() {
   } elseif (is_category()) {
     $title = '<span class="term term--category">' . single_cat_title('', false) . '</span>';
   } elseif (is_search()) {
-    $title = '&ldquo;' . get_query_var('s') . '&rdquo;'; // ◊ indicates possibility
+    $title = sprintf(__('&ldquo;%s&rdquo;', 'notebook-ph'), get_query_var('s'));
   } elseif (is_author()) {
     $title = 'by ' . get_the_author_meta('display_name', get_query_var('author'));
   } elseif (is_month()) {
@@ -223,7 +223,7 @@ function nph_archive_str() {
   } elseif (is_year()) {
     $title = get_the_date('Y');
   }
-  $title = $title . '  <span class="term__count">' . $wp_query->post_count . '</span>';
+  $title = $title . '  <span class="term__count">' . $wp_query->found_posts . '</span>';
   return $title . $page;
 }
 

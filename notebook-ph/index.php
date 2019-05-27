@@ -21,11 +21,11 @@
           <header class="post__header">
             <?php if (get_post_type() == 'post') : ?>
               <time class="dt-published post__time" datetime="<?php echo nph_date(true, false); ?>">
-                <a class="u-url has-bg" href="<?php the_permalink(); ?>" aria-label="View post">
+                <a class="u-url has-bg" href="<?php the_permalink(); ?>" aria-label="<?php esc_html_e('View post', 'notebook-ph'); ?>">
                   <?php echo get_the_date('l, j F Y'); ?>
                 </a>
               </time>
-              <span class="post__author">by <?php the_author_posts_link(); ?></span>
+              <span class="post__author"><?php echo _x('by', 'authorship', 'notebook-ph'); ?> <?php the_author_posts_link(); ?></span>
             <?php endif; ?>
             <?php if (!$format) : ?>
               <h1 class="p-name post__title">
@@ -35,7 +35,7 @@
           </header>
           
           <div class="prose">
-            <?php the_content('Read more'); ?>
+            <?php the_content(esc_html__('Read more', 'notebook-ph')); ?>
           </div>
 
           <footer class="post__footer">
@@ -45,7 +45,7 @@
                   <?php $format = get_post_format(); ?>
                   <?php if ($format != false) : ?>
                     <li class="post__tag">
-                      <a aria-label="<?php printf(__('Format: %s', 'notebook-ph'), $format); ?>" href="<?php echo get_post_format_link($format); ?>"><span class="term term--post_format"><?php echo $format; ?></span></a><span class="separator">, </span>
+                      <a aria-label="<?php printf(esc_html__('Format: %s', 'notebook-ph'), $format); ?>" href="<?php echo get_post_format_link($format); ?>"><span class="term term--post_format"><?php echo $format; ?></span></a><span class="separator">, </span>
                     </li>
                   <?php endif; ?>
                   <?php $cats = wp_get_post_categories($post->ID, array(
@@ -62,7 +62,7 @@
                     <?php foreach($terms as $term) : ?>
                       <?php $tax = get_taxonomy($term->taxonomy); ?>
                       <li class="post__tag">
-                        <a aria-label="<?php printf(__('%s: %s', 'notebook-ph'), $tax->labels->singular_name, $term->name); ?>" href="<?php echo get_tag_link($term->term_id); ?>"><span class="term term--<?php echo $term->taxonomy; ?>"><?php echo $term->name; ?></span></a><span class="separator">, </span>
+                        <a aria-label="<?php printf(esc_html__('%s: %s', 'notebook-ph'), $tax->labels->singular_name, $term->name); ?>" href="<?php echo get_tag_link($term->term_id); ?>"><span class="term term--<?php echo $term->taxonomy; ?>"><?php echo $term->name; ?></span></a><span class="separator">, </span>
                       </li>
                     <?php endforeach; ?>
                   <?php endif; ?>
@@ -86,19 +86,17 @@
       <div class="article__inner">
 
         <div class="prose">
-          <p>Nothing found! </p>
+          <p><?php _e('Nothing found!', 'notebook-ph'); ?></p>
         </div>
 
         <div class="container browse-search">
           <?php get_search_form(); ?>
         </div>
 
-        <div class="container years">
-          <?php get_template_part('years'); ?>
-        </div>
-
-        <div class="container tagcloud">
-          <?php get_template_part('tagcloud'); ?>
+        <div class="container container--full">
+          <div class="termindex">
+            <?php get_template_part('termindex'); ?>
+          </div>
         </div>
       </div>
       <footer class="post__footer">

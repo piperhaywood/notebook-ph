@@ -1,7 +1,7 @@
 <?php
 
 register_nav_menus(array(
-  'nph-menu' => 'Header Menu'
+  'nph-menu' => esc_attr__('Header Menu', 'notebook-ph')
 ));
 
 function nph_menu() {
@@ -23,6 +23,6 @@ add_action('wp_footer', 'nph_related_posts');
 function nph_related_posts( $content ) {
   global $post;
   if (shortcode_exists('related_posts_by_tax') && is_singular('post') && is_main_query()) {
-    echo do_shortcode('[related_posts_by_tax post_id="' . $post->ID . '" taxonomies="post_tag" title="See also" public_only="true"]');
+    echo do_shortcode('[related_posts_by_tax post_id="' . $post->ID . '" taxonomies="post_tag" title="' . esc_attr__('See also', 'notebook-ph') . '" public_only="true"]');
   }
 }

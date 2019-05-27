@@ -15,17 +15,17 @@
     "url": "https://github.com/piperhaywood/notebook-ph.git"
   },
   "devDependencies": {
-    "browser-sync": "^2.23.6",
-    "gulp": "^4.0.0",
+    "browser-sync": "^2.26.5",
+    "gulp": "^4.0.2",
     "gulp-add-src": "^1.0.0",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-concat": "^2.6.0",
-    "gulp-cssmin": "^0.1.7",
+    "gulp-cssmin": "^0.2.0",
     "gulp-sass": "^2.2.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.3",
-    "infinite-scroll": "^3.0.5",
-    "prismjs": "^1.15.0"
+    "infinite-scroll": "^3.0.6",
+    "prismjs": "^1.16.0"
   },
   "dependencies": {
     "gulp-header": "^1.7.1",

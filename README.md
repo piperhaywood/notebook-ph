@@ -6,7 +6,6 @@ This is a simple WordPress theme for keeping notes. It is currently in use on [p
 
 Post titles are second-class citizens by design. For Standard posts (longer format writing), titles are displayed in the body of the content. For all other formats (aside, image, quote, etc.), titles are only displayed on the post permalink as a breadcrumb.
 
-The Browse page template offers search, year-based post lists, and a tag cloud. The tag cloud displays only tags with greater than one post count. The tag opacity is relative to the tag’s post count (the fewer the posts, the lighter the tag).
 
 The theme makes use of the [Infinite Scroll](https://infinite-scroll.com/) library by Metafizzy under the open source license [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html). The theme uses [Prism.js](https://prismjs.com/index.html) for syntax highlighting.
 
@@ -27,6 +26,8 @@ In the WordPress Customiser, you can adjust:
 - Whether or not the theme credit is displayed
 - Whether or not the author is displayed
 - Whether or not the theme should use the rainbow colour scheme
+
+Two shortcodes are available for use in the WordPress editor. The shortcode `[notebooksearch]` displays a search form, and the shortcode `[notebookindex]` displays an alphabetical index of terms. The Index shortcode can be passed attributes that modify the included taxonomies, the post count threshold, and whether or not year archive links are displayed. For example, `[notebookindex taxonomy="category" years="false" count="2"]` will pull through only categories with a post count of at least 2 and no year archive links. If no attributes are passed to the `notebookindex` shortcode, then these default attributes will be used: `[notebookindex taxonomy="post_tag, category, post_format" years="true" count="1"]`.
 
 ## Development
 

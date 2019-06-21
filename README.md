@@ -1,19 +1,12 @@
 # Notebook theme for WordPress
 
-This is a simple WordPress theme for keeping notes. It is currently in use on [piperhaywood.com](https://piperhaywood.com).
+This is a simple, translation-ready WordPress theme for keeping notes. It is currently in use on [piperhaywood.com](https://piperhaywood.com).
 
 ## Description
 
-Post titles are second-class citizens by design. For Standard posts (longer format writing), titles are displayed in the body of the content. For all other formats (aside, image, quote, etc.), titles are only displayed on the post permalink as a breadcrumb.
-
+Post titles are purposefully obscured. For Standard posts (longer format writing), titles are displayed in the body of the content. For all other formats (aside, image, quote, etc.), titles are only displayed on the post permalink as a breadcrumb.
 
 The theme makes use of the [Infinite Scroll](https://infinite-scroll.com/) library by Metafizzy under the open source license [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html). The theme uses [Prism.js](https://prismjs.com/index.html) for syntax highlighting.
-
-There are a few additional theme modification options on the WordPress Customizer. “Rainbow” will enable date-specific colours across the site. A theme credit can optionally be removed, and author links can be hidden.
-
-The theme isn’t currently translation-ready. I’ll try to get to this at some point.
-
-The accessibility is nowhere near where I want it to be. That needs to be the priority for the next update.
 
 ## Theme options
 

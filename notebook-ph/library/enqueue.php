@@ -13,17 +13,6 @@ function nph_assets() {
   );
   wp_enqueue_style('nph-styles');
 
-  if (file_exists(get_template_directory() . '/fonts.css')) {
-    wp_register_style(
-      'nph-fonts',
-      get_template_directory_uri() . '/fonts.css',
-      '',
-      $version,
-      'all'
-    );
-    wp_enqueue_style('nph-fonts');
-  }
-
   wp_register_script(
     'nph-scripts',
     get_template_directory_uri() . '/scripts.js',

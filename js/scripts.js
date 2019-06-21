@@ -9,10 +9,11 @@ function handleFirstTab(e) {
 var infinite = {
   init: function() {
     var next = document.querySelector(".js-next");
-    if (!next) {
+    var container = document.querySelector(".js-infinite-container");
+    if (!next || !container) {
       return;
     }
-    var infScroll = new InfiniteScroll(".js-infinite-container", {
+    var infScroll = new InfiniteScroll(container, {
       path: ".js-next a",
       append: ".js-article",
       hideNav: ".js-pagination",

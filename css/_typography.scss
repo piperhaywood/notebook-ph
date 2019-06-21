@@ -13,6 +13,8 @@
 .prose > h5,
 .prose > h6,
 .prose > dl,
+.prose > details,
+.prose > a,
 .prose > blockquote,
 .prose > address,
 .prose > form {
@@ -39,6 +41,10 @@
   text-decoration: none;
 }
 
+.prose > a {
+  display: block;
+}
+
 .prose h1 {
   @include style-h1(700);
   margin-bottom: 1.5em;
@@ -58,14 +64,41 @@
   @include style-h4;
 }
 
+.prose > details summary,
+.prose > details p {
+  margin-bottom: 1.5em;
+  margin-top: 1.5em;
+}
+
+.prose > details pre {
+  width: 36rem;
+  max-width: calc(100vw - (var(--gutter) * 6));
+}
+
+@media (min-width: 500px) {
+  .prose > details pre {
+    max-width: calc(100vw - (var(--gutter) * 4));
+  }
+}
+
 .prose small {
   font-size: inherit;
 }
 
 .link_description > *,
-.prose > * {
+.prose > *,
+.prose > details summary,
+.prose > details p {
   margin-bottom: 1.5em;
   margin-top: 1.5em;
+}
+
+@media (min-width: 500px) {
+  .prose > details,
+  .prose > a {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 
 .prose .wp-caption.alignleft,

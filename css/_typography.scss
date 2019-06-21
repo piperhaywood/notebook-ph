@@ -2,7 +2,7 @@
   margin-top: 0;
 }
 
-.prose > div,
+.prose > div:not(.container),
 .prose > p,
 .prose > ul,
 .prose > ol,
@@ -13,8 +13,11 @@
 .prose > h5,
 .prose > h6,
 .prose > dl,
+.prose > details,
+.prose > a,
 .prose > blockquote,
-.prose > address {
+.prose > address,
+.prose > form {
   @include container;
 }
 
@@ -38,6 +41,10 @@
   text-decoration: none;
 }
 
+.prose > a {
+  display: block;
+}
+
 .prose h1 {
   @include style-h1(700);
   margin-bottom: 1.5em;
@@ -57,14 +64,41 @@
   @include style-h4;
 }
 
+.prose > details summary,
+.prose > details p {
+  margin-bottom: 1.5em;
+  margin-top: 1.5em;
+}
+
+.prose > details pre {
+  width: 36rem;
+  max-width: calc(100vw - (var(--gutter) * 6));
+}
+
+@media (min-width: 500px) {
+  .prose > details pre {
+    max-width: calc(100vw - (var(--gutter) * 4));
+  }
+}
+
 .prose small {
   font-size: inherit;
 }
 
 .link_description > *,
-.prose > * {
+.prose > *,
+.prose > details summary,
+.prose > details p {
   margin-bottom: 1.5em;
   margin-top: 1.5em;
+}
+
+@media (min-width: 500px) {
+  .prose > details,
+  .prose > a {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 
 .prose .wp-caption.alignleft,
@@ -82,7 +116,7 @@
 }
 
 .prose .wp-caption img {
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
 }
 
 .prose abbr,
@@ -155,14 +189,14 @@
 }
 
 .prose tr > * {
-  padding-top: .5em;
-  padding-bottom: .5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
   border-bottom: 1px solid black;
 }
 
 .prose tr > * {
   min-width: 9em;
-  padding-right: .5em;
+  padding-right: 0.5em;
 }
 
 .prose tr > *:last-child {
@@ -231,7 +265,7 @@
 }
 
 .rpbt_shortcode h3 {
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
 .rpbt_shortcode ul {
@@ -242,7 +276,7 @@
 .rpbt_shortcode li {
   background: black;
   color: white;
-  padding: .25em;
+  padding: 0.25em;
 }
 
 .rpbt_shortcode li:hover {
@@ -257,4 +291,38 @@
 
 .rpbt_shortcode li:before {
   content: attr(data-date) " – ";
+}
+
+.termindex {
+  columns: 11rem auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.termindex h2 {
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  margin: 0;
+}
+
+.termindex ol {
+  list-style: none;
+  margin-bottom: 1.5rem;
+  padding-left: 0;
+}
+
+.termindex li {
+  margin-left: 1rem;
+  text-indent: -1rem;
+}
+
+.termindex a {
+  text-decoration: none;
+}
+
+.termindex a:hover,
+.termindex a:focus,
+.termindex a:active {
+  text-decoration: underline;
 }

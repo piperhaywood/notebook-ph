@@ -1,46 +1,39 @@
-(function($) {
-  $next = $(".js-next");
-  if ($next.length) {
-    var $container = $(".js-infinite-container");
-    $container.infiniteScroll({
+function handleFirstTab(e) {
+  if (e.keyCode === 9) {
+    // the "I am a keyboard user" key
+    document.body.classList.add("user-is-tabbing");
+    window.removeEventListener("keydown", handleFirstTab);
+  }
+}
+
+var infinite = {
+  init: function() {
+    var next = document.querySelector(".js-next");
+    if (!next) {
+      return;
+    }
+    var infScroll = new InfiniteScroll(".js-infinite-container", {
       path: ".js-next a",
       append: ".js-article",
       hideNav: ".js-pagination",
       elementScroll: ".js-wrapper"
     });
-    $container.on("append.infiniteScroll", function(
+    infScroll.on("append.infiniteScroll", function(
       event,
       response,
       path,
       items
     ) {
-      $(items)
-        .find("img")
-        .each(function(index, img) {
-          img.outerHTML = img.outerHTML;
-        });
+      items.find("img").each(function(index, img) {
+        img.outerHTML = img.outerHTML;
+      });
       // Reset audio HTML due to Infinite Scroll behaviour
-      $(items)
-        .find("audio")
-        .each(function(index, audio) {
-          audio.outerHTML = audio.outerHTML;
-        });
-    });
-    $container.on("request.infiniteScroll", function(event, path) {
-      $(".js-infinite-loading").addClass("show");
-    });
-    $container.on("last.infiniteScroll", function(event, response, path) {
-      $(".js-infinite-loading").removeClass("show");
-      $(".js-infinite-end").addClass("show");
+      items.find("audio").each(function(index, audio) {
+        audio.outerHTML = audio.outerHTML;
+      });
     });
   }
+};
 
-  function handleFirstTab(e) {
-    if (e.keyCode === 9) {
-      // the "I am a keyboard user" key
-      document.body.classList.add("user-is-tabbing");
-      window.removeEventListener("keydown", handleFirstTab);
-    }
-  }
-  window.addEventListener("keydown", handleFirstTab);
-})(jQuery);
+window.addEventListener("keydown", handleFirstTab);
+infinite.init();

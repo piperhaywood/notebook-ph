@@ -33,6 +33,16 @@ var infinite = {
         audio.outerHTML = audio.outerHTML;
       });
     });
+
+    var loadingMessage = document.querySelector(".js-infinite-loading");
+    var endMessage = document.querySelector(".js-infinite-end");
+    infScroll.on("request", function(event, path) {
+      loadingMessage.classList.add("show");
+    });
+    infScroll.on("last", function(event, response, path) {
+      loadingMessage.classList.remove("show");
+      endMessage.classList.add("show");
+    });
   }
 };
 

@@ -19,27 +19,23 @@ var infinite = {
       hideNav: ".js-pagination",
       elementScroll: ".js-wrapper"
     });
-    infScroll.on("append.infiniteScroll", function(
-      event,
-      response,
-      path,
-      items
-    ) {
-      items.find("img").each(function(index, img) {
-        img.outerHTML = img.outerHTML;
-      });
-      // Reset audio HTML due to Infinite Scroll behaviour
-      items.find("audio").each(function(index, audio) {
-        audio.outerHTML = audio.outerHTML;
+    infScroll.on("append", function(response, path, items) {
+      // Reset asset HTML due to Infinite Scroll behaviour
+      var imgs = items.querySelectorAll("img");
+      var audios = items.querySelectorAll("audio");
+      var videos = items.querySelectorAll("video");
+      var assets = imgs.concat(audios, videos);
+      assets.forEach(function(asset) {
+        asset.outerHTML = asset.outerHTML;
       });
     });
 
     var loadingMessage = document.querySelector(".js-infinite-loading");
     var endMessage = document.querySelector(".js-infinite-end");
-    infScroll.on("request", function(event, path) {
+    infScroll.on("request", function(path) {
       loadingMessage.classList.add("show");
     });
-    infScroll.on("last", function(event, response, path) {
+    infScroll.on("last", function(response, path) {
       loadingMessage.classList.remove("show");
       endMessage.classList.add("show");
     });

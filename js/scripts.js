@@ -39,8 +39,9 @@ var infinite = {
       loadingMessage.classList.remove("show");
       endMessage.classList.add("show");
     });
+    return infScroll;
   }
 };
 
 window.addEventListener("keydown", handleFirstTab);
-infinite.init();
+var infScroll = infinite.init();

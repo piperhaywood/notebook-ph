@@ -19,14 +19,19 @@ var infinite = {
       hideNav: ".js-pagination",
       elementScroll: ".js-wrapper"
     });
+
     infScroll.on("append", function(response, path, items) {
       // Reset asset HTML due to Infinite Scroll behaviour
-      var imgs = items.querySelectorAll("img");
-      var audios = items.querySelectorAll("audio");
-      var videos = items.querySelectorAll("video");
-      var assets = imgs.concat(audios, videos);
-      assets.forEach(function(asset) {
-        asset.outerHTML = asset.outerHTML;
+      items.forEach(function(item) {
+        var imgs = item.querySelectorAll("img");
+        var audios = item.querySelectorAll("audio");
+        var videos = item.querySelectorAll("video");
+        var assetGroups = [imgs, audios, videos];
+        assetGroups.forEach(function(group) {
+          group.forEach(function(asset) {
+            asset.outerHTML = asset.outerHTML;
+          });
+        });
       });
     });
 

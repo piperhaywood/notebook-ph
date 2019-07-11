@@ -2,6 +2,10 @@
   @include container;
 }
 
+.container--large {
+  max-width: 900px;
+}
+
 .container--full {
   max-width: 100%;
 }
@@ -13,7 +17,7 @@
 .has-bg {
   background: black;
   color: white;
-  padding: .25em;
+  padding: 0.25em;
 }
 
 .has-bg a {

@@ -27,6 +27,11 @@ function notebook_index($attr) {
   return get_notebook_index($taxonomy, $showYears, $count);
 }
 
+add_shortcode('notebooklist', 'notebook_list');
+function notebook_list() {
+  return nph_get_list();
+}
+
 function get_notebook_index($taxonomy, $showYears, $count) {
   // Set up the index groups
   $groups = array(); 

@@ -27,6 +27,11 @@ function notebook_index($attr) {
   return get_notebook_index($taxonomy, $showYears, $count);
 }
 
+add_shortcode('notebooklist', 'notebook_list');
+function notebook_list() {
+  return nph_get_list();
+}
+
 function get_notebook_index($taxonomy, $showYears, $count) {
   // Set up the index groups
   $groups = array(); 
@@ -439,4 +444,49 @@ function nph_add_to_index($groups, $args) {
   }
   $groups[$first_char][$args['slug']] = $args;
   return $groups;
+}
+
+function nph_get_list($posts = false) {
+  global $post;
+  if (!$posts) {
+    $posts = get_posts(array(
+      'posts_per_page' => -1
+    ));
+  }
+  if ($posts) {
+    ob_start(); ?>
+    <div class="container container--large">
+      <ul class="post-index">
+        <?php foreach ($posts as $post) : ?>
+          <?php setup_postdata($post); ?>
+          <?php $format = get_post_format(); ?>
+          <?php $hsl = nph_get_hsl($post); ?>
+          <?php $images = get_attached_media( 'image' ); ?>
+          <?php
+          if (!$format) {
+            $excerpt = get_the_title();
+          } else {
+            $excerpt = strip_tags(get_the_excerpt());
+            $excerpt = $excerpt == '&nbsp;' ? false : $excerpt;
+            $excerpt = $excerpt ? $excerpt : get_the_title();
+          }
+          ?>
+          <?php $src = false; ?>
+          <?php if (has_post_thumbnail($post)) : ?>
+            <?php $src = get_the_post_thumbnail_url($post, 'thumbnail'); ?>
+          <?php endif; ?>
+          <li class="post-index__post-item post-item" style="--color:<?php echo $hsl; ?>;">
+            <a class="post-item__link" href="<?php the_permalink(); ?>">
+              <time class="post-item__time" datetime="<?php echo nph_date(true, false); ?>"><?php echo get_the_date('d M Y'); ?></time>
+              <span>&mdash;</span>
+              <?php if ($src) : ?><img class="post-item__image" src="<?php echo $src; ?>"><?php endif; ?>
+              <div class="post-item__text"><?php echo $excerpt; ?></div>
+            </a>
+          </li>
+          <?php wp_reset_postdata(); ?>
+        <?php endforeach; ?>
+      </ul>
+    </div>
+    <?php return ob_get_clean();
+  }
 }

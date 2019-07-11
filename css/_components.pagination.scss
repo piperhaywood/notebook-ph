@@ -3,8 +3,11 @@
   padding-top: 10vh;
 }
 
-.pagination__label {
-  margin-bottom: .5rem;
+.pagination__label,
+.rpbt_shortcode h3 {
+  @include container;
+  margin-bottom: 0.5rem;
+  max-width: 900px;
 }
 
 .pagination__link {
@@ -14,4 +17,61 @@
 .pagination--post .pagination__link a {
   display: inline-block;
   width: 100%;
+}
+
+.post-index {
+  list-style-type: none;
+  margin-right: auto;
+  margin-left: auto;
+  padding-bottom: 10vw;
+  padding-left: 0;
+  width: 100%;
+}
+
+.post-item__link {
+  align-items: center;
+  background: var(--color);
+  color: white;
+  display: flex;
+  flex-wrap: nowrap;
+  height: 40px;
+  padding: 4px;
+  text-decoration: none !important;
+}
+
+.post-item__link:hover {
+  background: white;
+  color: black;
+}
+
+.post-item__link > * {
+  margin-right: 4px;
+  margin-left: 4px;
+}
+
+.post-item__image {
+  height: 32px;
+  mix-blend-mode: multiply;
+  mix-blend-mode: color-burn;
+  width: auto;
+}
+
+.post-item__link:hover .post-item__image {
+  mix-blend-mode: unset;
+}
+
+.post-item__time,
+.post-item__text {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.post-item__time {
+  white-space: nowrap;
+}
+
+.post-item__text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

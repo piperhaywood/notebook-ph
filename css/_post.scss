@@ -8,6 +8,12 @@
   display: inline-block;
 }
 
+.post__time a {
+  display: inline-block;
+  height: 2.5rem;
+  padding: 0.5rem;
+}
+
 .post__title {
   @include style-h1(700);
   margin-bottom: 2em;

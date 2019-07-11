@@ -78,9 +78,23 @@ function ph_remove_arrows($content) {
   return $content;
 }
 
-add_filter('wp_calculate_image_sizes', 'nph_sizes');
-function nph_sizes() {
-  return '(max-width: 638px) 100vw, 638px';
+add_filter('wp_calculate_image_sizes', 'nph_sizes', 10 , 5);
+function nph_sizes($sizes, $size, $image_src, $image_meta, $attachment_id) {
+  $width = $size[0];
+  if ($width >= 1212) {
+    $sizes = '(max-width: 638px) 95vw, 606px';
+  } else {
+    $half = $width / 2;
+    $sizes = '(max-width: ' . $half . 'px) 95vw, ' . $half . 'px';
+  }
+  return $sizes;
+}
+
+add_filter( 'post_thumbnail_html', 'remove_width_attribute', 10 );
+add_filter( 'image_send_to_editor', 'remove_width_attribute', 10 );
+function remove_width_attribute( $html ) {
+  $html = preg_replace( '/(width|height)="\d*"\s/', "", $html );
+  return $html;
 }
 
 // Accounts for Wordpress incorrect srcset order

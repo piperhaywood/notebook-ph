@@ -15,7 +15,9 @@
   <?php elseif (is_singular('post')) : ?>
     <?php $prev = get_previous_post(); ?>
     <?php $next = get_next_post(); ?>
-    <?php if ($prev || $next) : ?>
+    <?php $p = array($prev, $next); ?>
+    <?php $p = array_filter($p); ?>
+    <?php if ($p) : ?>
       <nav class="pagination pagination--post js-pagination">
         <p class="pagination__label">
           <?php if ($prev && $next) : ?>
@@ -26,22 +28,7 @@
             <?php _e('Next', 'notebook-ph'); ?>
           <?php endif; ?>
         </p>
-        <?php if ($prev) : ?>
-          <?php $hsl = nph_get_hsl($prev); ?>
-          <p class="pagination__link pagination__link--previous js-previous">
-            <a class="has-bg" style="--color: <?php echo $hsl; ?>" href="<?php echo get_the_permalink($prev); ?>">
-              <?php echo get_the_date('d M Y', $prev->ID); ?> &mdash; <?php echo get_the_title($prev); ?>
-            </a>
-          </p>
-        <?php endif; ?>
-        <?php if ($next) : ?>
-          <?php $hsl = nph_get_hsl($next); ?>
-          <p class="pagination__link pagination__link--next js-next">
-            <a class="has-bg" style="--color: <?php echo $hsl; ?>" href="<?php echo get_the_permalink($next); ?>">
-            <?php echo get_the_date('d M Y', $next->ID); ?> &mdash; <?php echo get_the_title($next); ?>
-            </a>
-          </p>
-        <?php endif; ?>
+        <?php echo nph_get_list($p); ?>
       </nav>
     <?php endif; ?>
   <?php endif; ?>

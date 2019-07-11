@@ -22,15 +22,4 @@ function nph_assets() {
   );
   wp_enqueue_script('nph-scripts');
 
-  // If GA Google Analytics Pro is enabled, set a cookie to hide the message initially
-  if (class_exists('GA_Google_Analytics_Pro')) {
-    wp_register_script(
-      'ga-pro',
-      get_template_directory_uri() . '/ga-pro-cookie.js',
-      array(),
-      $version,
-      false
-    );
-    wp_enqueue_script('ga-pro');
-  }
 }

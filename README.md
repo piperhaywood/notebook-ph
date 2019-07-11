@@ -20,7 +20,13 @@ In the WordPress Customiser, you can adjust:
 - Whether or not the author is displayed
 - Whether or not the theme should use the rainbow colour scheme
 
-Two shortcodes are available for use in the WordPress editor. The shortcode `[notebooksearch]` displays a search form, and the shortcode `[notebookindex]` displays an alphabetical index of terms. The Index shortcode can be passed attributes that modify the included taxonomies, the post count threshold, and whether or not year archive links are displayed. For example, `[notebookindex taxonomy="category" years="false" count="2"]` will pull through only categories with a post count of at least 2 and no year archive links. If no attributes are passed to the `notebookindex` shortcode, then these default attributes will be used: `[notebookindex taxonomy="post_tag, category, post_format" years="true" count="1"]`.
+## Shortcodes
+
+The shortcode `[notebooksearch]` displays a search form.
+
+The shortcode `[notebookindex]` displays an alphabetical index of terms. The Index shortcode can be passed attributes that modify the included taxonomies, the post count threshold, and whether or not year archive links are displayed. For example, `[notebookindex taxonomy="category" years="false" count="2"]` will pull through only categories with a post count of at least 2 and no year archive links. If no attributes are passed to the `notebookindex` shortcode, then these default attributes will be used: `[notebookindex taxonomy="post_tag, category, post_format" years="true" count="1"]`.
+
+The shortcode `[notebooklist]` displays a chronological list of posts.
 
 ## Development
 

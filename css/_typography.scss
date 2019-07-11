@@ -2,7 +2,7 @@
   margin-top: 0;
 }
 
-.prose > div:not(.container),
+.prose > div:not(.container):not(.gallery),
 .prose > p,
 .prose > ul,
 .prose > ol,

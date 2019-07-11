@@ -93,11 +93,7 @@
           <?php get_search_form(); ?>
         </div>
 
-        <div class="container container--full">
-          <div class="termindex">
-            <?php get_template_part('termindex'); ?>
-          </div>
-        </div>
+        <?php echo do_shortcode('[notebookindex count="2"]'); ?>
       </div>
       <footer class="post__footer">
       </footer>

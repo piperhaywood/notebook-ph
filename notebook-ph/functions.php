@@ -270,7 +270,7 @@ function nph_archivedesc($echo = true, $prefix = '', $suffix = '') {
   } elseif (is_home()) {
     $intro = get_theme_mod('nph_blog_intro');
     if ($intro) {
-      $return .= '<p class="copyright">' . strip_tags($intro, '<em><a><img><br>') . '</p>';
+      $return .= '<p>' . strip_tags($intro, '<em><a><img><br>') . '</p>';
     }
   }
 

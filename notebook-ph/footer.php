@@ -3,14 +3,16 @@
     <?php $prev = get_previous_posts_link(__('Previous page', 'notebook-ph')); ?>
     <?php $next = get_next_posts_link(__('Next page', 'notebook-ph')); ?>
     <?php if ($prev || $next) : ?>
-      <nav class="pagination pagination--archive js-pagination">
-        <?php if ($prev) : ?>
-          <p class="pagination__link pagination__link--previous js-previous"><?php echo $prev; ?></p>
-        <?php endif; ?>
-        <?php if ($next) : ?>
-          <p class="pagination__link pagination__link--next js-next"><?php echo $next; ?></p>
-        <?php endif; ?>
-      </nav>
+      <div class="container">
+        <nav class="pagination pagination--archive js-pagination">
+          <?php if ($prev) : ?>
+            <p class="pagination__link pagination__link--previous js-previous"><?php echo $prev; ?></p>
+          <?php endif; ?>
+          <?php if ($next) : ?>
+            <p class="pagination__link pagination__link--next js-next"><?php echo $next; ?></p>
+          <?php endif; ?>
+        </nav>
+      </div>
     <?php endif; ?>
   <?php elseif (is_singular('post')) : ?>
     <?php $prev = get_previous_post(); ?>

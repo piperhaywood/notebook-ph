@@ -7,6 +7,10 @@
   @include visuallyhidden;
 }
 
+.searchform input {
+  background: inherit;
+}
+
 .searchform input[type="text"] {
   border: 1px solid transparent;
   display: block;
@@ -18,7 +22,6 @@
 }
 
 .searchform input[type="submit"] {
-  background: white;
   cursor: pointer;
   padding: 1rem;
 }

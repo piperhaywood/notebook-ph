@@ -51,12 +51,11 @@
 
   <?php wp_footer(); ?>
 
-</footer>
   <div class="container">
     <a href="#top" class="visuallyhidden button"><?php _e('Back to top', 'notebook-ph'); ?></a>
   </div>
 
-</div>
+</footer>
 
 </body>
 </html>

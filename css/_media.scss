@@ -45,8 +45,6 @@ $max-aligned-img: 16em;
   }
 }
 
-
-
 .prose p .alignright {
   margin-right: 0;
 }
@@ -161,7 +159,7 @@ $max-aligned-img: 16em;
 
 .prose .gallery-columns-2 .gallery-item {
   @media (min-width: 410px) {
-      max-width: calc((100vw - var(--gutter)) / 2);
+    max-width: calc((100vw - var(--gutter)) / 2);
   }
 }
 

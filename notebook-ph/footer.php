@@ -34,13 +34,17 @@
   <?php endif; ?>
 
   <div class="js-infinite-loading infinite-loading">
-    <p><em><?php esc_html_e('Loading more&hellip;', 'notebook-ph'); ?></em></p>
+    <div class="container">
+      <p><em><?php esc_html_e('Loading more&hellip;', 'notebook-ph'); ?></em></p>
+    </div>
   </div>
 
   <?php $end = get_theme_mod('nph_infinite_scroll_end'); ?>
   <?php $end = $end ? $end : '<em>' . esc_html__('Loading more&hellip;', 'notebook-ph') . '</em>'; ?>
   <div class="js-infinite-end infinite-end">
-    <p><?php echo strip_tags($end, '<em><a><img><br>'); ?></p>
+    <div class="container">
+      <p><?php echo strip_tags($end, '<em><a><img><br>'); ?></p>
+    </div>
   </div>
 
   <?php wp_footer(); ?>

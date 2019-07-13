@@ -99,11 +99,11 @@ summary {
   cursor: pointer;
 }
 
-body:not(.user-is-tabbing) button:focus,
-body:not(.user-is-tabbing) input:focus,
-body:not(.user-is-tabbing) select:focus,
-body:not(.user-is-tabbing) textarea:focus,
-body:not(.user-is-tabbing) summary:focus {
+body:not(.is-tabbing) button:focus,
+body:not(.is-tabbing) input:focus,
+body:not(.is-tabbing) select:focus,
+body:not(.is-tabbing) textarea:focus,
+body:not(.is-tabbing) summary:focus {
   outline: none;
 }
 

@@ -1,11 +1,3 @@
-function handleFirstTab(e) {
-  if (e.keyCode === 9) {
-    // the "I am a keyboard user" key
-    document.body.classList.add("user-is-tabbing");
-    window.removeEventListener("keydown", handleFirstTab);
-  }
-}
-
 var infinite = {
   init: function() {
     var next = document.querySelector(".js-next");
@@ -48,5 +40,15 @@ var infinite = {
   }
 };
 
+
+// Add class so that we can style skip links
+function handleFirstTab(e) {
+  if (e.keyCode === 9) {
+    // the "I am a keyboard user" key
+    document.body.classList.add("is-tabbing");
+    document.body.classList.remove("is-not-tabbing");
+    window.removeEventListener("keydown", handleFirstTab);
+  }
+}
 window.addEventListener("keydown", handleFirstTab);
 var infScroll = infinite.init();

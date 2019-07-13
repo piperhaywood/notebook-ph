@@ -93,7 +93,9 @@ function get_notebook_index($taxonomy, $showYears, $count) {
       <div class="termindex">
         <?php foreach ($groups as $char => $terms) : ?>
           <?php ksort($terms); ?>
-          <h2><?php echo apply_filters( 'the_title', $char ); ?></h2>
+          <?php $label = $char == '#' ? esc_attr__('a number', 'notebook-ph') : $char; ?>
+          <?php $label = sprintf(esc_attr__('Terms beginning with %s', 'notebook-ph'), $label); ?>
+          <h2 aria-label="<?php echo $label; ?>"><?php echo apply_filters( 'the_title', $char ); ?></h2>
           <ol>
           <?php foreach ($terms as $slug => $term) : ?>
             <li>
@@ -268,7 +270,7 @@ function nph_archivedesc($echo = true, $prefix = '', $suffix = '') {
   } elseif (is_home()) {
     $intro = get_theme_mod('nph_blog_intro');
     if ($intro) {
-      $return .= '<p class="copyright">' . strip_tags($intro, '<em><a><img><br>') . '</p>';
+      $return .= '<p>' . strip_tags($intro, '<em><a><img><br>') . '</p>';
     }
   }
 
@@ -300,27 +302,78 @@ function nph_archive_str() {
     return __('Page not found [404 error]', 'notebook-ph');
   }
   $paged = get_query_var('paged');
-  $page = $paged > 0 ? ' ' . _x('p.', 'paged', 'notebook-ph') . $paged : null;
+  $page = $paged > 0 ? ', ' . _x('p.', 'paged', 'notebook-ph') . $paged : '';
+  $text = '';
   if (is_front_page()) {
-    $title = get_bloginfo('name');
-    $total = null;
+    $text = get_bloginfo('name');
+    $label = $text;
   } elseif (is_tax('post_format')) {
-    $title = '<span class="term term--post_format">' . get_post_format() . '</span>';
+    $var = get_post_format();
+    $text = '<span class="term term--post_format">' . $var . '</span>';
   } elseif (is_tag()) {
-    $title = '<span class="term term--post_tag">' . single_tag_title('', false ) . '</span>';
+    $var = single_tag_title('', false );
+    $text = '<span class="term term--post_tag">' . $var . '</span>';
   } elseif (is_category()) {
-    $title = '<span class="term term--category">' . single_cat_title('', false) . '</span>';
+    $var = single_cat_title('', false);
+    $text = '<span class="term term--category">' . $var . '</span>';
   } elseif (is_search()) {
-    $title = sprintf(__('&ldquo;%s&rdquo;', 'notebook-ph'), get_query_var('s'));
+    $query = get_query_var('s');
+    $text = sprintf(__('&ldquo;%s&rdquo;', 'notebook-ph'), $query);
   } elseif (is_author()) {
-    $title = 'by ' . get_the_author_meta('display_name', get_query_var('author'));
+    $var = get_the_author_meta('display_name', get_query_var('author'));
+    $text = sprintf(__('by %s', 'notebook-ph'), $var);
   } elseif (is_month()) {
-    $title = get_the_date('F Y');
+    $var = get_the_date('F Y');
+    $text = $var;
   } elseif (is_year()) {
-    $title = get_the_date('Y');
+    $var = get_the_date('Y');
+    $text = $var;
   }
-  $title = $title . '  <span class="term__count">' . $wp_query->found_posts . '</span>';
-  return $title . $page;
+
+  $title = $text . $page . '&nbsp;<span class="term__count">' . $wp_query->found_posts . '</span>';
+
+  return $title;
+}
+
+function nph_archive_label() {
+  global $wp_query;
+  if (is_singular()) {
+    return get_the_title();
+  }
+  if (is_404()) {
+    return __('Page not found [404 error]', 'notebook-ph');
+  }
+  $paged = get_query_var('paged');
+  $page = $paged > 0 ? ', ' . sprintf(__('page %s', 'notebook-ph'), $paged) : '';
+  $label = false;
+  if (is_front_page()) {
+    $label = get_bloginfo('name');
+  } elseif (is_tax('post_format')) {
+    $var = get_post_format();
+    $label = sprintf(__('Format: %s', 'notebook-ph'), $var);
+  } elseif (is_tag()) {
+    $var = single_tag_title('', false );
+    $label = sprintf(__('Tag: %s', 'notebook-ph'), $var);
+  } elseif (is_category()) {
+    $var = single_cat_title('', false);
+    $label = sprintf(__('Category: %s', 'notebook-ph'), $var);
+  } elseif (is_search()) {
+    $query = get_query_var('s');
+    $label = sprintf(__('You searched for &ldquo;%s&rdquo;', 'notebook-ph'), $query);
+  } elseif (is_author()) {
+    $var = get_the_author_meta('display_name', get_query_var('author'));
+    $label = sprintf(__('Author: %s', 'notebook-ph'), $var);
+  } elseif (is_month()) {
+    $var = get_the_date('F Y');
+    $label = sprintf(__('Month: %s', 'notebook-ph'), $var);
+  } elseif (is_year()) {
+    $var = get_the_date('Y');
+    $label = sprintf(__('Year: %s', 'notebook-ph'), $var);
+  }
+
+  $label = $label . $page . ' &mdash; ' . sprintf(_n('%s post', '%s posts', $wp_query->found_posts, 'notebook-ph'), $wp_query->found_posts);
+
+  return $label;
 }
 
 function nph_get_copyright() {
@@ -476,7 +529,9 @@ function nph_get_list($posts = false) {
             <?php $src = get_the_post_thumbnail_url($post, 'thumbnail'); ?>
           <?php endif; ?>
           <li class="post-index__post-item post-item" style="--color:<?php echo $hsl; ?>;">
-            <a class="post-item__link" href="<?php the_permalink(); ?>">
+            <a class="post-item__link" href="<?php the_permalink(); ?>"
+              aria-role="button"
+              aria-label="<?php printf(esc_attr__('Visit post published %s titled “%s”', 'notebook-ph'), get_the_date('d F Y'), get_the_title()); ?>">
               <time class="post-item__time" datetime="<?php echo nph_date(true, false); ?>"><?php echo get_the_date('d M Y'); ?></time>
               <span>&mdash;</span>
               <?php if ($src) : ?><img class="post-item__image" src="<?php echo $src; ?>"><?php endif; ?>

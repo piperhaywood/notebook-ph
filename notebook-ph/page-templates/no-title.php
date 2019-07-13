@@ -3,16 +3,21 @@
 <?php get_header(); ?>
 
 <main id="main" class="main" role="main">
-  <section class="articles <?php echo !is_singular() ? 'js-infinite-container' : false; ?>">
+  <section class="articles<?php echo !is_singular() ? ' js-infinite-container' : false; ?>">
   <?php if (have_posts()) : ?>
     <?php while (have_posts()) : the_post(); ?>
       <?php $hsl = nph_get_hsl(); ?>
       <article <?php post_class(array('post', 'article', 'js-article')); ?> style="--color:<?php echo $hsl; ?>;">
         <div class="article__inner">
+          <header class="post__header">
+            <h1 class="p-name post__title visuallyhidden">
+              <?php nph_title(); ?>
+            </h1>
+          </header>
 
-          <div class="prose">
+          <section class="prose">
             <?php the_content(esc_html__('Read more', 'notebook-ph')); ?>
-          </div>
+          </section>
 
           <footer class="post__footer">
 
@@ -22,6 +27,7 @@
               <?php endif; ?>
             <?php endif; ?>
             <?php wp_link_pages(); ?>
+            <a href="#top" class="visuallyhidden button" aria-role="button"><?php _e('Back to top', 'notebook-ph'); ?></a>
 
           </footer>
         </div>

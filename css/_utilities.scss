@@ -10,8 +10,37 @@
   max-width: 100%;
 }
 
+.hidden {
+  display: none;
+}
+
 .visuallyhidden {
   @include visuallyhidden;
+}
+
+.visuallyhidden.button:focus,
+.visuallyhidden.button:active {
+  background-color: var(--color);
+  color: white;
+  display: inline-block;
+  left: auto;
+  top: auto;
+  width: auto;
+  height: auto;
+  overflow: auto;
+  margin: 1rem auto 0 auto;
+  padding: 0.5rem;
+  position: static;
+  text-align: center;
+  white-space: nowrap;
+  z-index: auto;
+}
+
+.visuallyhidden.button:hover,
+.visuallyhidden.button:hover,
+.visuallyhidden.button:hover {
+  background-color: white;
+  color: black;
 }
 
 .has-bg {
@@ -28,29 +57,4 @@ a.has-bg:hover {
   background: none;
   color: inherit;
   text-decoration: none;
-}
-
-a.skip-link {
-  display: block;
-  height: 1px;
-  left: -999px;
-  overflow: hidden;
-  position: absolute;
-  top: auto;
-  width: 1px;
-  z-index: -999;
-}
-
-a.skip-link:focus,
-a.skip-link:active {
-  background-color: yellow;
-  left: auto;
-  top: auto;
-  width: 100%;
-  height: $header-height;
-  overflow: auto;
-  margin: 0 auto;
-  padding: $container-padding;
-  text-align: center;
-  z-index: 999;
 }

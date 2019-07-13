@@ -9,70 +9,80 @@
     <?php wp_head(); ?>
 
   </head>
+  <?php $copyright = get_theme_mod('nph_copyright'); ?>
+  <?php $short = get_theme_mod('nph_short_title'); ?>
+  <?php $classes = get_theme_mod('nph_rainbow') ? array('rainbow') : array(); ?>
+  <?php $classes[] = 'is-not-tabbing'; ?>
+  <body <?php body_class(implode(' ', $classes)); ?>>
 
-  <?php $rainbow = get_theme_mod('nph_rainbow') ? 'rainbow' : ''; ?>
-  <body <?php body_class($rainbow); ?>>
-
-    <input type="checkbox" id="menu-toggle">
-    <label
-      class="open-menu"
-      for="menu-toggle"
-      data-close="<?php esc_html_e('Close', 'notebook-ph'); ?>"
-      role="button">
-      <span class="open-menu__button open-menu__button--open"
-        aria-controls="main-menu"
-        aria-label="<?php esc_html_e('Open menu', 'notebook-ph'); ?>"><?php esc_html_e('Menu', 'notebook-ph'); ?></span>
-      <span class="open-menu__button open-menu__button--close"
-        aria-controls="main-menu"
-        aria-label="<?php esc_html_e('Close menu', 'notebook-ph'); ?>"><?php esc_html_e('Close', 'notebook-ph'); ?></span>
-    </label>
-
-    <header class="header" role="banner">
-      <div class="header__inner">
-        <a class="skip-link" href="#main"><?php esc_html_e('Skip to main content', 'notebook-ph'); ?></a>
-        <a class="skip-link" href="#searchform"><?php esc_html_e('Skip to search form', 'notebook-ph'); ?></a>
-        <div class="container">
-          <h1 class="header__title">
-            <?php if (!is_front_page()) : ?>
-              <?php $short = get_theme_mod('nph_short_title'); ?>
-              <a class="header__link" href="<?php echo site_url(); ?>" data-title="<?php bloginfo('name'); ?>" aria-label="<?php esc_html_e('Go to homepage', 'notebook-ph'); ?>"><?php echo $short ? $short : get_bloginfo('name'); ?></a> / <?php echo nph_archive_str(); ?>
-            <?php else : ?>
-              <a class="header__link" href="<?php echo site_url(); ?>" data-title="<?php bloginfo('name'); ?>" aria-label="<?php esc_html_e('Go to homepage', 'notebook-ph'); ?>"><?php bloginfo('name'); ?></a>
-            <?php endif; ?>
-            
-          </h1>
-        </div>
-
-        <?php wp_nav_menu( array(
-          'theme_location' => 'nph-menu',
-          'container' => 'nav',
-          'menu_class' => 'menu container'
-        ) ); ?>
-
-        <div class="container">
-          <?php get_search_form(); ?>
-        </div>
-
-        <div class="container smallprint">
-          <?php $copyright = get_theme_mod('nph_copyright'); ?>
-          <?php if ($copyright) : ?>
-            <p class="copyright"><?php echo strip_tags($copyright, '<em><a><img><br>'); ?></p>
-          <?php endif; ?>
-          <p class="credit">
-            <?php
-              printf(
-                wp_kses(
-                  __('This site uses the %1$s theme by <a href="%2$s">%3$s</a>.', 'notebook-ph'),
-                  array('a' => array('href' => array()))
-                ),
-                'Notebook',
-                esc_url('https://piperhaywood.com'),
-                'Piper Haywood'
-              );
-            ?>
-          </p>
-        </div>
-
+    <header id="top" class="header js-header">
+      <div class="container">
+        <a class="visuallyhidden button" href="#main" aria-role="button"><?php esc_html_e('Skip to main content', 'notebook-ph'); ?></a>
+        <?php if (class_exists('GA_Google_Analytics_Pro')) : ?>
+          <a class="visuallyhidden button" href="#ga-pro" aria-role="button"><?php esc_html_e('Skip to analytics settings', 'notebook-ph'); ?></a>
+        <?php endif; ?>
       </div>
+      <h1 id="title" aria-label="<?php echo nph_archive_label(); ?>">
+        <?php echo is_front_page() ? get_bloginfo('name') : nph_archive_str() . ' &mdash; ' . get_bloginfo('name'); ?>
+      </h1>
+      <details id="menu" class="header__details container js-header-details">
+        <summary class="header__summary js-header-summary" role="button" aria-expanded="false">
+          <div class="header__title" aria-hidden="true">
+            <div class="nav-icon">
+              <div></div>
+            </div>
+            <div>
+              <?php if (!is_front_page()) : ?>
+                <?php echo $short ? $short : get_bloginfo('name'); ?> / <?php echo nph_archive_str(); ?>
+              <?php else : ?>
+                <?php bloginfo('name'); ?>
+              <?php endif; ?>
+            </div>
+          </div>
+
+          <span id="menutoggle" class="js-menu-toggle" aria-label="<?php esc_attr_e('Open menu for navigation and search', 'notebook-ph'); ?>"><?php _e('Open menu', 'notebook-ph'); ?></span>
+        </summary>
+
+        <div class="header__inner">
+          <?php $desc = nph_archivedesc(false); ?>
+          <?php if ($desc) : ?>
+            <div class="header__desc prose" aria-hidden="true">
+              <?php echo $desc; ?>
+            </div>
+          <?php endif; ?>
+
+          <?php $items = wp_get_nav_menu_items('header'); ?>
+          <?php $menu_class = count($items) > 3 ? ' col-2' : ''; ?>
+          <?php $menu_class = 'menu' . $menu_class; ?>
+
+          <?php wp_nav_menu( array(
+            'theme_location' => 'nph-menu',
+            'container' => 'nav',
+            'menu_class' => $menu_class
+          ) ); ?>
+
+          <?php get_search_form(); ?>
+
+          <div class="smallprint">
+            <?php if ($copyright) : ?>
+              <p class="copyright"><?php echo strip_tags($copyright, '<em><a><img><br>'); ?></p>
+            <?php endif; ?>
+            <p class="credit">
+              <?php
+                printf(
+                  wp_kses(
+                    __('This site uses the %1$s theme by <a href="%2$s">%3$s</a>.', 'notebook-ph'),
+                    array('a' => array('href' => array()))
+                  ),
+                  'Notebook',
+                  esc_url('https://piperhaywood.com'),
+                  'Piper Haywood'
+                );
+              ?>
+            </p>
+          </div>
+          <a href="#" class="visuallyhidden button js-close-menu" aria-role="button"><?php _e('Close menu', 'notebook-ph'); ?></a>
+        </div>
+
+      </details>
     </header>
-    <div class="wrapper js-wrapper">

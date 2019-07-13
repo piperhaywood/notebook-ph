@@ -1,10 +1,5 @@
-.rainbow .has-bg,
-.rainbow .rpbt_shortcode li {
+.rainbow .has-bg {
   background: var(--color);
-}
-
-.rainbow .rpbt_shortcode li:hover {
-  background: none;
 }
 
 .rainbow .post__title a:hover {
@@ -22,12 +17,6 @@
 
 .rainbow .article .prose blockquote {
   border: 1px solid var(--color);
-}
-
-.rainbow a.skip-link:focus,
-.rainbow a.skip-link:active {
-  background-color: var(--color);
-  color: $white;
 }
 
 @supports (text-decoration-color: var(--color)) {

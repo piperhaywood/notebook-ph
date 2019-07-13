@@ -29,20 +29,7 @@
 ?>
 
 <?php if ( $related_posts ) : ?>
-
-  <ul>
-    <?php foreach ( $related_posts as $post ) : ?>
-      <?php
-        setup_postdata( $post );
-        // In this loop you can use WordPress functions to display the related posts.
-      ?>
-      <?php $hsl = nph_get_hsl($post); ?>
-      <li data-date="<?php echo get_the_date('d M Y', $post->ID); ?>" style="--color:<?php echo esc_attr($hsl); ?>" <?php km_rpbt_post_class( $post, $rpbt_args ); ?>>
-        <?php km_rpbt_post_link( $post, $rpbt_args ); ?>
-      </li>
-    <?php endforeach; ?>
-  </ul>
-
+  <?php echo nph_get_list($related_posts); ?>
 <?php endif ?>
 
 <?php

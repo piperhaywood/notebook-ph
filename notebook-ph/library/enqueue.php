@@ -1,6 +1,12 @@
 <?php
 
-add_action('wp_enqueue_scripts', 'nph_assets');
+// If GA Google Analytics Pro is enabled, print scripts earlier in footer
+if (class_exists('GA_Google_Analytics_Pro')) {
+  remove_action('wp_footer', 'wp_print_footer_scripts', 20);
+  add_action('wp_footer', 'wp_print_footer_scripts', 9);
+}
+
+add_action('wp_enqueue_scripts', 'nph_assets', 0);
 function nph_assets() {
   $version = nph_get_theme_version();
 
@@ -22,15 +28,4 @@ function nph_assets() {
   );
   wp_enqueue_script('nph-scripts');
 
-  // If GA Google Analytics Pro is enabled, set a cookie to hide the message initially
-  if (class_exists('GA_Google_Analytics_Pro')) {
-    wp_register_script(
-      'ga-pro',
-      get_template_directory_uri() . '/ga-pro-cookie.js',
-      array(),
-      $version,
-      false
-    );
-    wp_enqueue_script('ga-pro');
-  }
 }

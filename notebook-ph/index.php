@@ -3,11 +3,11 @@
 <main id="main" class="main" role="main">
   <?php $desc = nph_archivedesc(false); ?>
   <?php if ($desc) : ?>
-    <div class="archive-description prose">
+    <section class="archive-description prose" role="complementary">
       <?php echo $desc; ?>
-    </div>
+    </section>
   <?php endif; ?>
-  <section class="articles <?php echo !is_singular() ? 'js-infinite-container' : false; ?>">
+<section class="articles<?php echo !is_singular() ? ' js-infinite-container' : false; ?>"<?php if (!is_singular()) : ?> role="feed"<?php endif; ?>>
   <?php if (have_posts()) : ?>
     <?php while (have_posts()) : the_post(); ?>
       <?php if (is_page()) : ?>
@@ -21,22 +21,20 @@
           <header class="post__header">
             <?php if (get_post_type() == 'post') : ?>
               <time class="dt-published post__time" datetime="<?php echo nph_date(true, false); ?>">
-                <a class="u-url has-bg" href="<?php the_permalink(); ?>" aria-label="<?php esc_html_e('View post', 'notebook-ph'); ?>">
+                <a class="u-url has-bg" href="<?php the_permalink(); ?>" aria-label="<?php printf(esc_html__('View post published %s', 'notebook-ph'), get_the_date('l, j F Y')); ?>" aria-role="button">
                   <?php echo get_the_date('l, j F Y'); ?>
                 </a>
               </time>
-              <span class="post__author"><?php echo _x('by', 'authorship', 'notebook-ph'); ?> <?php the_author_posts_link(); ?></span>
+              <span class="post__author"><?php printf(_x('by %s', 'authorship', 'notebook-ph'), get_the_author_posts_link()); ?></span>
             <?php endif; ?>
-            <?php if (!$format) : ?>
-              <h1 class="p-name post__title">
-                <?php nph_title(); ?>
-              </h1>
-            <?php endif; ?>
+            <h1 class="p-name post__title<?php echo $format ? ' visuallyhidden' : ''; ?>">
+              <?php nph_title(); ?>
+            </h1>
           </header>
           
-          <div class="prose">
+          <section class="prose">
             <?php the_content(esc_html__('Read more', 'notebook-ph')); ?>
-          </div>
+          </section>
 
           <footer class="post__footer">
             <?php if (!is_page()) : ?>
@@ -62,7 +60,7 @@
                     <?php foreach($terms as $term) : ?>
                       <?php $tax = get_taxonomy($term->taxonomy); ?>
                       <li class="post__tag">
-                        <a aria-label="<?php printf(esc_html__('%s: %s', 'notebook-ph'), $tax->labels->singular_name, $term->name); ?>" href="<?php echo get_tag_link($term->term_id); ?>"><span class="term term--<?php echo $term->taxonomy; ?>"><?php echo $term->name; ?></span></a><span class="separator">, </span>
+                        <a aria-label="<?php printf(esc_html__('%s: %s', 'notebook-ph'), $tax->labels->singular_name, $term->name); ?>" href="<?php echo get_tag_link($term->term_id); ?>"><span class="term term--<?php echo $term->taxonomy; ?>"><?php echo $term->name; ?></span></a><span class="separator" aria-hidden="true">, </span>
                       </li>
                     <?php endforeach; ?>
                   <?php endif; ?>
@@ -75,6 +73,7 @@
               <?php endif; ?>
             <?php endif; ?>
             <?php wp_link_pages(); ?>
+            <a href="#top" class="visuallyhidden button" aria-role="button"><?php _e('Back to top', 'notebook-ph'); ?></a>
 
           </footer>
         </div>
@@ -93,11 +92,7 @@
           <?php get_search_form(); ?>
         </div>
 
-        <div class="container container--full">
-          <div class="termindex">
-            <?php get_template_part('termindex'); ?>
-          </div>
-        </div>
+        <?php echo do_shortcode('[notebookindex count="2"]'); ?>
       </div>
       <footer class="post__footer">
       </footer>

@@ -126,7 +126,6 @@ body.is-not-tabbing.is-header-open {
 
 body:not(.no-details) {
   .header__title {
-    align-items: center;
     display: flex;
   }
 
@@ -142,9 +141,14 @@ body:not(.no-details) {
   }
 
   .nav-icon {
-    // position: absolute;
-    top: 0;
-    width: 1rem;
+    flex-shrink: 0;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    width: 16px;
+    @media (min-width: 500px) {
+      padding-top: 4px;
+      padding-bottom: 4px;
+    }
   }
 
   .nav-icon:after,

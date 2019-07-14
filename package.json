@@ -1,7 +1,7 @@
 {
   "name": "notebook-ph",
   "title": "Notebook by PH",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "A simple WordPress theme for keeping notes. ",
   "author": {
     "name": "Piper Haywood",
@@ -15,7 +15,7 @@
     "url": "https://github.com/piperhaywood/notebook-ph.git"
   },
   "devDependencies": {
-    "browser-sync": "^2.26.5",
+    "browser-sync": "^2.26.7",
     "gulp": "^4.0.2",
     "gulp-add-src": "^1.0.0",
     "gulp-autoprefixer": "^3.1.0",

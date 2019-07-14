@@ -2,11 +2,17 @@
 
 This is a simple, translation-ready WordPress theme for keeping notes. It is currently in use on [piperhaywood.com](https://piperhaywood.com).
 
+## Installation
+
+The compiled theme is in `/notebook-ph`. This directory can be zipped and uploaded in the WordPress theme management page, or the directory can be manually uploaded via cPanel or FTP. For further instructions, see the WordPress documentation page [Using Themes](https://wordpress.org/support/article/using-themes/#adding-new-themes-using-the-administration-screens).
+
 ## Description
 
 Post titles are purposefully obscured. For Standard posts (longer format writing), titles are displayed in the body of the content. For all other formats (aside, image, quote, etc.), titles are only displayed on the post permalink as a breadcrumb.
 
 The theme makes use of the [Infinite Scroll](https://infinite-scroll.com/) library by Metafizzy under the open source license [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html). The theme uses [Prism.js](https://prismjs.com/index.html) for syntax highlighting.
+
+This theme is optimised for use with the plugins [Classic Editor](https://wordpress.org/plugins/classic-editor/), [GA Google Analytics Pro](https://wordpress.org/plugins/ga-google-analytics/), and [Related Posts By Taxonomy](https://wordpress.org/plugins/related-posts-by-taxonomy/) (though they are not required). Other recommended plugins include [VaultPress](https://wordpress.org/plugins/vaultpress/), [Yoast](https://wordpress.org/plugins/wordpress-seo/), and most importantly [Wordfence](https://wordpress.org/plugins/wordfence/).
 
 ## Theme options
 

@@ -133,6 +133,10 @@ body:not(.no-details) {
     margin-right: 0.75rem;
   }
 
+  .header__breadcrumb {
+    flex-grow: 1;
+  }
+
   .header__summary {
     list-style: none;
     &::-webkit-details-marker {

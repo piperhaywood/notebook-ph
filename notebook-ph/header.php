@@ -31,7 +31,7 @@
             <div class="nav-icon">
               <div></div>
             </div>
-            <div>
+            <div class="header__breadcrumb">
               <?php if (!is_front_page()) : ?>
                 <?php echo $short ? $short : get_bloginfo('name'); ?> / <?php echo nph_archive_str(); ?>
               <?php else : ?>

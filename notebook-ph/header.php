@@ -17,9 +17,9 @@
 
     <header id="top" class="header js-header">
       <div class="container">
-        <a class="visuallyhidden button" href="#main" aria-role="button"><?php esc_html_e('Skip to main content', 'notebook-ph'); ?></a>
+        <a class="visuallyhidden button" href="#main"><?php esc_html_e('Skip to main content', 'notebook-ph'); ?></a>
         <?php if (class_exists('GA_Google_Analytics_Pro')) : ?>
-          <a class="visuallyhidden button" href="#ga-pro" aria-role="button"><?php esc_html_e('Skip to analytics settings', 'notebook-ph'); ?></a>
+          <a class="visuallyhidden button" href="#ga-pro"><?php esc_html_e('Skip to analytics settings', 'notebook-ph'); ?></a>
         <?php endif; ?>
       </div>
       <h1 id="title" aria-label="<?php echo nph_archive_label(); ?>">
@@ -81,7 +81,7 @@
               ?>
             </p>
           </div>
-          <a href="#" class="visuallyhidden button js-close-menu" aria-role="button"><?php _e('Close menu', 'notebook-ph'); ?></a>
+          <a href="#" class="visuallyhidden button js-close-menu"><?php _e('Close menu', 'notebook-ph'); ?></a>
         </div>
 
       </details>

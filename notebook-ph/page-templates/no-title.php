@@ -27,7 +27,7 @@
               <?php endif; ?>
             <?php endif; ?>
             <?php wp_link_pages(); ?>
-            <a href="#top" class="visuallyhidden button" aria-role="button"><?php _e('Back to top', 'notebook-ph'); ?></a>
+            <a href="#top" class="visuallyhidden button"><?php _e('Back to top', 'notebook-ph'); ?></a>
 
           </footer>
         </div>

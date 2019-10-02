@@ -7,14 +7,7 @@ function start_cleanup() {
   add_filter('gallery_style', 'gallery_style');
 }
 
-function addBackPostFeed() {
-  echo '<link rel="alternate" type="application/rss+xml" title="' . get_bloginfo('name') . '" href="'.get_bloginfo('rss2_url').'" />'; 
-}
-
 function cleanup_head() {
-  remove_action('wp_head', 'feed_links_extra', 3);
-  remove_action('wp_head', 'feed_links', 2);
-  add_action('wp_head', 'addBackPostFeed');
   remove_action('wp_head', 'wlwmanifest_link');
   remove_action('wp_head', 'index_rel_link');
   remove_action('wp_head', 'parent_post_rel_link', 10, 0);

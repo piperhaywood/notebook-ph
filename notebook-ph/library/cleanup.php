@@ -15,7 +15,6 @@ function cleanup_head() {
   remove_action('wp_head', 'rel_canonical', 10, 0);
   remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
   remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
-  remove_action('wp_head', 'wp_generator');
   add_filter('style_loader_src', 'alter_wp_ver_css_js', 9999);
   add_filter('script_loader_src', 'alter_wp_ver_css_js', 9999);
 }

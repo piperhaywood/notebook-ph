@@ -21,7 +21,7 @@
           <header class="post__header">
             <?php if (get_post_type() == 'post') : ?>
               <time class="dt-published post__time" datetime="<?php echo nph_date(true, false); ?>">
-                <a class="u-url has-bg" href="<?php the_permalink(); ?>" aria-label="<?php printf(esc_html__('View post published %s', 'notebook-ph'), get_the_date('l, j F Y')); ?>" aria-role="button">
+                <a class="u-url has-bg" href="<?php the_permalink(); ?>" aria-label="<?php printf(esc_html__('View post published %s', 'notebook-ph'), get_the_date('l, j F Y')); ?>">
                   <?php echo get_the_date('l, j F Y'); ?>
                 </a>
               </time>
@@ -32,7 +32,7 @@
             </h1>
           </header>
           
-          <section class="prose">
+          <section class="prose e-content">
             <?php the_content(esc_html__('Read more', 'notebook-ph')); ?>
           </section>
 
@@ -73,7 +73,7 @@
               <?php endif; ?>
             <?php endif; ?>
             <?php wp_link_pages(); ?>
-            <a href="#top" class="visuallyhidden button" aria-role="button"><?php _e('Back to top', 'notebook-ph'); ?></a>
+            <a href="#top" class="visuallyhidden button"><?php _e('Back to top', 'notebook-ph'); ?></a>
 
           </footer>
         </div>

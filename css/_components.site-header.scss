@@ -54,8 +54,8 @@ body.is-not-tabbing.is-header-open {
   margin-bottom: 1em;
 }
 
-.smallprint a:hover {
-  text-decoration: underline;
+.smallprint a {
+  text-decoration-color: $grey !important;
 }
 
 .menu-header-container {

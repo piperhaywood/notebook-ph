@@ -530,7 +530,6 @@ function nph_get_list($posts = false) {
           <?php endif; ?>
           <li class="post-index__post-item post-item" style="--color:<?php echo $hsl; ?>;">
             <a class="post-item__link" href="<?php the_permalink(); ?>"
-              aria-role="button"
               aria-label="<?php printf(esc_attr__('Visit post published %s titled “%s”', 'notebook-ph'), get_the_date('d F Y'), get_the_title()); ?>">
               <time class="post-item__time" datetime="<?php echo nph_date(true, false); ?>"><?php echo get_the_date('d M Y'); ?></time>
               <span>&mdash;</span>

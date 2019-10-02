@@ -166,6 +166,10 @@
   white-space: pre-wrap;
 }
 
+.prose pre.nowrap code {
+  white-space: inherit;
+}
+
 .prose table {
   display: block;
   max-width: 100%;

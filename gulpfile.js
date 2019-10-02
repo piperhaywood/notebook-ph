@@ -3,7 +3,7 @@ var browserSync = require("browser-sync").create();
 var sass = require("gulp-sass");
 var autoprefixer = require("gulp-autoprefixer");
 var sourcemaps = require("gulp-sourcemaps");
-var cssmin = require("gulp-cssmin");
+var cleanCSS = require("gulp-clean-css");
 var concat = require("gulp-concat");
 var uglify = require("gulp-uglify");
 var header = require("gulp-header");
@@ -56,7 +56,7 @@ gulp.task("sass", function() {
     .pipe(sourcemaps.write())
     .pipe(autoprefixer())
     .pipe(concat("style.css"))
-    .pipe(cssmin())
+    .pipe(cleanCSS())
     .pipe(header(banner, { pkg: pkg }))
     .pipe(gulp.dest(themeDir));
 });

@@ -63,7 +63,7 @@
 
           <?php get_search_form(); ?>
 
-          <div class="smallprint">
+          <div class="smallprint prose">
             <?php if ($copyright) : ?>
               <p class="copyright"><?php echo strip_tags($copyright, '<em><a><img><br>'); ?></p>
             <?php endif; ?>

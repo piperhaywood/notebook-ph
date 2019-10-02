@@ -2,3 +2,5 @@
 node_modules
 .sass-cache
 *.map
+rsync_exclude.txt
+deploy

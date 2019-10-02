@@ -12,7 +12,6 @@ function addBackPostFeed() {
 }
 
 function cleanup_head() {
-  remove_action('wp_head', 'rsd_link');
   remove_action('wp_head', 'feed_links_extra', 3);
   remove_action('wp_head', 'feed_links', 2);
   add_action('wp_head', 'addBackPostFeed');

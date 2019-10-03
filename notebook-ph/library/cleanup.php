@@ -35,13 +35,6 @@ function nph_modify_read_more_link($more_link, $more_link_text) {
   return $more_link . ' &rarr;';
 }
 
-add_filter('the_content', 'ph_remove_arrows');
-function ph_remove_arrows($content) {
-  $content = str_replace('&rarr;', '', $content);
-  $content = str_replace('→', '', $content);
-  return $content;
-}
-
 add_filter('wp_calculate_image_sizes', 'nph_sizes', 10 , 5);
 function nph_sizes($sizes, $size, $image_src, $image_meta, $attachment_id) {
   $width = $size[0];

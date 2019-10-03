@@ -1,18 +1,20 @@
 body.is-not-tabbing.is-header-open {
+  bottom: 0;
   height: 100%;
+  left: 0;
   overflow-y: hidden;
   position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
   right: 0;
+  top: 0;
 }
 
 .is-not-tabbing.is-header-open .header {
   height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
+  /* stylelint-disable */
   -webkit-overflow-scrolling: touch;
+  /* stylelint-enable */
 }
 
 .is-tabbing.is-header-open .archive-description {
@@ -28,8 +30,8 @@ body.is-not-tabbing.is-header-open {
 }
 
 .header__summary {
-  padding-top: 1rem;
   padding-bottom: 1rem;
+  padding-top: 1rem;
 }
 
 .header__summary:hover .header__title {
@@ -151,14 +153,14 @@ body:not(.no-details) {
 
   .nav-icon {
     flex-shrink: 0;
-    order: 2;
     margin-right: 0;
-    padding-top: 1px;
+    order: 2;
     padding-bottom: 1px;
+    padding-top: 1px;
     width: 16px;
     @media (min-width: 500px) {
-      padding-top: 4px;
       padding-bottom: 4px;
+      padding-top: 4px;
     }
   }
 

@@ -33,7 +33,7 @@
             </div>
             <div class="header__breadcrumb">
               <?php if (!is_front_page()) : ?>
-                <?php echo $short ? $short : get_bloginfo('name'); ?> / <?php echo nph_archive_str(); ?>
+                <?php echo $short ? $short . ' / ' : ''; ?><?php echo nph_archive_str(); ?>
               <?php else : ?>
                 <?php bloginfo('name'); ?>
               <?php endif; ?>

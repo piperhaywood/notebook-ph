@@ -10,39 +10,35 @@
  */
 
 $prism-pink: #e08;
-$prism-grey: #75715E;
-$prism-white: #F8F8F2;
+$prism-grey: #75715e;
+$prism-white: #f8f8f2;
 $prism-orange: #d70;
-$prism-yellow: #E6DB74;
+$prism-yellow: #e6db74;
 $prism-green: #0a2;
 $prism-blue: #07d;
 $prism-purple: #98d;
 $prism-black: #282828;
 
-
 code[class*="language-"],
 pre[class*="language-"] {
   color: $prism-black;
-  font-size: 92%;
   direction: ltr;
+  font-size: 92%;
+  hyphens: none;
+  line-height: 1.5;
+  tab-size: 4;
   text-align: left;
   white-space: pre;
-  word-spacing: normal;
   word-break: normal;
+  word-spacing: normal;
   word-wrap: normal;
-  line-height: 1.5;
-
-  tab-size: 4;
-
-  hyphens: none;
 }
 
 /* Code blocks */
 pre[class*="language-"] {
-  padding: 1em;
   margin: 0 0 1em 0;
   overflow: auto;
-  // border-radius: 0.3em;
+  padding: 1em;
 }
 
 :not(pre) > code[class*="language-"],
@@ -52,7 +48,7 @@ pre[class*="language-"] {
 
 /* Inline code */
 :not(pre) > code[class*="language-"] {
-  padding: .1em;
+  padding: 0.1em;
 }
 
 .token.comment,
@@ -67,7 +63,7 @@ pre[class*="language-"] {
 }
 
 .namespace {
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .token.property,
@@ -128,11 +124,10 @@ pre[class*="language-"] {
   cursor: help;
 }
 
-
 pre.line-numbers {
-  position: relative;
-  padding-left: 3.8em;
   counter-reset: linenumber;
+  padding-left: 3.8em;
+  position: relative;
 }
 
 pre.line-numbers > code {
@@ -140,31 +135,31 @@ pre.line-numbers > code {
 }
 
 .line-numbers .line-numbers-rows {
-  position: absolute;
-  pointer-events: none;
-  top: 0;
+  border-right: 1px solid #999;
   font-size: 100%;
   left: -3.8em;
-  width: 3em; /* works for line-numbers below 1000 lines */
   letter-spacing: -1px;
-  border-right: 1px solid #999;
-
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 3em; /* works for line-numbers below 1000 lines */
+  /* stylelint-disable */
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-
+  /* stylelint-enable */
 }
 
 .line-numbers-rows > span {
-  pointer-events: none;
-  display: block;
   counter-increment: linenumber;
+  display: block;
+  pointer-events: none;
 }
 
 .line-numbers-rows > span:before {
-  content: counter(linenumber);
   color: #999;
+  content: counter(linenumber);
   display: block;
   padding-right: 0.8em;
   text-align: right;

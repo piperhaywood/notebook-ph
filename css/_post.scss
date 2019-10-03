@@ -4,8 +4,8 @@
 }
 
 .post__time {
-  margin-bottom: 2em;
   display: inline-block;
+  margin-bottom: 2em;
 }
 
 .post__time a {
@@ -16,7 +16,7 @@
 
 .post__title {
   @include style-h1(700);
-  margin-bottom: 2em;
+  margin-bottom: 1.5em;
 }
 
 .post__title a {

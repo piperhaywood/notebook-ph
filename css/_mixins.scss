@@ -71,8 +71,8 @@
 }
 
 @mixin code {
+  background: #eeeeee;
   font-family: $font-mono;
   font-size: inherit;
-  background: #eeeeee;
   padding: 0 0.25em;
 }

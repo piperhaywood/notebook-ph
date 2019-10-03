@@ -1,18 +1,20 @@
 body.is-not-tabbing.is-header-open {
+  bottom: 0;
   height: 100%;
+  left: 0;
   overflow-y: hidden;
   position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
   right: 0;
+  top: 0;
 }
 
 .is-not-tabbing.is-header-open .header {
   height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
+  /* stylelint-disable */
   -webkit-overflow-scrolling: touch;
+  /* stylelint-enable */
 }
 
 .is-tabbing.is-header-open .archive-description {
@@ -28,8 +30,8 @@ body.is-not-tabbing.is-header-open {
 }
 
 .header__summary {
-  padding-top: 1rem;
   padding-bottom: 1rem;
+  padding-top: 1rem;
 }
 
 .header__summary:hover .header__title {
@@ -54,36 +56,39 @@ body.is-not-tabbing.is-header-open {
   margin-bottom: 1em;
 }
 
+.smallprint > * {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
 .smallprint a {
   text-decoration-color: $grey !important;
 }
 
-.menu-header-container {
-  margin-top: 1rem;
-}
-
-.menu-header-container ul {
-  list-style-type: none;
-}
-
-.menu {
-  padding-left: 0;
-}
-
-.menu.col-2 {
-  columns: 2;
-}
-
-.menu a {
-  display: inline-block;
-  padding-bottom: calc(var(--gutter) / 2);
-  padding-right: calc(var(--gutter) / 2);
-}
-
-.menu a:hover,
-.menu a:focus,
-.menu a:active {
-  text-decoration: underline;
+/* NOTE Using elements for this due to WP behaviour with default menus */
+.header__inner {
+  nav {
+    margin-top: 1rem;
+  }
+  nav ul {
+    list-style-type: none;
+  }
+  nav > ul {
+    padding-left: 0;
+  }
+  nav ul.col-2 {
+    columns: 2;
+  }
+  nav a {
+    display: inline-block;
+    padding-bottom: calc(var(--gutter) / 2);
+    padding-right: calc(var(--gutter) / 2);
+  }
+  nav a:hover,
+  nav a:focus,
+  nav a:active {
+    text-decoration: underline;
+  }
 }
 
 #title {
@@ -146,12 +151,14 @@ body:not(.no-details) {
 
   .nav-icon {
     flex-shrink: 0;
-    padding-top: 1px;
+    margin-right: 0;
+    order: 2;
     padding-bottom: 1px;
+    padding-top: 1px;
     width: 16px;
     @media (min-width: 500px) {
-      padding-top: 4px;
       padding-bottom: 4px;
+      padding-top: 4px;
     }
   }
 

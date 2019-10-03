@@ -2,8 +2,12 @@
   padding: 0;
 }
 
+.prose img[srcset] {
+  width: auto;
+}
+
 .prose .alignnone.wp-caption {
-  width: auto !important;
+  width: auto !important; // NOTE override undesirable inlined WP styles
 }
 
 // LEFT / RIGHT
@@ -12,12 +16,12 @@ $max-aligned-img: 16em;
 
 .prose .alignleft,
 .prose .alignright {
-  width: $max-aligned-img !important; // NOTE override poor inlined WP styles
+  max-width: $max-aligned-img !important; // NOTE override undesirable inlined WP styles
 }
 
 .prose .alignleft img,
 .prose .alignright img {
-  width: 100% !important; // NOTE override poor WP behaviour
+  max-width: 100% !important; // NOTE override undesirable WP behaviour
 }
 
 .prose .alignleft.wp-caption,

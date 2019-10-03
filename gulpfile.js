@@ -58,7 +58,12 @@ gulp.task("sass", function() {
     .pipe(concat("style.css"))
     .pipe(cleanCSS())
     .pipe(header(banner, { pkg: pkg }))
-    .pipe(gulp.dest(themeDir));
+    .pipe(gulp.dest(themeDir))
+    .pipe(
+      browserSync.reload({
+        stream: true
+      })
+    );
 });
 
 gulp.task("js", function() {
@@ -87,9 +92,13 @@ gulp.task("customizer", function() {
 
 gulp.task("watch", function(done) {
   gulp.watch("css/**/*.scss", gulp.series("sass"));
-  gulp.watch("js/scripts.js", gulp.series("js"));
-  gulp.watch("js/customizer.js", gulp.series("customizer"));
-  gulp.watch(themeDir + "**/*").on("change", browserSync.reload);
+  gulp
+    .watch("js/scripts.js", gulp.series("js"))
+    .on("change", browserSync.reload);
+  gulp
+    .watch("js/customizer.js", gulp.series("customizer"))
+    .on("change", browserSync.reload);
+  gulp.watch(themeDir + "**/*.php").on("change", browserSync.reload);
   done();
 });
 

@@ -1,50 +1,28 @@
 <?php
 
-add_action('after_setup_theme','start_cleanup');
-function start_cleanup() {
-  add_action('init', 'cleanup_head');
-  add_filter('the_generator', 'remove_rss_version');
-  add_filter('gallery_style', 'gallery_style');
+add_action('after_setup_theme', 'nph_start_cleanup');
+function nph_start_cleanup() {
+  add_action('init', 'nph_cleanup_head');
+  add_filter('the_generator', 'nph_remove_rss_version');
+  add_filter('gallery_style', 'nph_gallery_style');
 }
 
-function cleanup_head() {
+function nph_cleanup_head() {
   remove_action ('wp_head', 'rsd_link');
   remove_action('wp_head', 'wlwmanifest_link');
   remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
-  add_filter('style_loader_src', 'alter_wp_ver_css_js', 9999);
-  add_filter('script_loader_src', 'alter_wp_ver_css_js', 9999);
+  add_filter('style_loader_src', 'nph_alter_wp_ver_css_js', 9999);
+  add_filter('script_loader_src', 'nph_alter_wp_ver_css_js', 9999);
 }
 
-add_filter('wp_title', 'nph_wp_title', 10, 2);
-function nph_wp_title($title, $sep) {
-  global $paged, $page;
+function nph_remove_rss_version() { return ''; }
 
-  if (is_feed()) {
-    return $title;
-  }
-
-  $title .= get_bloginfo('name');
-
-  $site_description = get_bloginfo('description', 'display');
-  if ($site_description && (is_home() || is_front_page())) {
-    $title = "$title $sep $site_description";
-  }
-
-  if ($paged >= 2 || $page >= 2) {
-    $title = sprintf(__('Page %s', 'notebook-ph'), max($paged, $page)) . " $sep $title";
-  }
-
-  return $title;
-
-}
-
-function remove_rss_version() { return ''; }
-
-function gallery_style($css) {
+function nph_gallery_style($css) {
   return preg_replace("!<style type='text/css'>(.*?)</style>!s", '', $css);
 }
 
-function alter_wp_ver_css_js($src) {
+// Add the theme version to the css and js, not the WP version
+function nph_alter_wp_ver_css_js($src) {
   if (strpos($src, 'ver=')) {
     $version = nph_get_theme_version();
     $src = remove_query_arg('ver', $src);
@@ -53,40 +31,31 @@ function alter_wp_ver_css_js($src) {
   return $src;
 }
 
-add_filter('the_content_more_link', 'nph_modify_read_more_link', 10, 2);
-function nph_modify_read_more_link($more_link, $more_link_text) {
-  return $more_link . ' &rarr;';
-}
-
-add_filter('the_content', 'ph_remove_arrows');
-function ph_remove_arrows($content) {
-  $content = str_replace('&rarr;', '', $content);
-  $content = str_replace('→', '', $content);
-  return $content;
-}
-
+// Generate the appropriate sizes attribute value
 add_filter('wp_calculate_image_sizes', 'nph_sizes', 10 , 5);
 function nph_sizes($sizes, $size, $image_src, $image_meta, $attachment_id) {
-  $width = $size[0];
-  if ($width >= 1212) {
-    $sizes = '(max-width: 638px) 95vw, 606px';
+  $image_width = $size[0];
+  $col_width = 606;
+  // If the width of the image is greater than double the width of the column
+  if ($image_width >= ($col_width * 2)) {
+    $sizes = '(max-width: 638px) 95vw, ' . $col_width . 'px';
   } else {
-    $half = $width / 2;
-    $sizes = '(max-width: ' . $half . 'px) 95vw, ' . $half . 'px';
+    $image_half = $image_width / 2;
+    $sizes = '(max-width: ' . $image_half . 'px) 95vw, ' . $image_half . 'px';
   }
   return $sizes;
 }
 
-add_filter( 'post_thumbnail_html', 'remove_width_attribute', 10 );
-add_filter( 'image_send_to_editor', 'remove_width_attribute', 10 );
-function remove_width_attribute( $html ) {
-  $html = preg_replace( '/(width|height)="\d*"\s/', "", $html );
-  return $html;
-}
-
-// Accounts for Wordpress incorrect srcset order
-add_filter( 'wp_calculate_image_srcset', 'ph_adjust_srcset', 10, 5 );
-function ph_adjust_srcset( $sources, $size_array, $image_src, $image_meta, $attachment_id ) {
-  ksort($sources);
-  return $sources;
+// Add loading attribute to images
+add_filter( 'the_content', 'nph_lazyload_content_images' );
+function nph_lazyload_content_images( $content ) {
+  if ( ! preg_match_all( '/<img [^>]+>/', $content, $matches ) ) {
+    return $content;
+  }
+  foreach ( $matches[0] as $image ) {
+    if ( false === strpos( $image, ' loading=' ) ) {
+      $content = str_replace( $image, preg_replace( '/>/', 'loading="lazy">', $image ), $content);
+    }
+  }
+  return $content;
 }

@@ -33,7 +33,7 @@
             </div>
             <div class="header__breadcrumb">
               <?php if (!is_front_page()) : ?>
-                <?php echo $short ? $short : get_bloginfo('name'); ?> / <?php echo nph_archive_str(); ?>
+                <?php echo $short ? $short . ' / ' : ''; ?><?php echo nph_archive_str(); ?>
               <?php else : ?>
                 <?php bloginfo('name'); ?>
               <?php endif; ?>
@@ -52,7 +52,7 @@
           <?php endif; ?>
 
           <?php $items = wp_get_nav_menu_items('header'); ?>
-          <?php $menu_class = count($items) > 3 ? ' col-2' : ''; ?>
+          <?php $menu_class = $items && count($items) > 3 ? ' col-2' : ''; ?>
           <?php $menu_class = 'menu' . $menu_class; ?>
 
           <?php wp_nav_menu( array(

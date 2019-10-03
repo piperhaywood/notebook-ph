@@ -439,7 +439,7 @@ function nph_map_hue($timezone, $lat, $unix) {
 
 function nph_get_hsl($hsl_post = false) {
   if (!$hsl_post) {
-    return 'hsl(1, 100, 0)';
+    return 'hsl(1, 100%, 0%)';
   }
   $unix = get_the_date('U', $hsl_post->ID);
   $hue = nph_map_hue('Europe/London', 51.567592, $unix);
@@ -543,4 +543,61 @@ function nph_get_list($posts = false) {
     </div>
     <?php return ob_get_clean();
   }
+}
+
+function nph_comment($comment, $args, $depth) {
+  if ( 'div' === $args['style'] ) {
+    $tag       = 'div';
+    $add_below = 'comment';
+  } else {
+    $tag       = 'li';
+    $add_below = 'div-comment';
+  }?>
+  <<?php echo $tag; ?> <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?> id="comment-<?php comment_ID() ?>"><?php 
+  if ( 'div' != $args['style'] ) { ?>
+    <div id="div-comment-<?php comment_ID() ?>" class="comment-body"><?php
+  } ?>
+    <div class="comment-avatar">
+      <?php
+        if ( $args['avatar_size'] != 0 ) {
+          echo get_avatar( $comment, $args['avatar_size'] ); 
+        }
+      ?>
+    </div>
+    <div class="comment-author vcard">
+        <?php printf( __( '<cite class="fn">%s</cite>' ), get_comment_author_link() ); ?>, 
+      <span class="comment-meta commentmetadata">
+        <a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ); ?>"><?php
+          /* translators: 1: date, 2: time */
+          printf( 
+            __('%1$s at %2$s'),
+            get_comment_date(),
+            get_comment_time()
+          ); ?>
+        </a>
+      </span><?php edit_comment_link( __( 'Edit' ), ' / ', '' ); ?>
+    </div>
+
+    <div class="comment-content prose">
+      <?php if ( $comment->comment_approved == '0' ) : ?>
+        <p><em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.' ); ?></em></p>
+      <?php endif; ?>
+      <?php comment_text(); ?>
+    </div>
+
+    <div class="reply"><?php
+      comment_reply_link(
+        array_merge(
+          $args,
+          array(
+            'add_below' => $add_below,
+            'depth'     => $depth,
+            'max_depth' => $args['max_depth']
+          )
+        )
+      ); ?>
+    </div><?php
+  if ( 'div' != $args['style'] ) : ?>
+    </div><?php
+  endif;
 }

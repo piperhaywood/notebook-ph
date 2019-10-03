@@ -9,21 +9,21 @@
 
 html {
   box-sizing: border-box;
+  font-size: 87.5%;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
+  @include style-body;
+  color: $black;
   font-size: 1em;
-}
-
-html {
-  font-size: 87.5%;
 }
 
 button,
 select,
 textarea,
 input {
+  font-family: inherit;
   font-size: 16px;
 }
 
@@ -47,11 +47,6 @@ input {
   margin: 0;
 }
 
-body {
-  @include style-body;
-  color: $black;
-}
-
 h1,
 h2,
 h3,
@@ -72,13 +67,6 @@ img {
   height: auto;
   max-width: 100%;
   vertical-align: middle;
-}
-
-button,
-input,
-select,
-textarea {
-  font-family: inherit;
 }
 
 button,
@@ -112,4 +100,11 @@ body:not(.is-tabbing) summary:focus {
 
 iframe {
   max-width: 100%;
+}
+
+hr {
+  background-color: black;
+  border: none;
+  color: black;
+  height: 1px;
 }

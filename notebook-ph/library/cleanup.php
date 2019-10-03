@@ -15,29 +15,6 @@ function cleanup_head() {
   add_filter('script_loader_src', 'alter_wp_ver_css_js', 9999);
 }
 
-add_filter('wp_title', 'nph_wp_title', 10, 2);
-function nph_wp_title($title, $sep) {
-  global $paged, $page;
-
-  if (is_feed()) {
-    return $title;
-  }
-
-  $title .= get_bloginfo('name');
-
-  $site_description = get_bloginfo('description', 'display');
-  if ($site_description && (is_home() || is_front_page())) {
-    $title = "$title $sep $site_description";
-  }
-
-  if ($paged >= 2 || $page >= 2) {
-    $title = sprintf(__('Page %s', 'notebook-ph'), max($paged, $page)) . " $sep $title";
-  }
-
-  return $title;
-
-}
-
 function remove_rss_version() { return ''; }
 
 function gallery_style($css) {

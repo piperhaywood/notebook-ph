@@ -54,6 +54,11 @@ body.is-not-tabbing.is-header-open {
   margin-bottom: 1em;
 }
 
+.smallprint > * {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
 .smallprint a {
   text-decoration-color: $grey !important;
 }
@@ -146,6 +151,8 @@ body:not(.no-details) {
 
   .nav-icon {
     flex-shrink: 0;
+    order: 2;
+    margin-right: 0;
     padding-top: 1px;
     padding-bottom: 1px;
     width: 16px;

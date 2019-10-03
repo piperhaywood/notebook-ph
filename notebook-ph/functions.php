@@ -439,7 +439,7 @@ function nph_map_hue($timezone, $lat, $unix) {
 
 function nph_get_hsl($hsl_post = false) {
   if (!$hsl_post) {
-    return 'hsl(1, 100, 0)';
+    return 'hsl(1, 100%, 0%)';
   }
   $unix = get_the_date('U', $hsl_post->ID);
   $hue = nph_map_hue('Europe/London', 51.567592, $unix);

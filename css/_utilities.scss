@@ -23,21 +23,19 @@
   background-color: var(--color);
   color: white;
   display: inline-block;
-  left: auto;
-  top: auto;
-  width: auto;
   height: auto;
-  overflow: auto;
+  left: auto;
   margin: 1rem auto 0 auto;
+  overflow: auto;
   padding: 0.5rem;
   position: static;
   text-align: center;
+  top: auto;
   white-space: nowrap;
+  width: auto;
   z-index: auto;
 }
 
-.visuallyhidden.button:hover,
-.visuallyhidden.button:hover,
 .visuallyhidden.button:hover {
   background-color: white;
   color: black;

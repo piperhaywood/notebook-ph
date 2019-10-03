@@ -71,8 +71,8 @@
 }
 
 .prose > details pre {
-  width: 36rem;
   max-width: calc(100vw - (var(--gutter) * 6));
+  width: 36rem;
 }
 
 @media (min-width: 500px) {
@@ -129,10 +129,10 @@
 }
 
 .prose hr {
-  border: none;
-  height: 1px;
-  color: black;
   background-color: black;
+  border: none;
+  color: black;
+  height: 1px;
   @include container;
 }
 
@@ -142,13 +142,13 @@
 }
 
 .prose pre {
-  width: $container-width;
-  max-width: calc(100vw - (var(--gutter) * 2));
-  overflow: scroll;
+  background: #eeeeee;
   margin-left: auto;
   margin-right: auto;
-  background: #eeeeee;
+  max-width: calc(100vw - (var(--gutter) * 2));
+  overflow: scroll;
   padding: $container-padding;
+  width: $container-width;
 }
 
 .prose pre h1,
@@ -171,16 +171,16 @@
 }
 
 .prose table {
-  display: block;
-  max-width: 100%;
-  width: fit-content;
-  overflow-x: scroll;
   border-collapse: collapse;
-  padding-bottom: 1.5em;
-  padding-right: var(--gutter);
-  padding-left: var(--gutter);
-  margin-right: auto;
+  display: block;
   margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  overflow-x: scroll;
+  padding-bottom: 1.5em;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+  width: fit-content;
 }
 
 .prose th {
@@ -193,14 +193,11 @@
 }
 
 .prose tr > * {
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
   border-bottom: 1px solid black;
-}
-
-.prose tr > * {
   min-width: 9em;
+  padding-bottom: 0.5em;
   padding-right: 0.5em;
+  padding-top: 0.5em;
 }
 
 .prose tr > *:last-child {
@@ -217,10 +214,10 @@
 
 .prose ins:before {
   content: "‸";
-  top: 2px;
   position: absolute;
-  width: 100%;
   text-align: center;
+  top: 2px;
+  width: 100%;
 }
 
 .article .prose blockquote {
@@ -234,8 +231,8 @@
 
 @media (max-width: 42em) {
   .article .prose > blockquote {
-    margin-right: var(--gutter);
     margin-left: var(--gutter);
+    margin-right: var(--gutter);
   }
 }
 
@@ -266,8 +263,8 @@
 
 .termindex {
   columns: 11rem auto;
-  margin-top: 2rem;
   margin-bottom: 2rem;
+  margin-top: 2rem;
 }
 
 .termindex h2 {

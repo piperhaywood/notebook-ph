@@ -37,6 +37,7 @@
           </section>
 
           <footer class="post__footer">
+            <?php wp_link_pages(); ?>
             <?php if (!is_page()) : ?>
               <div class="post__meta">
                 <ul class="post__tags">
@@ -72,7 +73,6 @@
                 <?php comments_template(); ?>
               <?php endif; ?>
             <?php endif; ?>
-            <?php wp_link_pages(); ?>
             <a href="#top" class="visuallyhidden button"><?php _e('Back to top', 'notebook-ph'); ?></a>
 
           </footer>

@@ -101,3 +101,10 @@ body:not(.is-tabbing) summary:focus {
 iframe {
   max-width: 100%;
 }
+
+hr {
+  background-color: black;
+  border: none;
+  color: black;
+  height: 1px;
+}

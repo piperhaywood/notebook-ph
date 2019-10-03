@@ -1,39 +1,48 @@
-.rainbow .has-bg {
-  background: var(--color);
-}
-
-.rainbow .post__title a:hover {
-  color: var(--color);
-}
-
-.rainbow .prose hr {
-  background-color: var(--color);
-  color: var(--color);
-}
-
-.rainbow .prose tr > * {
-  border-bottom: 1px solid var(--color);
-}
-
-.rainbow .article .prose blockquote {
-  border: 1px solid var(--color);
-}
-
-@supports (text-decoration-color: var(--color)) {
-  .rainbow .prose s,
-  .rainbow .prose del,
-  .rainbow .prose strike,
-  .rainbow .prose a,
-  .rainbow .prose ins,
-  .rainbow .post__author a:hover,
-  .rainbow .post__author a:focus,
-  .rainbow .post__author a:active,
-  .rainbow .post__tag a:hover,
-  .rainbow .post__tag a:focus,
-  .rainbow .post__tag a:active,
-  .rainbow .termindex a:hover,
-  .rainbow .termindex a:focus,
-  .rainbow .termindex a:active {
-    text-decoration-color: var(--color);
+.rainbow {
+  .has-bg,
+  .post-item__link,
+  .comment-reply-link,
+  .comments input[type="submit"] {
+    background: var(--color);
+  }
+  .post-item__link:hover {
+    background: $white;
+    color: $black;
+  }
+  .post__title a:hover {
+    color: var(--color);
+  }
+  hr {
+    background-color: var(--color);
+    color: var(--color);
+  }
+  .prose tr > * {
+    border-bottom: 1px solid var(--color);
+  }
+  .article .prose blockquote,
+  .comment,
+  textarea,
+  .comments input[type="text"],
+  input[type="url"] {
+    border: 1px solid var(--color);
+  }
+  @supports (text-decoration-color: var(--color)) {
+    .prose s,
+    .prose del,
+    .prose strike,
+    .prose a,
+    .prose ins,
+    .comments a,
+    .post__author a:hover,
+    .post__author a:focus,
+    .post__author a:active,
+    .post__tag a:hover,
+    .post__tag a:focus,
+    .post__tag a:active,
+    .termindex a:hover,
+    .termindex a:focus,
+    .termindex a:active {
+      text-decoration-color: var(--color);
+    }
   }
 }

@@ -65,32 +65,30 @@ body.is-not-tabbing.is-header-open {
   text-decoration-color: $grey !important;
 }
 
-.menu-header-container {
-  margin-top: 1rem;
-}
-
-.menu-header-container ul {
-  list-style-type: none;
-}
-
-.menu {
-  padding-left: 0;
-}
-
-.menu.col-2 {
-  columns: 2;
-}
-
-.menu a {
-  display: inline-block;
-  padding-bottom: calc(var(--gutter) / 2);
-  padding-right: calc(var(--gutter) / 2);
-}
-
-.menu a:hover,
-.menu a:focus,
-.menu a:active {
-  text-decoration: underline;
+/* NOTE Using elements for this due to WP behaviour with default menus */
+.header__inner {
+  nav {
+    margin-top: 1rem;
+  }
+  nav ul {
+    list-style-type: none;
+  }
+  nav > ul {
+    padding-left: 0;
+  }
+  nav ul.col-2 {
+    columns: 2;
+  }
+  nav a {
+    display: inline-block;
+    padding-bottom: calc(var(--gutter) / 2);
+    padding-right: calc(var(--gutter) / 2);
+  }
+  nav a:hover,
+  nav a:focus,
+  nav a:active {
+    text-decoration: underline;
+  }
 }
 
 #title {

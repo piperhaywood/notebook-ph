@@ -25,7 +25,12 @@
                   <?php echo get_the_date('l, j F Y'); ?>
                 </a>
               </time>
-              <span class="post__author"><?php printf(_x('by %s', 'authorship', 'notebook-ph'), get_the_author_posts_link()); ?></span>
+              <span class="post__author"><?php printf(_x('by %s', 'authorship', 'notebook-ph'), sprintf(
+                '<a class="p-author h-card" href="%1$s" title="%2$s" rel="author">%3$s</a>',
+                esc_url( get_author_posts_url( get_the_author_meta('ID'), get_the_author_meta('user_nicename') ) ),
+                esc_attr( sprintf( __( 'Posts by %s', 'notebook-ph' ), get_the_author() ) ),
+                get_the_author()
+              )); ?></span>
             <?php endif; ?>
             <h1 class="p-name post__title<?php echo $format ? ' visuallyhidden' : ''; ?>">
               <?php nph_title(); ?>

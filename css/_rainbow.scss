@@ -5,6 +5,9 @@
   .comments input[type="submit"] {
     background: var(--color);
   }
+  .post__time .has-bg {
+    border: 1px solid var(--color);
+  }
   .post-item__link:hover {
     background: $white;
     color: $black;

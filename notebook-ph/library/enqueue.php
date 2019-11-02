@@ -6,7 +6,7 @@ if (class_exists('GA_Google_Analytics_Pro')) {
   add_action('wp_footer', 'wp_print_footer_scripts', 9);
 }
 
-add_action('wp_enqueue_scripts', 'nph_assets', 0);
+add_action('wp_enqueue_scripts', 'nph_assets', 10);
 function nph_assets() {
   $version = nph_get_theme_version();
 

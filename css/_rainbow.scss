@@ -29,6 +29,16 @@
   input[type="url"] {
     border: 1px solid var(--color);
   }
+  .wp-block-button__link {
+    background-color: var(--color);
+    border: 1px solid var(--color);
+  }
+  .is-style-outline .wp-block-button__link {
+    border: 1px solid var(--color);
+  }
+  .is-style-outline .wp-block-button__link:hover {
+    background-color: var(--color);
+  }
   @supports (text-decoration-color: var(--color)) {
     .prose s,
     .prose del,

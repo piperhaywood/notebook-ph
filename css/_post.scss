@@ -37,3 +37,23 @@
 .post__author a:hover {
   text-decoration: underline;
 }
+
+.wp-block-button__link {
+  background-color: $black;
+  border: 1px solid $black;
+  text-decoration: none;
+}
+
+.wp-block-button__link:hover {
+  background-color: $white;
+  color: $black;
+}
+
+.is-style-outline .wp-block-button__link {
+  border: 1px solid $black;
+}
+
+.is-style-outline .wp-block-button__link:hover {
+  background-color: $black;
+  color: $white;
+}

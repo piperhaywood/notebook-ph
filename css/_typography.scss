@@ -35,7 +35,7 @@
 
 label a,
 .comment-content a,
-.prose a {
+.prose a:not(.wp-block-button__link) {
   text-decoration: underline;
 }
 

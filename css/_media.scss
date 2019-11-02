@@ -105,7 +105,8 @@ $max-aligned-img: 16em;
   }
 }
 
-.prose div.aligncenter {
+.prose div.aligncenter,
+.prose div.alignwide {
   max-width: 100%;
   @media (min-width: 1200px) {
     max-width: 1200px;
@@ -116,6 +117,17 @@ $max-aligned-img: 16em;
   margin-left: auto;
   margin-right: auto;
   max-width: 608px;
+}
+
+.prose .alignwide img,
+.prose .alignfull img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.prose .alignwide img {
+  max-width: 40rem;
 }
 
 .prose img.aligncenter {
@@ -263,4 +275,11 @@ $max-aligned-img: 16em;
   margin-left: auto !important;
   margin-right: auto !important;
   width: calc(100vw - (var(--gutter) * 2)) !important;
+}
+
+// Blocks
+
+.wp-block-image figcaption {
+  color: $grey;
+  font-size: inherit;
 }

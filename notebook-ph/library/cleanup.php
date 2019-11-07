@@ -31,21 +31,6 @@ function nph_alter_wp_ver_css_js($src) {
   return $src;
 }
 
-// Generate the appropriate sizes attribute value
-add_filter('wp_calculate_image_sizes', 'nph_sizes', 10 , 5);
-function nph_sizes($sizes, $size, $image_src, $image_meta, $attachment_id) {
-  $image_width = $size[0];
-  $col_width = 606;
-  // If the width of the image is greater than double the width of the column
-  if ($image_width >= ($col_width * 2)) {
-    $sizes = '(max-width: 638px) 95vw, ' . $col_width . 'px';
-  } else {
-    $image_half = $image_width / 2;
-    $sizes = '(max-width: ' . $image_half . 'px) 95vw, ' . $image_half . 'px';
-  }
-  return $sizes;
-}
-
 // Add loading attribute to images
 add_filter( 'the_content', 'nph_lazyload_content_images' );
 function nph_lazyload_content_images( $content ) {

@@ -15,7 +15,7 @@
             </h1>
           </header>
 
-          <section class="prose">
+          <section class="prose e-content">
             <?php the_content(esc_html__('Read more', 'notebook-ph')); ?>
           </section>
 

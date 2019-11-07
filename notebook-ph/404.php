@@ -9,7 +9,7 @@
         </h1>
       </header>
 
-      <section class="prose">
+      <section class="prose e-content">
         <p><?php _e('Sorry, there&rsquo;s nothing to see here. Please search or browse keywords below. Get in touch if you can&rsquo;t find what you&rsquo;re looking&nbsp;for.', 'notebook-ph'); ?></p>
       </section>
       <section class="container browse-search">

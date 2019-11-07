@@ -42,7 +42,7 @@
   </div>
 
   <?php $end = get_theme_mod('nph_infinite_scroll_end'); ?>
-  <?php $end = $end ? $end : '<em>' . esc_html__('Loading more&hellip;', 'notebook-ph') . '</em>'; ?>
+  <?php $end = $end ? $end : ''; ?>
   <div class="js-infinite-end infinite-end">
     <div class="container">
       <p><?php echo strip_tags($end, '<em><a><img><br>'); ?></p>

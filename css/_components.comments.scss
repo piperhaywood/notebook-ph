@@ -26,36 +26,14 @@
   textarea,
   input[type="text"],
   input[type="url"] {
-    border: 1px solid $black;
-    display: block;
-    max-width: 100%;
-    padding: $container-padding 0 $container-padding $container-padding;
-    width: 100%;
-    /* stylelint-disable */
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    /* stylelint-enable */
+    @include input-text;
   }
   input[type="text"] {
     padding: $container-padding 0 $container-padding $container-padding;
   }
   input[type="submit"] {
-    background: $black;
-    color: $white;
-    display: inline-block;
-    height: 1.75rem;
-    padding: 0.5rem;
-    @include style-h4;
+    @include input-submit;
   }
-  input[type="submit"]:hover {
-    background: $white !important;
-    color: $black;
-  }
-}
-
-.comments--has-comments details {
-  color: $black;
 }
 
 .comment-reply-title {
@@ -72,42 +50,46 @@
 
 .comment-form-cookies-consent {
   display: flex;
-}
-
-.comment-form-cookies-consent input[type="checkbox"] {
-  margin-top: 0.25rem;
+  input[type="checkbox"] {
+    margin-top: 0.25rem;
+  }
 }
 
 .comments--has-comments {
   margin-top: 3rem;
+  details {
+    color: $black;
+  }
 }
 
 .comment-list {
   list-style-type: none;
   padding-left: 0;
-}
-
-.comment-list ol.children {
-  list-style-type: none;
-  padding-left: 0;
-}
-
-.comment-author a:hover,
-.comment-author a:focus {
-  text-decoration: underline;
+  ol.children {
+    list-style-type: none;
+    padding-left: 0;
+  }
 }
 
 .comment-author {
   @include style-h4;
   margin-bottom: 1.5rem;
-}
-
-.comment-author cite {
-  font-style: normal;
+  a:hover,
+  a:focus {
+    text-decoration: underline;
+  }
+  cite {
+    font-style: normal;
+  }
 }
 
 .comment-avatar {
   display: none;
+  img {
+    display: block;
+    margin-bottom: 0.5rem;
+    max-width: 3rem;
+  }
 }
 
 .comment {
@@ -116,40 +98,43 @@
   padding: $container-padding;
 }
 
-.comment-avatar img {
-  display: block;
-  margin-bottom: 0.5rem;
-  max-width: 3rem;
-}
+.comment-content {
+  > h1,
+  > h2,
+  > h3,
+  > h4,
+  > h5,
+  > h6,
+  > p,
+  > table {
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
 
-.comment-content > h1,
-.comment-content > h2,
-.comment-content > h3,
-.comment-content > h4,
-.comment-content > h5,
-.comment-content > h6,
-.comment-content > p,
-.comment-content > table {
-  margin-bottom: 1.5rem;
-  margin-top: 1.5rem;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
+  a {
+    text-decoration: underline;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
 
-.comment-content img {
-  display: block;
-  margin-bottom: 0.5rem;
-  margin-top: 0.5rem;
-}
+  img {
+    display: block;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+  }
 
-.comment-content > blockquote,
-.comment-content > ul {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-}
+  > blockquote,
+  > ul {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
 
-.comment-content > ul {
-  padding-left: 1rem;
+  > ul {
+    padding-left: 1rem;
+  }
 }
 
 .comment-body .prose pre {
@@ -162,22 +147,13 @@
 }
 
 .comment-reply-link {
-  background: $black;
-  color: $white;
-  display: inline-block;
-  height: 2.5rem;
   margin-top: 1.5rem;
-  padding: 0.5rem;
-  @include style-h4;
-  /* stylelint-disable */
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  /* stylelint-enable */
+  @include input-submit;
 }
 
-.comment-reply-link:hover,
-.comment-reply-link:focus {
-  background: $white !important;
-  color: $black;
+.comment-respond p,
+#webmention-form p,
+.link_description > * {
+  margin-bottom: 1.5em;
+  margin-top: 1.5em;
 }

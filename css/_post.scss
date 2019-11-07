@@ -11,7 +11,6 @@
 .post__time a {
   border: 1px solid $black;
   display: inline-block;
-  height: 2.5rem;
   padding: 0.5rem;
 }
 
@@ -38,22 +37,25 @@
   text-decoration: underline;
 }
 
-.wp-block-button__link {
-  background-color: $black;
-  border: 1px solid $black;
-  text-decoration: none;
+.post-nav-links {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  > *:first-child {
+    margin-left: 1ch;
+  }
 }
 
-.wp-block-button__link:hover {
-  background-color: $white;
-  color: $black;
-}
-
-.is-style-outline .wp-block-button__link {
-  border: 1px solid $black;
-}
-
-.is-style-outline .wp-block-button__link:hover {
-  background-color: $black;
+.post-page-numbers {
+  background: $black;
   color: $white;
+  display: inline-block;
+  padding: 0.75rem;
+  &.current,
+  &:hover,
+  &:focus {
+    background: $white !important;
+    color: $black;
+  }
 }

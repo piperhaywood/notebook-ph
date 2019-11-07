@@ -2,6 +2,7 @@
   .has-bg,
   .post-item__link,
   .comment-reply-link,
+  .prose button,
   .comments input[type="submit"] {
     background: var(--color);
   }
@@ -19,25 +20,39 @@
     background-color: var(--color);
     color: var(--color);
   }
-  .prose tr > * {
+  .prose > table tr > * {
     border-bottom: 1px solid var(--color);
   }
   .article .prose blockquote,
   .comment,
   textarea,
   .comments input[type="text"],
-  input[type="url"] {
+  input[type="url"],
+  input[type="password"],
+  input[type="search"],
+  .prose button {
     border: 1px solid var(--color);
   }
+  .wp-block-file .wp-block-file__button,
   .wp-block-button__link {
     background-color: var(--color);
     border: 1px solid var(--color);
   }
-  .is-style-outline .wp-block-button__link {
+  .is-style-outline {
+    .wp-block-button__link {
+      border: 1px solid var(--color);
+      &:hover,
+      &:focus {
+        background-color: var(--color) !important;
+      }
+    }
+  }
+  .wp-block-latest-posts.is-grid li,
+  .wp-block-latest-comments__comment {
     border: 1px solid var(--color);
   }
-  .is-style-outline .wp-block-button__link:hover {
-    background-color: var(--color);
+  .post-page-numbers {
+    background: var(--color);
   }
   @supports (text-decoration-color: var(--color)) {
     .prose s,
@@ -54,7 +69,9 @@
     .post__tag a:active,
     .termindex a:hover,
     .termindex a:focus,
-    .termindex a:active {
+    .termindex a:active,
+    .wp-block-tag-cloud a:focus,
+    .wp-block-tag-cloud a:hover {
       text-decoration-color: var(--color);
     }
   }

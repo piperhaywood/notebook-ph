@@ -9,8 +9,8 @@
 }
 
 .post__time a {
+  border: 1px solid $black;
   display: inline-block;
-  height: 2.5rem;
   padding: 0.5rem;
 }
 
@@ -35,4 +35,27 @@
 
 .post__author a:hover {
   text-decoration: underline;
+}
+
+.post-nav-links {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  > *:first-child {
+    margin-left: 1ch;
+  }
+}
+
+.post-page-numbers {
+  background: $black;
+  color: $white;
+  display: inline-block;
+  padding: 0.75rem;
+  &.current,
+  &:hover,
+  &:focus {
+    background: $white !important;
+    color: $black;
+  }
 }

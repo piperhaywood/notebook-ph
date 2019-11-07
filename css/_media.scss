@@ -1,269 +1,258 @@
-.prose img.alignnone {
-  padding: 0;
-}
+.prose {
+  // img[srcset] {
+  //   width: auto;
+  // }
 
-.prose img[srcset] {
-  width: auto;
-}
+  /* stylelint-disable */
+  > twitter-widget {
+    @include container;
+    width: 40rem !important;
+  }
+  /* stylelint-enable */
 
-.prose .alignnone.wp-caption {
-  width: auto !important; // NOTE override undesirable inlined WP styles
-}
-
-// LEFT / RIGHT
-
-$max-aligned-img: 16em;
-
-.prose .alignleft,
-.prose .alignright {
-  max-width: $max-aligned-img !important; // NOTE override undesirable inlined WP styles
-}
-
-.prose .alignleft img,
-.prose .alignright img {
-  max-width: 100% !important; // NOTE override undesirable WP behaviour
-}
-
-.prose .alignleft.wp-caption,
-.prose .alignright.wp-caption {
-  margin-right: 0;
-  margin-left: 0;
-}
-
-@media (min-width: 600px) {
-  .prose .alignleft {
-    float: left;
+  > iframe.instagram-media {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: calc(100vw - (var(--gutter) * 2)) !important;
+  }
+  > p {
+    img {
+      display: block;
+      &.alignleft {
+        margin-bottom: var(--gutter);
+        width: $max-aligned-width;
+        @media (min-width: 540px) {
+          float: left;
+          margin-right: var(--gutter);
+        }
+        @media (min-width: 930px) {
+          margin-left: calc(((#{$max-aligned-width} / 2) + var(--gutter)) * -1);
+        }
+        @media (min-width: 1180px) {
+          margin-left: calc((#{$max-aligned-width} + var(--gutter)) * -1);
+          margin-right: 0;
+        }
+      }
+      &.alignright {
+        margin-bottom: var(--gutter);
+        width: $max-aligned-width;
+        @media (min-width: 540px) {
+          float: right;
+          margin-left: var(--gutter);
+        }
+        @media (min-width: 930px) {
+          margin-right: calc(
+            ((#{$max-aligned-width} / 2) + var(--gutter)) * -1
+          );
+        }
+        @media (min-width: 1180px) {
+          margin-left: 0;
+          margin-right: calc((#{$max-aligned-width} + var(--gutter)) * -1);
+        }
+      }
+    }
+  }
+  > div {
     margin-top: 0;
+    &.alignleft,
+    &.alignright {
+      &:not(.wp-block-cover):not(.wp-block-button) {
+        max-width: 100%;
+        padding: 0 var(--gutter);
+        width: $max-aligned-width !important; // Override WP inline styles
+      }
+      img {
+        width: 100%;
+      }
+    }
+    &.alignleft:not(.wp-block-cover):not(.wp-block-button) {
+      @media (min-width: 540px) {
+        float: left;
+      }
+      @media (min-width: 640px) {
+        margin-left: calc(((100vw - #{$container-width}) / 2));
+      }
+      @media (min-width: 900px) {
+        margin-left: calc(
+          ((100vw - #{$container-width}) / 2) - (#{$max-aligned-width} / 2) +
+            var(--gutter)
+        );
+      }
+      @media (min-width: 1120px) {
+        margin-left: calc(
+          ((100vw - #{$container-width}) / 2) - #{$max-aligned-width} + var(--gutter)
+        );
+      }
+    }
+    &.alignright:not(.wp-block-cover):not(.wp-block-button) {
+      @media (min-width: 540px) {
+        float: right;
+      }
+      @media (min-width: 640px) {
+        margin-right: calc(((100vw - #{$container-width}) / 2));
+      }
+      @media (min-width: 900px) {
+        margin-right: calc(
+          ((100vw - #{$container-width}) / 2) - (#{$max-aligned-width} / 2) +
+            var(--gutter)
+        );
+      }
+      @media (min-width: 1120px) {
+        margin-right: calc(
+          ((100vw - #{$container-width}) / 2) - #{$max-aligned-width} + var(--gutter)
+        );
+      }
+    }
+    &.alignnone {
+      @include container;
+      width: 100% !important;
+    }
+    &.aligncenter {
+      padding: 0 var(--gutter);
+      width: 100% !important;
+      img {
+        width: 100%;
+      }
+      .wp-caption-text {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 40rem;
+        text-align: center;
+      }
+    }
   }
-  .prose .alignright {
-    float: right;
-    margin-top: 0;
+
+  .wp-caption-text {
+    color: $grey;
+    margin-top: 0.5rem;
   }
-  .prose img.alignleft {
-    margin-bottom: $container-padding;
-    padding-right: var(--gutter);
+
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 100%;
+    padding-left: calc(var(--gutter) / 2);
+    padding-right: calc(var(--gutter) / 2);
   }
-  .prose img.alignright {
-    margin-bottom: $container-padding;
-    padding-left: var(--gutter);
+
+  .gallery br {
+    display: none;
+  }
+
+  .gallery-columns-1 {
+    display: block;
+  }
+
+  .gallery dd {
+    padding-left: 0;
+  }
+
+  .gallery-item {
+    margin-bottom: var(--gutter);
+    padding-left: calc(var(--gutter) / 2);
+    padding-right: calc(var(--gutter) / 2);
+  }
+
+  .gallery-columns-2 .gallery-item {
+    @media (min-width: 410px) {
+      width: calc((100vw - var(--gutter)) / 2);
+    }
+  }
+
+  .gallery-columns-3 .gallery-item {
+    @media (min-width: 500px) {
+      width: calc((100vw - var(--gutter)) / 3);
+    }
+  }
+
+  .gallery-columns-4 .gallery-item {
+    @media (min-width: 410px) {
+      width: calc((100vw - var(--gutter)) / 2);
+    }
+
+    @media (min-width: 766px) {
+      width: calc((100vw - var(--gutter)) / 4);
+    }
+  }
+
+  .gallery-columns-5 .gallery-item {
+    @media (min-width: 410px) {
+      width: calc((100vw - var(--gutter)) / 3);
+    }
+
+    @media (min-width: 900px) {
+      width: calc((100vw - var(--gutter)) / 5);
+    }
+  }
+
+  .gallery-columns-6 .gallery-item {
+    @media (min-width: 410px) {
+      width: calc((100vw - var(--gutter)) / 2);
+    }
+
+    @media (min-width: 500px) {
+      width: calc((100vw - var(--gutter)) / 3);
+    }
+
+    @media (min-width: 1200px) {
+      width: calc((100vw - var(--gutter)) / 6);
+    }
+  }
+
+  .gallery-columns-7 .gallery-item {
+    @media (min-width: 410px) {
+      width: calc((100vw - var(--gutter)) / 2);
+    }
+
+    @media (min-width: 500px) {
+      width: calc((100vw - var(--gutter)) / 3);
+    }
+
+    @media (min-width: 1200px) {
+      width: calc((100vw - var(--gutter)) / 7);
+    }
+  }
+
+  .gallery-columns-8 .gallery-item {
+    @media (min-width: 410px) {
+      width: calc((100vw - var(--gutter)) / 2);
+    }
+
+    @media (min-width: 766px) {
+      width: calc((100vw - var(--gutter)) / 4);
+    }
+
+    @media (min-width: 1200px) {
+      width: calc((100vw - var(--gutter)) / 8);
+    }
+  }
+
+  .gallery-columns-9 .gallery-item {
+    @media (min-width: 410px) {
+      width: calc((100vw - var(--gutter)) / 2);
+    }
+
+    @media (min-width: 500px) {
+      width: calc((100vw - var(--gutter)) / 3);
+    }
+
+    @media (min-width: 1200px) {
+      width: calc((100vw - var(--gutter)) / 6);
+    }
+
+    @media (min-width: 1600px) {
+      width: calc((100vw - var(--gutter)) / 9);
+    }
+  }
+
+  .thumbs {
+    @include container;
   }
 }
 
-.prose p .alignright {
-  margin-right: 0;
-}
-
-.prose p .alignleft {
-  margin-left: 0;
-}
-
-.prose img.alignleft {
-  @media (min-width: 864px) {
-    margin-left: calc(#{$max-aligned-img} / 2 * -1);
-    padding-left: var(--gutter);
-  }
-  @media (min-width: 1120px) {
-    margin-left: calc(#{$max-aligned-img} * -1);
-  }
-}
-
-.prose img.alignright {
-  @media (min-width: 864px) {
-    margin-right: calc(#{$max-aligned-img} / 2 * -1);
-    padding-right: var(--gutter);
-  }
-  @media (min-width: 1120px) {
-    margin-right: calc(#{$max-aligned-img} * -1);
-  }
-}
-
-.prose .alignleft.wp-caption {
-  margin-left: 0 !important;
-  @media (min-width: 864px) {
-    margin-left: calc(
-      (100vw - #{$container-width}) / 2 - (#{$max-aligned-img} / 2) + #{$container-padding}
-    ) !important;
-  }
-  @media (min-width: 1120px) {
-    margin-left: calc(
-      (100vw - #{$container-width}) / 2 - #{$max-aligned-img} + #{$container-padding}
-    ) !important;
-  }
-}
-
-.prose .alignright.wp-caption {
-  margin-right: 0 !important;
-  @media (min-width: 864px) {
-    margin-right: calc(
-      (100vw - #{$container-width}) / 2 - (#{$max-aligned-img} / 2) + #{$container-padding}
-    ) !important;
-  }
-  @media (min-width: 1120px) {
-    margin-right: calc(
-      (100vw - #{$container-width}) / 2 - #{$max-aligned-img} + #{$container-padding}
-    ) !important;
-  }
-}
-
-.prose div.aligncenter {
-  max-width: 100%;
-  @media (min-width: 1200px) {
-    max-width: 1200px;
-  }
-}
-
-.prose div.aligncenter .wp-caption-text {
-  max-width: 608px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.prose img.aligncenter {
-  @media (min-width: 640px) {
-    margin-left: calc((100vw - #{$container-width}) / 2 * -1);
-    margin-right: calc((100vw - #{$container-width}) / 2 * -1);
-    max-width: calc(100vw - (var(--gutter) * 2));
-  }
-
-  @media (min-width: 1200px) {
-    margin-left: calc((1200px - #{$container-width}) / 2 * -1);
-    margin-right: calc((1200px - #{$container-width}) / 2 * -1);
-    max-width: calc(1200px - (var(--gutter) * 2));
-  }
-}
-
-// GALLERY
-
-.prose .gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 100%;
-  padding-right: calc(var(--gutter) / 2);
-  padding-left: calc(var(--gutter) / 2);
-}
-
-.prose .gallery br {
-  display: none;
-}
-
-.prose .gallery-columns-1 {
+.wp-audio-shortcode {
+  @include container;
   display: block;
-}
-
-.prose .gallery dd {
-  padding-left: 0;
-}
-
-.prose .gallery-item {
-  margin-bottom: var(--gutter);
-  padding-right: calc(var(--gutter) / 2);
-  padding-left: calc(var(--gutter) / 2);
-}
-
-.prose .gallery-columns-2 .gallery-item {
-  @media (min-width: 410px) {
-    max-width: calc((100vw - var(--gutter)) / 2);
-  }
-}
-
-.prose .gallery-columns-3 .gallery-item {
-  @media (min-width: 500px) {
-    max-width: calc((100vw - var(--gutter)) / 3);
-  }
-}
-
-.prose .gallery-columns-4 .gallery-item {
-  @media (min-width: 410px) {
-    max-width: calc((100vw - var(--gutter)) / 2);
-  }
-
-  @media (min-width: 766px) {
-    max-width: calc((100vw - var(--gutter)) / 4);
-  }
-}
-
-.prose .gallery-columns-5 .gallery-item {
-  @media (min-width: 410px) {
-    max-width: calc((100vw - var(--gutter)) / 3);
-  }
-
-  @media (min-width: 900px) {
-    max-width: calc((100vw - var(--gutter)) / 5);
-  }
-
-  @media (min-width: 1200px) {
-  }
-}
-
-.prose .gallery-columns-6 .gallery-item {
-  @media (min-width: 410px) {
-    max-width: calc((100vw - var(--gutter)) / 2);
-  }
-
-  @media (min-width: 500px) {
-    max-width: calc((100vw - var(--gutter)) / 3);
-  }
-
-  @media (min-width: 1200px) {
-    max-width: calc((100vw - var(--gutter)) / 6);
-  }
-}
-
-.prose .gallery-columns-7 .gallery-item {
-  @media (min-width: 410px) {
-    max-width: calc((100vw - var(--gutter)) / 2);
-  }
-
-  @media (min-width: 500px) {
-    max-width: calc((100vw - var(--gutter)) / 3);
-  }
-
-  @media (min-width: 1200px) {
-    max-width: calc((100vw - var(--gutter)) / 7);
-  }
-}
-
-.prose .gallery-columns-8 .gallery-item {
-  @media (min-width: 410px) {
-    max-width: calc((100vw - var(--gutter)) / 2);
-  }
-
-  @media (min-width: 766px) {
-    max-width: calc((100vw - var(--gutter)) / 4);
-  }
-
-  @media (min-width: 1200px) {
-    max-width: calc((100vw - var(--gutter)) / 8);
-  }
-}
-
-.prose .gallery-columns-9 .gallery-item {
-  @media (min-width: 410px) {
-    max-width: calc((100vw - var(--gutter)) / 2);
-  }
-
-  @media (min-width: 500px) {
-    max-width: calc((100vw - var(--gutter)) / 3);
-  }
-
-  @media (min-width: 1200px) {
-    max-width: calc((100vw - var(--gutter)) / 6);
-  }
-
-  @media (min-width: 1600px) {
-    max-width: calc((100vw - var(--gutter)) / 9);
-  }
-}
-
-// OTHER
-
-.prose [class*="instagram"] {
-  margin: 0 auto !important;
-}
-
-.prose > iframe.instagram-media {
-  margin-right: auto !important;
-  margin-left: auto !important;
-  width: calc(100vw - (var(--gutter) * 2)) !important;
+  width: 40rem !important;
 }

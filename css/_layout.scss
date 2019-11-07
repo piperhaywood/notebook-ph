@@ -9,6 +9,8 @@ body {
 .articles,
 .article {
   padding-top: 3rem;
+  -ms-word-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .header__inner,

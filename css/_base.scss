@@ -108,3 +108,12 @@ hr {
   color: black;
   height: 1px;
 }
+
+label {
+  a {
+    text-decoration: underline;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+}

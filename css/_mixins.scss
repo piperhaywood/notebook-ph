@@ -76,3 +76,30 @@
   font-size: inherit;
   padding: 0 0.25em;
 }
+
+@mixin input-text {
+  border: 1px solid $black;
+  display: block;
+  max-width: 100%;
+  padding: $container-padding 0 $container-padding $container-padding;
+  width: 100%;
+  /* stylelint-disable */
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  /* stylelint-enable */
+}
+
+@mixin input-submit {
+  background: $black;
+  border: 1px solid $black;
+  color: $white;
+  display: inline-block;
+  padding: 0.5rem;
+  @include style-h4;
+  &:hover,
+  &:focus {
+    background: $white !important;
+    color: $black;
+  }
+}

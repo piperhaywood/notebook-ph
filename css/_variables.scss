@@ -2,11 +2,11 @@ $black: #000000;
 $grey: #949494;
 $white: #ffffff;
 
-$font-mono: 'IBMPlexMono', monospace;
+$font-mono: "IBMPlexMono", monospace;
 
 $container-width: 40rem;
 $container-padding: 1rem;
-$container-padding-mobile: .5rem;
+$container-padding-mobile: 0.5rem;
 $header-height: 3.5rem;
 
 $sm: 42em;
@@ -19,3 +19,5 @@ $size-h1: $size-body;
 $size-h2: $size-body;
 $size-h3: $size-body;
 $size-h4: $size-body;
+
+$max-aligned-width: 16em;

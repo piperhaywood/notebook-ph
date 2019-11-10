@@ -10,7 +10,7 @@
     border: 1px solid var(--color);
   }
   .post-item__link:hover {
-    background: $white;
+    background-color: $white;
     color: $black;
   }
   .post__title a:hover {
@@ -52,7 +52,7 @@
     border: 1px solid var(--color);
   }
   .post-page-numbers {
-    background: var(--color);
+    background-color: var(--color);
   }
   @supports (text-decoration-color: var(--color)) {
     .prose s,

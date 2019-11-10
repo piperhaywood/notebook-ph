@@ -21,7 +21,7 @@
 .visuallyhidden.button:focus,
 .visuallyhidden.button:active {
   background-color: var(--color);
-  color: white;
+  color: $white;
   display: inline-block;
   height: auto;
   left: auto;
@@ -37,13 +37,13 @@
 }
 
 .visuallyhidden.button:hover {
-  background-color: white;
-  color: black;
+  background-color: $white;
+  color: $black;
 }
 
 .has-bg {
-  background: black;
-  color: white;
+  background-color: $black;
+  color: $white;
   padding: 0.25em;
 }
 
@@ -52,7 +52,7 @@
 }
 
 a.has-bg:hover {
-  background: none;
+  background-color: transparent;
   color: inherit;
   text-decoration: none;
 }

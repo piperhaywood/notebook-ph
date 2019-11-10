@@ -24,7 +24,7 @@
 }
 
 .post__title a:hover {
-  color: black;
+  color: $black;
   text-decoration: none;
 }
 
@@ -48,14 +48,14 @@
 }
 
 .post-page-numbers {
-  background: $black;
+  background-color: $black;
   color: $white;
   display: inline-block;
   padding: 0.75rem;
   &.current,
   &:hover,
   &:focus {
-    background: $white !important;
+    background-color: $white !important;
     color: $black;
   }
 }

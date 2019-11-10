@@ -256,7 +256,7 @@
 
   blockquote {
     border: 1px solid black;
-    padding: $container-padding;
+    padding: var(--gutter);
     p {
       margin-bottom: $container-padding;
     }

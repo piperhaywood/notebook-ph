@@ -1,7 +1,7 @@
 @media print {
   @page {
-    size: A4;
     margin: 0;
+    size: A4;
   }
   * {
     -webkit-print-color-adjust: exact;
@@ -111,24 +111,20 @@
     padding: 0;
   }
   .post-item__image {
-    mix-blend-mode: normal;
-  }
-  .post-item__image {
     height: 24px;
+    mix-blend-mode: normal;
   }
   .pagination .post-index,
   .rpbt_shortcode .post-index {
     padding-bottom: 0;
   }
   .pagination {
+    display: block !important;
     margin-bottom: 1cm;
     padding-top: 1cm;
   }
   .infinite-loading,
   .infinite-end {
     display: none !important;
-  }
-  .pagination {
-    display: block !important;
   }
 }

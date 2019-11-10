@@ -174,7 +174,7 @@
   }
 
   pre {
-    background: #eeeeee;
+    background-color: #eeeeee;
     font-family: inherit;
     font-size: inherit;
     margin-left: auto;
@@ -254,6 +254,11 @@
     }
   }
 
+  p.has-background {
+    padding-bottom: var(--gutter);
+    padding-top: var(--gutter);
+  }
+
   blockquote {
     border: 1px solid black;
     padding: var(--gutter);
@@ -284,7 +289,7 @@
   }
 
   button,
-  input[type="submit"] {
+  input[type="submit"]:not(#searchsubmit) {
     @include input-submit;
   }
 

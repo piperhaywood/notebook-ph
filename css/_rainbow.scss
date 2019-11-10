@@ -70,7 +70,17 @@
     .termindex a:focus,
     .termindex a:active,
     .wp-block-tag-cloud a:focus,
-    .wp-block-tag-cloud a:hover {
+    .wp-block-tag-cloud a:hover,
+    h1 a:hover,
+    h2 a:hover,
+    h3 a:hover,
+    h4 a:hover,
+    h5 a:hover,
+    h1 a:focus,
+    h2 a:focus,
+    h3 a:focus,
+    h4 a:focus,
+    h5 a:focus {
       text-decoration-color: var(--color);
     }
   }

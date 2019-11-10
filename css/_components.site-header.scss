@@ -140,6 +140,10 @@ body:not(.no-details) {
 
   .header__breadcrumb {
     flex-grow: 1;
+    max-width: calc(100vw - (var(--gutter) * 2) - 0.75rem - 16px);
+    @media (min-width: 640px) {
+      max-width: calc(640px - (var(--gutter) * 2) - 0.75rem - 16px);
+    }
   }
 
   .header__summary {

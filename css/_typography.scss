@@ -181,6 +181,7 @@
     margin-right: auto;
     max-width: calc(100vw - (var(--gutter) * 2));
     overflow: scroll;
+    overflow-wrap: normal;
     padding: $container-padding;
     width: $container-width;
   }

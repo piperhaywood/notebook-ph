@@ -338,3 +338,17 @@
     font-size: 2.25rem;
   }
 }
+
+[class*="wp-audio"],
+[class*="wp-video"],
+[class*="wp-block-audio"],
+[class*="wp-block-video"] {
+  button {
+    background-color: rgba(0, 0, 0, 0) !important;
+    border: none !important;
+    &:hover,
+    &:focus {
+      background-color: rgba(0, 0, 0, 0) !important;
+    }
+  }
+}

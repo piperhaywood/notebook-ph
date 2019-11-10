@@ -18,6 +18,9 @@
     > address,
     > form {
       @include container;
+      @media (min-width: 500px) {
+        hanging-punctuation: first;
+      }
     }
 
     > ol {

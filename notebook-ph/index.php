@@ -34,7 +34,7 @@
               )); ?></span>
             <?php endif; ?>
             <h1 class="p-name post__title<?php echo $format ? ' visuallyhidden' : ''; ?>">
-              <?php nph_title(); ?>
+              <?php echo $format ? get_the_title() : nph_title(false); ?>
             </h1>
           </header>
           

@@ -11,12 +11,9 @@
 
       <section class="prose e-content">
         <p><?php _e('Sorry, there&rsquo;s nothing to see here. Please search or browse keywords below. Get in touch if you can&rsquo;t find what you&rsquo;re looking&nbsp;for.', 'notebook-ph'); ?></p>
-      </section>
-      <section class="container browse-search">
         <?php get_search_form(); ?>
+        <?php echo do_shortcode('[notebookindex count="2"]'); ?>
       </section>
-
-      <?php echo do_shortcode('[notebookindex count="2"]'); ?>
 
       <footer class="post__footer">
       </footer>

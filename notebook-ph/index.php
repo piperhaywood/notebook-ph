@@ -90,15 +90,12 @@
     <article class="post article type-<?php echo get_post_type(); ?>" style="--color:<?php echo nph_get_hsl(); ?>;">
       <div class="article__inner">
 
-        <div class="prose">
+        <div class="prose e-content">
           <p><?php _e('Nothing found!', 'notebook-ph'); ?></p>
-        </div>
-
-        <div class="container browse-search">
           <?php get_search_form(); ?>
+          <?php echo do_shortcode('[notebookindex count="2"]'); ?>
         </div>
 
-        <?php echo do_shortcode('[notebookindex count="2"]'); ?>
       </div>
       <footer class="post__footer">
       </footer>

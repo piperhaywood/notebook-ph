@@ -103,5 +103,19 @@ if (!("open" in document.createElement("details"))) {
   document.body.classList.add("no-details");
 }
 
+var replyLinks = document.querySelectorAll(".comment-reply-link");
+var replyDetails = document.querySelector("#reply");
+var replyInput = document.querySelector("#comment");
+if (replyDetails && replyLinks) {
+  replyLinks.forEach(function(link) {
+    link.addEventListener("click", function(e) {
+      e.preventDefault();
+      replyDetails.setAttribute("open", "true");
+      replyDetails.scrollIntoView({ behavior: "smooth" });
+      replyInput.focus();
+    });
+  });
+}
+
 var infScroll = infinite.init();
 menu.init();

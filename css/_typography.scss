@@ -19,6 +19,9 @@
     > address,
     > form {
       @include container;
+      @media (min-width: 500px) {
+        hanging-punctuation: first;
+      }
     }
 
     > ol {
@@ -27,7 +30,7 @@
       }
     }
 
-    > ul:not([class]) {
+    > ul:not(.wp-block-gallery) {
       @media (max-width: 42em) {
         margin-left: 18px;
       }
@@ -96,8 +99,29 @@
     a {
       text-decoration: underline;
     }
-    a:hover {
+    a:hover,
+    a:focus {
       text-decoration: none;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    a {
+      text-decoration: none;
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+      }
+      &:hover:after {
+        color: #949494;
+        content: " #";
+        font-weight: normal;
+      }
     }
   }
 
@@ -154,13 +178,14 @@
   }
 
   pre {
-    background: #eeeeee;
+    background-color: #eeeeee;
     font-family: inherit;
     font-size: inherit;
     margin-left: auto;
     margin-right: auto;
     max-width: calc(100vw - (var(--gutter) * 2));
     overflow: scroll;
+    overflow-wrap: normal;
     padding: $container-padding;
     width: $container-width;
   }
@@ -234,9 +259,14 @@
     }
   }
 
+  p.has-background {
+    padding-bottom: var(--gutter);
+    padding-top: var(--gutter);
+  }
+
   blockquote {
     border: 1px solid black;
-    padding: $container-padding;
+    padding: var(--gutter);
     p {
       margin-bottom: $container-padding;
     }
@@ -264,7 +294,7 @@
   }
 
   button,
-  input[type="submit"] {
+  input[type="submit"]:not(#searchsubmit) {
     @include input-submit;
   }
 
@@ -302,6 +332,28 @@
     a:focus,
     a:active {
       text-decoration: underline;
+    }
+  }
+}
+
+.has-large-font-size {
+  font-size: 2rem;
+  line-height: 1.3;
+  @media (min-width: 500px) {
+    font-size: 2.25rem;
+  }
+}
+
+[class*="wp-audio"],
+[class*="wp-video"],
+[class*="wp-block-audio"],
+[class*="wp-block-video"] {
+  button {
+    background-color: rgba(0, 0, 0, 0) !important;
+    border: none !important;
+    &:hover,
+    &:focus {
+      background-color: rgba(0, 0, 0, 0) !important;
     }
   }
 }

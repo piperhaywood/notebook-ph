@@ -56,7 +56,9 @@
   }
 
   .alignright {
-    margin-left: var(--gutter);
+    @media (min-width: 640px) {
+      margin-left: var(--gutter);
+    }
   }
 
   &.alignwide {

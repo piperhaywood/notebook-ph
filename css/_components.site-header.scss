@@ -23,7 +23,7 @@ body.is-not-tabbing.is-header-open {
 
 .header,
 .header__summary {
-  background: white;
+  background-color: $white;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -140,6 +140,10 @@ body:not(.no-details) {
 
   .header__breadcrumb {
     flex-grow: 1;
+    max-width: calc(100vw - (var(--gutter) * 2) - 0.75rem - 16px);
+    @media (min-width: 640px) {
+      max-width: calc(640px - (var(--gutter) * 2) - 0.75rem - 16px);
+    }
   }
 
   .header__summary {
@@ -165,7 +169,7 @@ body:not(.no-details) {
   .nav-icon:after,
   .nav-icon:before,
   .nav-icon div {
-    background-color: black;
+    background-color: $black;
     content: "";
     display: block;
     height: 2px;

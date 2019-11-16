@@ -6,10 +6,10 @@
   .comment-reply-link,
   .prose button,
   .comments input[type="submit"] {
-    background: var(--color);
+    background-color: var(--color);
   }
   .post-item__link:hover {
-    background: $white;
+    background-color: $white;
     color: $black;
   }
   .post__title a:hover {
@@ -22,6 +22,8 @@
   .prose > table tr > * {
     border-bottom: 1px solid var(--color);
   }
+  .comment-reply-link,
+  .post__time .has-bg,
   .article .prose blockquote,
   .comment,
   .pingback,
@@ -55,7 +57,7 @@
     border: 1px solid var(--color);
   }
   .post-page-numbers {
-    background: var(--color);
+    background-color: var(--color);
   }
   @supports (text-decoration-color: var(--color)) {
     .prose s,
@@ -74,7 +76,17 @@
     .termindex a:focus,
     .termindex a:active,
     .wp-block-tag-cloud a:focus,
-    .wp-block-tag-cloud a:hover {
+    .wp-block-tag-cloud a:hover,
+    h1 a:hover,
+    h2 a:hover,
+    h3 a:hover,
+    h4 a:hover,
+    h5 a:hover,
+    h1 a:focus,
+    h2 a:focus,
+    h3 a:focus,
+    h4 a:focus,
+    h5 a:focus {
       text-decoration-color: var(--color);
     }
   }

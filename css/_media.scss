@@ -1,8 +1,4 @@
 .prose {
-  // img[srcset] {
-  //   width: auto;
-  // }
-
   /* stylelint-disable */
   > twitter-widget {
     @include container;
@@ -52,7 +48,7 @@
       }
     }
   }
-  > div {
+  > div:not(.wp-block-image) {
     margin-top: 0;
     &.alignleft,
     &.alignright {
@@ -119,6 +115,12 @@
         max-width: 40rem;
         text-align: center;
       }
+    }
+    .aligncenter {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 var(--gutter);
     }
   }
 
@@ -254,5 +256,6 @@
 .wp-audio-shortcode {
   @include container;
   display: block;
+  max-width: 100%;
   width: 40rem !important;
 }

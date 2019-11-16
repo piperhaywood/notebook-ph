@@ -6,9 +6,6 @@
   .comments input[type="submit"] {
     background: var(--color);
   }
-  .post__time .has-bg {
-    border: 1px solid var(--color);
-  }
   .post-item__link:hover {
     background: $white;
     color: $black;
@@ -26,11 +23,14 @@
   .article .prose blockquote,
   .comment,
   .pingback,
+  .comment-reply-link,
+  .post__time .has-bg,
   textarea,
   .comments input[type="text"],
   input[type="url"],
   input[type="password"],
   input[type="search"],
+  input[type="submit"],
   .prose button {
     border: 1px solid var(--color);
   }

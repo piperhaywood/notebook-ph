@@ -46,9 +46,9 @@ body.is-not-tabbing.is-header-open {
   margin-bottom: 2em;
 }
 
-.header__desc.prose p {
-  padding-left: 0;
-  padding-right: 0;
+.header__desc.prose > * {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 .smallprint {

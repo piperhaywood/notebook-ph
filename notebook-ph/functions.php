@@ -524,16 +524,14 @@ function nph_get_list($posts = false) {
             $excerpt = $excerpt ? $excerpt : get_the_title();
           }
           ?>
-          <?php $src = false; ?>
-          <?php if (has_post_thumbnail($post)) : ?>
-            <?php $src = get_the_post_thumbnail_url($post, 'thumbnail'); ?>
-          <?php endif; ?>
           <li class="post-index__post-item post-item" style="--color:<?php echo $hsl; ?>;">
             <a class="post-item__link" href="<?php the_permalink(); ?>"
               aria-label="<?php printf(esc_attr__('Visit post published %s titled “%s”', 'notebook-ph'), get_the_date('d F Y'), get_the_title()); ?>">
               <time class="post-item__time" datetime="<?php echo nph_date(true, false); ?>"><?php echo get_the_date('d M Y'); ?></time>
               <span>&mdash;</span>
-              <?php if ($src) : ?><img class="post-item__image" src="<?php echo $src; ?>"><?php endif; ?>
+              <?php if (has_post_thumbnail($post)) : ?>
+                <?php echo nph_list_thumb($post, 'thumbnail'); ?>
+              <?php endif; ?>
               <div class="post-item__text"><?php echo $excerpt; ?></div>
             </a>
           </li>
@@ -543,6 +541,13 @@ function nph_get_list($posts = false) {
     </div>
     <?php return ob_get_clean();
   }
+}
+
+function nph_list_thumb($post, $size = 'thumbnail') {
+  add_filter('wp_calculate_image_srcset_meta', '__return_null');
+  $html = get_the_post_thumbnail($post, $size, array('loading' => 'lazy', 'class' => 'post-item__image'));
+  remove_filter('wp_calculate_image_srcset_meta', '__return_null');
+  return $html;
 }
 
 function nph_comment($comment, $args, $depth) {

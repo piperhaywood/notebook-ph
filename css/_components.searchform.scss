@@ -22,12 +22,18 @@
 }
 
 .searchform input[type="submit"] {
+  @include style-h4;
+  background-color: $white;
+  border: none !important;
+  color: $black;
   cursor: pointer;
   padding: 1rem;
 }
 
-.searchform input[type="submit"]:hover {
-  text-decoration: underline;
+.searchform input[type="submit"]:hover,
+.searchform input[type="submit"]:focus {
+  background-color: $black !important;
+  color: $white;
 }
 
 .searchform__group {

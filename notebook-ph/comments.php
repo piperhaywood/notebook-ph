@@ -13,7 +13,7 @@ if ( post_password_required() ) {
 
   <?php if ( have_comments() ) : ?>
     <div class="comments__section">
-      <details <?php echo have_comments() ? 'open' : ''; ?>>
+      <details>
         <summary>
           <?php
           printf( _x( 'View discussion <span class="comments__count" aria-hidden="true">%s</span>', 'comments title', 'notebook-ph' ), get_comments_number() );
@@ -45,7 +45,7 @@ if ( post_password_required() ) {
 
   <?php if (comments_open()) : ?>
     <div class="comments__section">
-      <details>
+      <details id="reply">
         <?php $discussion = 'Leave a reply'; ?>
         <?php $discussion = have_comments() ? $discussion . ' / view discussion <span class="comments__count">%s</span>' : $discussion; ?>
         <summary>

@@ -1,7 +1,8 @@
 .prose,
 .wp-block-column {
   &.e-content,
-  &.archive-description {
+  &.archive-description,
+  &.header__desc {
     > p,
     > ul,
     > ol,

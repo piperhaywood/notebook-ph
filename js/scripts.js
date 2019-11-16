@@ -1,37 +1,46 @@
-var infinite = {
-  init: function() {
-    var next = document.querySelector(".js-next");
-    var container = document.querySelector(".js-infinite-container");
+// Add class so that we can style skip links
+function handleFirstTab(e) {
+  if (e.keyCode === 9) {
+    document.body.classList.add("is-tabbing");
+    document.body.classList.remove("is-not-tabbing");
+    window.removeEventListener("keydown", handleFirstTab);
+  }
+}
+
+const infinite = {
+  init() {
+    const next = document.querySelector(".js-next");
+    const container = document.querySelector(".js-infinite-container");
     if (!next || !container) {
       return;
     }
-    var infScroll = new InfiniteScroll(container, {
+    const infScroll = new InfiniteScroll(container, {
       path: ".js-next a",
       append: ".js-article",
       hideNav: ".js-pagination"
     });
 
-    infScroll.on("append", function(response, path, items) {
+    infScroll.on("append", (response, path, items) => {
       // Reset asset HTML due to Infinite Scroll behaviour
-      items.forEach(function(item) {
-        var imgs = item.querySelectorAll("img");
-        var audios = item.querySelectorAll("audio");
-        var videos = item.querySelectorAll("video");
-        var assetGroups = [imgs, audios, videos];
-        assetGroups.forEach(function(group) {
-          group.forEach(function(asset) {
+      items.forEach(item => {
+        let imgs = item.querySelectorAll("img");
+        let audios = item.querySelectorAll("audio");
+        let videos = item.querySelectorAll("video");
+        let assetGroups = [imgs, audios, videos];
+        assetGroups.forEach(group => {
+          group.forEach(asset => {
             asset.outerHTML = asset.outerHTML;
           });
         });
       });
     });
 
-    var loadingMessage = document.querySelector(".js-infinite-loading");
-    var endMessage = document.querySelector(".js-infinite-end");
-    infScroll.on("request", function(path) {
+    const loadingMessage = document.querySelector(".js-infinite-loading");
+    const endMessage = document.querySelector(".js-infinite-end");
+    infScroll.on("request", path => {
       loadingMessage.classList.add("show");
     });
-    infScroll.on("last", function(response, path) {
+    infScroll.on("last", (response, path) => {
       loadingMessage.classList.remove("show");
       endMessage.classList.add("show");
     });
@@ -39,20 +48,20 @@ var infinite = {
   }
 };
 
-var menu = {
+const menu = {
   scroll: window.pageYOffset,
   height: 0,
-  init: function() {
-    var vm = this;
-    var details = document.querySelector(".js-header-details");
-    var sum = document.querySelector(".js-header-summary");
+  init() {
+    const vm = this;
+    const details = document.querySelector(".js-header-details");
+    const sum = document.querySelector(".js-header-summary");
     if (!details || !sum) {
       return;
     }
 
     vm.height = details.clientHeight - sum.clientHeight;
-    details.addEventListener("toggle", function(e) {
-      var open = e.target.getAttribute("open");
+    details.addEventListener("toggle", e => {
+      let open = e.target.getAttribute("open");
       if (open == null) {
         vm.close(sum, details);
       } else {
@@ -60,9 +69,9 @@ var menu = {
       }
     });
 
-    var closeMenu = document.querySelector(".js-close-menu");
+    const closeMenu = document.querySelector(".js-close-menu");
     if (closeMenu) {
-      closeMenu.addEventListener("click", function(e) {
+      closeMenu.addEventListener("click", e => {
         e.preventDefault();
         vm.close(sum, details);
       });
@@ -71,15 +80,15 @@ var menu = {
     // TODO trap focus
     // For now, there is a “close menu” button at the base of the menu
   },
-  close: function(elem, details) {
-    var vm = this;
+  close(elem, details) {
+    const vm = this;
     document.body.classList.remove("is-header-open");
     details.removeAttribute("open");
     elem.setAttribute("aria-expanded", "false");
     window.scrollTo(0, vm.scroll);
   },
-  open: function(elem) {
-    var vm = this;
+  open(elem) {
+    const vm = this;
     // Save the scroll position so that we can reset it when header is closed and body is “unfrozen”
     vm.scroll = window.pageYOffset;
     document.body.classList.add("is-header-open");
@@ -87,21 +96,30 @@ var menu = {
   }
 };
 
-// Add class so that we can style skip links
-function handleFirstTab(e) {
-  if (e.keyCode === 9) {
-    // the "I am a keyboard user" key
-    document.body.classList.add("is-tabbing");
-    document.body.classList.remove("is-not-tabbing");
-    window.removeEventListener("keydown", handleFirstTab);
+const replies = {
+  init() {
+    const links = document.querySelectorAll(".comment-reply-link");
+    const details = document.querySelector("#reply");
+    const input = document.querySelector("#comment");
+    if (!details || !links || !input) {
+      return;
+    }
+    links.forEach(link => {
+      link.addEventListener("click", e => {
+        e.preventDefault();
+        details.setAttribute("open", "true");
+        details.scrollIntoView({ behavior: "smooth" });
+        input.focus();
+      });
+    });
   }
-}
-window.addEventListener("keydown", handleFirstTab);
+};
 
 // Add class if browser doesn’t support open/close of details
 if (!("open" in document.createElement("details"))) {
   document.body.classList.add("no-details");
 }
-
-var infScroll = infinite.init();
+window.addEventListener("keydown", handleFirstTab);
+infinite.init();
 menu.init();
+replies.init();

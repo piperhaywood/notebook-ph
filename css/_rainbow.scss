@@ -1,4 +1,6 @@
 .rainbow {
+  .searchform input[type="submit"]:hover,
+  .searchform input[type="submit"]:focus,
   .has-bg,
   .post-item__link,
   .comment-reply-link,
@@ -24,11 +26,15 @@
   .post__time .has-bg,
   .article .prose blockquote,
   .comment,
+  .pingback,
+  .comment-reply-link,
+  .post__time .has-bg,
   textarea,
   .comments input[type="text"],
   input[type="url"],
   input[type="password"],
   input[type="search"],
+  input[type="submit"],
   .prose button {
     border: 1px solid var(--color);
   }
